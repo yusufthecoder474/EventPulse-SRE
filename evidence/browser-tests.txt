@@ -1,0 +1,16 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> eventpulse-console@1.0.0 test:e2e
+> playwright test
+
+
+Running 2 tests using 2 workers
+
+(node:69) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:70) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › tests/console.spec.ts:16:1 › mobile navigation remains usable (2.0s)
+  ✓  1 [chromium] › tests/console.spec.ts:2:1 › real API dashboard, probes, navigation and screenshot (3.2s)
+
+  2 passed (3.9s)

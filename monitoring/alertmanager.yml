@@ -1,0 +1,9 @@
+route:
+  receiver: local-console
+  group_by: [alertname, service]
+  group_wait: 10s
+  group_interval: 30s
+  repeat_interval: 1h
+receivers:
+  - name: local-console
+# Intentionally no external notification targets or credentials.

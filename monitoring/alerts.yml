@@ -1,0 +1,28 @@
+groups:
+  - name: eventpulse-user-impact
+    rules:
+      - record: eventpulse:business_requests:rate5m
+        expr: sum(rate(eventpulse_http_requests_total{route=~"/events|/registrations.*"}[5m]))
+      - record: eventpulse:business_errors:ratio5m
+        expr: (sum(rate(eventpulse_http_requests_total{route=~"/events|/registrations.*",status=~"5.."}[5m])) or vector(0)) / sum(rate(eventpulse_http_requests_total{route=~"/events|/registrations.*"}[5m]))
+      - record: eventpulse:business_errors:ratio1h
+        expr: (sum(rate(eventpulse_http_requests_total{route=~"/events|/registrations.*",status=~"5.."}[1h])) or vector(0)) / sum(rate(eventpulse_http_requests_total{route=~"/events|/registrations.*"}[1h]))
+      - alert: EventPulseAvailabilityFastBurn
+        expr: (eventpulse:business_errors:ratio5m / 0.01 > 14.4) and (eventpulse:business_errors:ratio1h / 0.01 > 14.4) and (sum(increase(eventpulse_http_requests_total{route=~"/events|/registrations.*"}[5m])) >= 100)
+        for: 2m
+        labels: {severity: SEV2, service: event-registration-api}
+        annotations:
+          summary: Availability budget burns at more than 14.4x in both windows
+          runbook_url: https://github.com/yusufthecoder474/EventPulse-SRE/blob/main/INCIDENT_RUNBOOK.md
+      - alert: EventPulseLatencyImpact
+        expr: (histogram_quantile(0.95, sum by (le) (rate(eventpulse_http_duration_seconds_bucket{route=~"/events|/registrations.*"}[5m]))) > 0.5) and (sum(increase(eventpulse_http_requests_total{route=~"/events|/registrations.*"}[5m])) >= 100)
+        for: 2m
+        labels: {severity: SEV3, service: event-registration-api}
+        annotations:
+          summary: At least five percent of requests have elevated latency
+      - alert: EventPulseTargetUnreachable
+        expr: up{job="eventpulse"} == 0
+        for: 30s
+        labels: {severity: SEV2, service: event-registration-api}
+        annotations:
+          summary: Scraper cannot reach the API; request SLIs are blind

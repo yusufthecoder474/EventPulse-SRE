@@ -1,0 +1,324 @@
+{
+  "source": "Real HTTP local experiments; short 3s window; scenario-level labels; database faults simulated",
+  "summary": {
+    "completed_experiments": 12,
+    "true_positives": 8,
+    "false_alerts": 0,
+    "false_negatives": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "precision_wilson_95": [
+      0.6756,
+      1.0
+    ],
+    "recall_wilson_95": [
+      0.6756,
+      1.0
+    ]
+  },
+  "splits": {
+    "development": {
+      "completed_experiments": 6,
+      "true_positives": 4,
+      "false_alerts": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "precision_wilson_95": [
+        0.5101,
+        1.0
+      ],
+      "recall_wilson_95": [
+        0.5101,
+        1.0
+      ]
+    },
+    "held-out": {
+      "completed_experiments": 6,
+      "true_positives": 4,
+      "false_alerts": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "precision_wilson_95": [
+        0.5101,
+        1.0
+      ],
+      "recall_wilson_95": [
+        0.5101,
+        1.0
+      ]
+    }
+  },
+  "configuration_comparison": [
+    {
+      "configuration": "local-window-v1",
+      "mode": "offline scenario aggregate; no timing replay",
+      "completed_experiments": 12,
+      "true_positives": 8,
+      "false_alerts": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "precision_wilson_95": [
+        0.6756,
+        1.0
+      ],
+      "recall_wilson_95": [
+        0.6756,
+        1.0
+      ]
+    },
+    {
+      "configuration": "conservative-offline",
+      "mode": "offline scenario aggregate; no timing replay",
+      "completed_experiments": 12,
+      "true_positives": 6,
+      "false_alerts": 0,
+      "false_negatives": 2,
+      "precision": 1.0,
+      "recall": 0.75,
+      "precision_wilson_95": [
+        0.6097,
+        1.0
+      ],
+      "recall_wilson_95": [
+        0.4093,
+        0.9285
+      ]
+    }
+  ],
+  "timing": {
+    "median_detection_seconds": 1.7528610229492188
+  },
+  "runs": [
+    {
+      "scenario": "baseline",
+      "split": "development",
+      "kind": "none",
+      "delay_ms": 0,
+      "every": 1,
+      "expected_impact": false,
+      "detected": false,
+      "requests": 357,
+      "success_rate": 1.0,
+      "success_wilson_95": [
+        0.9894,
+        1.0
+      ],
+      "p95_seconds": 0.007692575454711914,
+      "detection_seconds": null,
+      "recovery_seconds": null,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "latency-spike",
+      "split": "development",
+      "kind": "latency",
+      "delay_ms": 750,
+      "every": 1,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 24,
+      "success_rate": 1.0,
+      "success_wilson_95": [
+        0.862,
+        1.0
+      ],
+      "p95_seconds": 0.7610371112823486,
+      "detection_seconds": 2.270372152328491,
+      "recovery_seconds": 3.0150606632232666,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "server-errors",
+      "split": "development",
+      "kind": "http500",
+      "delay_ms": 0,
+      "every": 1,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 381,
+      "success_rate": 0.0,
+      "success_wilson_95": [
+        0.0,
+        0.01
+      ],
+      "p95_seconds": 0.003137826919555664,
+      "detection_seconds": 1.4974844455718994,
+      "recovery_seconds": 2.9840517044067383,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "database-simulation",
+      "split": "development",
+      "kind": "database",
+      "delay_ms": 0,
+      "every": 1,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 380,
+      "success_rate": 0.0,
+      "success_wilson_95": [
+        0.0,
+        0.01
+      ],
+      "p95_seconds": 0.002740621566772461,
+      "detection_seconds": 1.4838502407073975,
+      "recovery_seconds": 3.0007150173187256,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "dependency-timeout",
+      "split": "development",
+      "kind": "dependency",
+      "delay_ms": 600,
+      "every": 1,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 28,
+      "success_rate": 0.0,
+      "success_wilson_95": [
+        0.0,
+        0.1206
+      ],
+      "p95_seconds": 0.6042439937591553,
+      "detection_seconds": 2.0033838748931885,
+      "recovery_seconds": 3.026115894317627,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "noisy-warning",
+      "split": "development",
+      "kind": "warning",
+      "delay_ms": 0,
+      "every": 1,
+      "expected_impact": false,
+      "detected": false,
+      "requests": 353,
+      "success_rate": 1.0,
+      "success_wilson_95": [
+        0.9892,
+        1.0
+      ],
+      "p95_seconds": 0.00945591926574707,
+      "detection_seconds": null,
+      "recovery_seconds": null,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "heldout-baseline",
+      "split": "held-out",
+      "kind": "none",
+      "delay_ms": 0,
+      "every": 1,
+      "expected_impact": false,
+      "detected": false,
+      "requests": 357,
+      "success_rate": 1.0,
+      "success_wilson_95": [
+        0.9894,
+        1.0
+      ],
+      "p95_seconds": 0.008126974105834961,
+      "detection_seconds": null,
+      "recovery_seconds": null,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "unseen-delay-950ms",
+      "split": "held-out",
+      "kind": "latency",
+      "delay_ms": 950,
+      "every": 1,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 20,
+      "success_rate": 1.0,
+      "success_wilson_95": [
+        0.8389,
+        1.0
+      ],
+      "p95_seconds": 0.9565548896789551,
+      "detection_seconds": 2.0072686672210693,
+      "recovery_seconds": 3.052374839782715,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "unseen-errors-every-3",
+      "split": "held-out",
+      "kind": "http500",
+      "delay_ms": 0,
+      "every": 3,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 376,
+      "success_rate": 0.6675531914893617,
+      "success_wilson_95": [
+        0.6185,
+        0.7133
+      ],
+      "p95_seconds": 0.004649639129638672,
+      "detection_seconds": 1.5263314247131348,
+      "recovery_seconds": 3.042919158935547,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "repeated-database-fault",
+      "split": "held-out",
+      "kind": "database",
+      "delay_ms": 0,
+      "every": 2,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 376,
+      "success_rate": 0.5,
+      "success_wilson_95": [
+        0.4497,
+        0.5503
+      ],
+      "p95_seconds": 0.004875659942626953,
+      "detection_seconds": 1.5256016254425049,
+      "recovery_seconds": 3.0205414295196533,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "dependency-recovery-800ms",
+      "split": "held-out",
+      "kind": "dependency",
+      "delay_ms": 800,
+      "every": 2,
+      "expected_impact": true,
+      "detected": true,
+      "requests": 40,
+      "success_rate": 0.5,
+      "success_wilson_95": [
+        0.352,
+        0.648
+      ],
+      "p95_seconds": 0.8039202690124512,
+      "detection_seconds": 1.9793906211853027,
+      "recovery_seconds": 2.9838149547576904,
+      "recovery_probe_success_rate": 1.0
+    },
+    {
+      "scenario": "heldout-noisy-warning",
+      "split": "held-out",
+      "kind": "warning",
+      "delay_ms": 0,
+      "every": 3,
+      "expected_impact": false,
+      "detected": false,
+      "requests": 368,
+      "success_rate": 1.0,
+      "success_wilson_95": [
+        0.9897,
+        1.0
+      ],
+      "p95_seconds": 0.006632566452026367,
+      "detection_seconds": null,
+      "recovery_seconds": null,
+      "recovery_probe_success_rate": 1.0
+    }
+  ]
+}

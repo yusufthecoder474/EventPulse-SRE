@@ -1,0 +1,8 @@
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="3.875367">
+<testsuite name="console.spec.ts" timestamp="2026-10-16T12:45:23.211Z" hostname="chromium" tests="2" failures="0" skipped="0" time="5.179" errors="0">
+<testcase name="real API dashboard, probes, navigation and screenshot" classname="console.spec.ts" time="3.204">
+</testcase>
+<testcase name="mobile navigation remains usable" classname="console.spec.ts" time="1.975">
+</testcase>
+</testsuite>
+</testsuites>
