@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "scope": "Locally parsed CloudFormation YAML with custom tag constructor; assertions only",
+  "assertions": [
+    "security group ingress list empty",
+    "IMDSv2 HttpTokens required",
+    "root EBS Encrypted true"
+  ],
+  "aws_api_validation": "NOT RUN",
+  "cloud_deployment": "NOT VERIFIED"
+}

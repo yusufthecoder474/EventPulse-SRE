@@ -1,0 +1,14 @@
+{
+  "status": "FAIL",
+  "environment": "native FastAPI + fresh SQLite in restricted local execution",
+  "observed_at": "2026-10-17T03:20:40.078132+00:00",
+  "configured_duration_seconds": 10,
+  "users": 5,
+  "spawn_rate_users_per_second": 1,
+  "partial_requests": 18,
+  "partial_request_failures": 0,
+  "process_exit_code": 2,
+  "error": "psutil.NoSuchProcess in Locust Runner.monitor_cpu_and_memory: process PID not found",
+  "limitation": "The run terminated early due restricted PID visibility; partial throughput/latency values are excluded from successful performance claims",
+  "reproduction": "With a native API running: python -m locust -f scripts/locustfile.py --host http://127.0.0.1:8000 --headless -u 5 -r 1 -t 10s --only-summary"
+}

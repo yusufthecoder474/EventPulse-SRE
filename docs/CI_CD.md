@@ -29,3 +29,7 @@ git push -u origin feat/sre-v2-automation
 ```
 
 If the delivered feature branch already exists remotely, use `git switch --track origin/feat/sre-v2-automation` instead of creating a branch with the same name. Use the provided PR rather than copying files over a newer main branch. The replacement PowerShell publishing helper stops on uncommitted changes or unexpected remote and only pushes the current feature branch; it never creates a repository or forces history.
+
+## Verified v2 run
+
+https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/38998784660 completed SUCCESS for `1b98638c7f4cd289434d0cf49b5e3f8e5e1f522a`, including all integration, observer and browser steps. Artifact 12088202136 contains the raw measurements and screenshots. The final report records the tested SHA explicitly; later documentation-only commits are not silently treated as having that run's SHA.

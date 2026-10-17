@@ -9,3 +9,7 @@
 - Added optional EC2/SSM/Compose preparation with no inbound ports, encrypted storage and explicit billing approval boundary.
 - Replaced obsolete new-repository publishing behavior; feature-branch/PR update only.
 - Deferred unverified blue-green topology and backup/restore; no fabricated cloud, timing or performance claims.
+
+- Corrected the ineffective PID-namespace SIGKILL experiment using an explicitly enabled local SIGUSR1 abrupt-exit hook; preserved the failed trial.
+- Verified all expanded CI steps, 50 backend tests, 3 frontend tests, 2 browser flows and three real Docker observer scenarios at implementation SHA 1b98638.
+- Recorded a single measured 0.832464s crash restoration interval and its 12 failed requests; no zero-downtime claim.

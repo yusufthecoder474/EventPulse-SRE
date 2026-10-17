@@ -7,6 +7,8 @@ A local-first SRE portfolio project: register synthetic attendees, observe reque
 
 ## v2 engineering upgrade (17 October 2026)
 
+**Verified CI:** [successful run 38998784660](https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/38998784660) at `1b98638c7f4cd289434d0cf49b5e3f8e5e1f522a`: **50 backend + 3 frontend + 2 browser checks passed**, including PostgreSQL, full-stack persistence, monitoring validation and three observed crash/manual-outage scenarios. One crash trial restored readiness in **0.832464s**, with **12 failed requests**. This is measured CI evidence, not a zero-downtime or production claim.
+
 Current audit, statuses and reproduction steps: [docs/AUDIT_V2.md](docs/AUDIT_V2.md), [docs/VERIFICATION_REPORT.md](docs/VERIFICATION_REPORT.md), [CHANGELOG_V2.md](CHANGELOG_V2.md). Original evidence and POSTMORTEM.md are preserved; dated root test/publication reports describe the earlier build, not the current repository status.
 
 New: Linux Bash automation, 15 Grafana panels, sparse-error/no-traffic PromQL fixes, full-stack CI integration and timestamped Docker crash/manual-outage measurement. AWS is prepared only; **no cloud deployment is claimed**. Docker restart policies do not restart merely unhealthy containers. In-place deployment is not a zero-downtime rollout.
