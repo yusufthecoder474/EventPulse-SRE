@@ -1,15 +1,16 @@
-"""Inspect staged paths and common real credential patterns before publication."""
+"""Inspect tracked/staged paths and common real credential patterns before publication."""
 
 import re
 import subprocess
+import sys
 
-paths = (
-    subprocess.check_output(
-        ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM", "-z"]
-    )
-    .decode()
-    .split("\0")
+all_files = "--all" in sys.argv
+command = (
+    ["git", "ls-files", "-z"]
+    if all_files
+    else ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM", "-z"]
 )
+paths = subprocess.check_output(command).decode().split("\0")
 problems = []
 for path in filter(None, paths):
     if (
@@ -20,7 +21,7 @@ for path in filter(None, paths):
         problems.append(path + ": excluded file staged")
         continue
     data = subprocess.check_output(["git", "show", ":" + path])
-    if path.endswith((".png", ".jpg", ".zip")):
+    if path.endswith((".png", ".jpg", ".jpeg", ".zip")):
         continue
     text = data.decode(errors="replace")
     patterns = [
@@ -34,5 +35,5 @@ for path in filter(None, paths):
 if problems:
     raise SystemExit("\n".join(problems))
 print(
-    f"Checked {len(list(filter(None, paths)))} staged paths; no excluded files or common credential patterns detected. Test-only constants and empty placeholders are intentional."
+    f"Checked {len(list(filter(None, paths)))} tracked/staged paths; no excluded files or common credential patterns detected. Test-only constants and empty placeholders are intentional."
 )

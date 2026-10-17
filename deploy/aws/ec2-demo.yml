@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'OPTIONAL billable EventPulse demonstration host. No ingress. Review and approve before deployment.'
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Description: Existing subnet with outbound internet access. No NAT gateway is created by this template.
+  InstanceType:
+    Type: String
+    Default: t3.medium
+    AllowedValues: [t3.small, t3.medium]
+    Description: x86 Linux demo host. t3.medium recommended for the six-service stack. Charges apply.
+  LatestAmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
+  AssociatePublicIp:
+    Type: String
+    Default: 'false'
+    AllowedValues: ['true', 'false']
+    Description: Only enable after reviewing IPv4 charges and the outbound connectivity plan.
+Conditions:
+  UsePublicIp: !Equals [!Ref AssociatePublicIp, 'true']
+Resources:
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: EventPulse no inbound ports; SSM session access
+      VpcId: !Ref VpcId
+      SecurityGroupIngress: []
+      SecurityGroupEgress:
+        - IpProtocol: '-1'
+          CidrIp: 0.0.0.0/0
+      Tags: [{Key: Project, Value: EventPulse-SRE-demo}]
+  SessionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Service: ec2.amazonaws.com}
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles: [!Ref SessionRole]
+  Host:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref LatestAmiId
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref InstanceProfile
+      MetadataOptions: {HttpTokens: required, HttpEndpoint: enabled}
+      NetworkInterfaces:
+        - DeviceIndex: '0'
+          SubnetId: !Ref SubnetId
+          GroupSet: [!Ref SecurityGroup]
+          AssociatePublicIpAddress: !If [UsePublicIp, true, false]
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs: {VolumeSize: 30, VolumeType: gp3, Encrypted: true, DeleteOnTermination: true}
+      Tags: [{Key: Name, Value: EventPulse-SRE-demo}, {Key: Project, Value: EventPulse-SRE-demo}]
+Outputs:
+  InstanceId:
+    Value: !Ref Host
+  Connection:
+    Value: !Sub 'aws ssm start-session --target ${Host}'

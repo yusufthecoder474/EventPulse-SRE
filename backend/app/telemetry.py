@@ -43,6 +43,10 @@ class Telemetry:
         ProcessCollector(registry=self.registry)
         PlatformCollector(registry=self.registry)
         self.requests = Counter("eventpulse_http_requests", "Completed HTTP requests", ["method", "route", "status"], registry=self.registry)
+        # Zero series before the first failure make rate() observable at the first error scrape.
+        for method, route in (("GET", "/events"), ("POST", "/registrations"), ("GET", "/registrations/{registration_id}")):
+            for status in ("200", "201", "500", "503", "504"):
+                self.requests.labels(method, route, status).inc(0)
         self.latency = Histogram("eventpulse_http_duration_seconds", "Request latency", ["method", "route"], buckets=BUCKETS, registry=self.registry)
         self.inflight = Gauge("eventpulse_inflight", "In-flight requests", registry=self.registry)
         self.ready = Gauge("eventpulse_database_ready", "Real database probe; simulated fault overrides to zero", registry=self.registry)

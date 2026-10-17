@@ -1,0 +1,50 @@
+rule_files:
+  - alerts.yml
+evaluation_interval: 5s
+tests:
+  - name: no traffic does not produce healthy availability
+    interval: 5s
+    input_series:
+      - series: eventpulse_http_requests_total{route="/events",method="GET",status="200"}
+        values: 0+0x80
+      - series: eventpulse_http_requests_total{route="/events",method="GET",status="500"}
+        values: 0+0x80
+    promql_expr_test:
+      - expr: eventpulse:business_errors:ratio5m
+        eval_time: 5m
+        exp_samples: []
+  - name: healthy traffic with zero error series
+    interval: 5s
+    input_series:
+      - series: eventpulse_http_requests_total{route="/events",method="GET",status="200"}
+        values: 0+10x80
+      - series: eventpulse_http_requests_total{route="/events",method="GET",status="500"}
+        values: 0+0x80
+    promql_expr_test:
+      - expr: eventpulse:business_success:ratio5m
+        eval_time: 5m
+        exp_samples:
+          - labels: '{__name__="eventpulse:business_success:ratio5m"}'
+            value: 1
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: EventPulseAvailabilityFastBurn
+        exp_alerts: []
+  - name: real target down fires after hold and resolves
+    interval: 5s
+    input_series:
+      - series: up{job="eventpulse",instance="api:8000"}
+        values: 1 0+0x10 1+0x20
+    alert_rule_test:
+      - eval_time: 25s
+        alertname: EventPulseTargetUnreachable
+        exp_alerts: []
+      - eval_time: 40s
+        alertname: EventPulseTargetUnreachable
+        exp_alerts:
+          - exp_labels: {job: eventpulse, instance: 'api:8000', severity: SEV2, service: event-registration-api}
+            exp_annotations:
+              summary: 'Scraper cannot reach the API; request SLIs are blind'
+      - eval_time: 70s
+        alertname: EventPulseTargetUnreachable
+        exp_alerts: []

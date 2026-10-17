@@ -25,7 +25,7 @@ export default defineConfig({
   },
   reporter: [
     ["list"],
-    ["junit", { outputFile: "../evidence/browser-junit.xml" }],
+    ["junit", { outputFile: process.env.E2E_JUNIT_PATH || "../evidence/v2/browser-junit.xml" }],
   ],
   webServer: {
     command: "npm run dev",
