@@ -113,3 +113,31 @@ def test_monitoring_panels_use_actual_metric_expressions():
     assert len(dashboard["panels"]) == 15
     assert any("budget remaining" in p["title"] for p in dashboard["panels"])
     assert any("histogram_quantile(0.5" in p["targets"][0]["expr"] for p in dashboard["panels"])
+
+
+def test_crash_hook_disabled_by_default(monkeypatch):
+    from app.crash_lab import install_crash_handler
+    monkeypatch.delenv("ENABLE_PROCESS_CRASH_TEST", raising=False)
+    assert install_crash_handler() is False
+
+
+def test_crash_hook_requires_local_environment(monkeypatch):
+    from app.crash_lab import install_crash_handler
+    monkeypatch.setenv("ENABLE_PROCESS_CRASH_TEST", "true")
+    monkeypatch.setenv("APP_ENV", "production")
+    with pytest.raises(RuntimeError):
+        install_crash_handler()
+
+
+@pytest.mark.skipif(os.name == "nt", reason="POSIX signal hook")
+def test_crash_hook_exits_abruptly_when_explicitly_enabled(monkeypatch):
+    import signal
+    import app.crash_lab as crash
+    monkeypatch.setenv("ENABLE_PROCESS_CRASH_TEST", "true")
+    monkeypatch.setenv("APP_ENV", "local")
+    saved = {}
+    monkeypatch.setattr(signal, "signal", lambda number, handler: saved.update(number=number, handler=handler))
+    monkeypatch.setattr(os, "_exit", lambda code: saved.update(exit_code=code))
+    assert crash.install_crash_handler()
+    saved["handler"](signal.SIGUSR1, None)
+    assert saved["exit_code"] == 86

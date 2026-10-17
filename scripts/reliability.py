@@ -117,6 +117,8 @@ def main():
         and baseline["HostConfig"]["RestartPolicy"]["Name"] != "unless-stopped"
     ):
         raise SystemExit("Expected unless-stopped policy")
+    if args.scenario == "api-crash" and "ENABLE_PROCESS_CRASH_TEST=true" not in baseline["Config"].get("Env", []):
+        raise SystemExit("Explicit ENABLE_PROCESS_CRASH_TEST=true required on isolated local API")
     counter = baseline["RestartCount"]
     events = []
     samples = []
@@ -208,7 +210,7 @@ def main():
             event("fault_action_requested_at")
             failure_started.set()
             if args.scenario == "api-crash":
-                # Executed inside the existing container. Manual docker stop/kill is NOT used.
+                # Executed inside the existing container. The opt-in SIGUSR1 handler calls os._exit(86); manual docker stop/kill is NOT used.
                 run(
                     compose
                     + [
@@ -217,7 +219,7 @@ def main():
                         "api",
                         "python",
                         "-c",
-                        "import os,signal; os.kill(1,signal.SIGKILL)",
+                        "import os,signal; os.kill(1,signal.SIGUSR1)",
                     ],
                     check=False,
                 )

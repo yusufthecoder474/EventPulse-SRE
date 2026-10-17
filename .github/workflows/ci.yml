@@ -28,6 +28,7 @@ jobs:
     env:
       PG_TEST_URL: postgresql+psycopg://eventpulse:ci-synthetic-only@localhost:5433/eventpulse_test
       COMPOSE_PROJECT_NAME: eventpulse-v2-ci
+      ENABLE_PROCESS_CRASH_TEST: "true"
       E2E_EVIDENCE_DIR: ../evidence/v2/browser
       E2E_JUNIT_PATH: ../evidence/v2/browser-junit.xml
     steps:

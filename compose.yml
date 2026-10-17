@@ -26,6 +26,7 @@ services:
       DATABASE_URL: postgresql+psycopg://eventpulse:${POSTGRES_PASSWORD}@db:5432/eventpulse
       ENABLE_FAULTS: 'false'
       APP_ENV: local
+      ENABLE_PROCESS_CRASH_TEST: ${ENABLE_PROCESS_CRASH_TEST:-false}
       OBSERVATION_WINDOW_SECONDS: 60
       EVIDENCE_PATH: /app/evidence/experiments.json
     ports:

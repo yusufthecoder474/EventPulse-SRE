@@ -6,6 +6,7 @@ Create a **disposable** Compose project, never reuse a personal shared stack:
 
 ```bash
 export COMPOSE_PROJECT_NAME=eventpulse-v2-demo
+export ENABLE_PROCESS_CRASH_TEST=true  # isolated local/CI experiment only
 python scripts/bootstrap.py
 docker compose up --build -d --wait --wait-timeout 180
 sleep 12
@@ -19,13 +20,13 @@ The tool checks loopback URLs, running target identity, Compose project labels, 
 
 | Scenario | Mechanism | Recovery classification |
 |---|---|---|
-| api-crash | Docker exec causes API PID 1 to receive SIGKILL | Automatic only if RestartCount increases and fresh readiness succeeds |
+| api-crash | Docker exec sends SIGUSR1 to an explicitly enabled handler; API exits abruptly with code 86 | Automatic only if RestartCount increases and fresh readiness succeeds |
 | api-outage | docker compose stop api, hold, start api | Manual; permits observation of the 30s target-down alert |
 | database-outage | docker compose stop db, hold, start db | Manual DB restoration and application reconnection |
 | Latency / HTTP 5xx | Existing token/TTL native lab | Prior synthetic evidence; v2 real-Compose observer does not enable lab mutations |
 | Delayed actual database response | Not injected | NOT VERIFIED; no host network shaping or destructive DB workload |
 
-Docker's unless-stopped restart policy applies to process exit, not an unhealthy status or an explicit compose stop. Health checks do not restart containers. The crash test kills only PID 1 **inside the selected existing local API container**; it does not kill a host process. Let the container run >10 seconds before the crash test. The normal UI/Compose fault lab remains disabled.
+Docker's unless-stopped restart policy applies to process exit, not an unhealthy status or an explicit compose stop. Health checks do not restart containers. The crash test signals only PID 1 **inside the selected existing local API container**; it does not kill a host process. The registered local handler calls os._exit(86), bypassing cleanup. ENABLE_PROCESS_CRASH_TEST is false by default and requires APP_ENV=local on POSIX; no HTTP crash endpoint exists. The observer refuses execution without that explicit opt-in. The first CI attempt sent SIGKILL inside the PID namespace but did not terminate PID 1; the failed trial is preserved. Let the container run >10 seconds before the crash test. The normal UI/Compose fault lab remains disabled.
 
 ## Timestamp semantics
 

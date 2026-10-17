@@ -26,6 +26,9 @@ Use your actual extracted/cloned path under WSL; the path above is a placeholder
 
 ```powershell
 python -m pip install -r backend/requirements-dev.txt
+$env:ENABLE_PROCESS_CRASH_TEST = 'true'
+docker compose up -d --force-recreate --wait api
+# Wait >10 seconds before testing process recovery.
 python scripts/reliability.py --scenario api-crash --project eventpulse-v2-demo --allow-local-faults
 ```
 
