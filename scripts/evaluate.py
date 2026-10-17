@@ -206,8 +206,17 @@ def main():
         },
         "runs": runs,
     }
-    (ROOT / "evidence/experiments.json").write_text(json.dumps(result, indent=2))
-    (ROOT / "evidence/raw-experiments.json").write_text(json.dumps(raw, indent=2))
+    Path(os.getenv("EXPERIMENT_OUTPUT_DIR", str(ROOT / "evidence/v2"))).mkdir(
+        parents=True, exist_ok=True
+    )
+    (
+        Path(os.getenv("EXPERIMENT_OUTPUT_DIR", str(ROOT / "evidence/v2")))
+        / "experiments.json"
+    ).write_text(json.dumps(result, indent=2))
+    (
+        Path(os.getenv("EXPERIMENT_OUTPUT_DIR", str(ROOT / "evidence/v2")))
+        / "raw-experiments.json"
+    ).write_text(json.dumps(raw, indent=2))
     print(json.dumps(result["summary"]), flush=True)
 
 

@@ -1,0 +1,102 @@
+{
+  "baseline": "0a6efd1c09ff30cdb0ff838da7d79ba858582e10",
+  "status": "PASS",
+  "files": [
+    {
+      "path": "POSTMORTEM.md",
+      "sha256": "26fa00f0c0112786ff17ee7b1d32355e7968063537f52d64fc188e4e103a071e"
+    },
+    {
+      "path": "docs/screenshots/alertmanager-resolved.jpeg",
+      "sha256": "e4143ede6a4982b8c9b9454b58712efef3e1388e0e5b756755ca8abc0d3e2a67"
+    },
+    {
+      "path": "docs/screenshots/experiments.png",
+      "sha256": "7dae4258f7e82e952f287081d74d54d81ed5d05b607b66facc314ab180793c2a"
+    },
+    {
+      "path": "docs/screenshots/grafana-dashboard-healthy.jpeg",
+      "sha256": "1ab3c913c6636a3ef37368f858d2492f74718ebcff1fa96f8eace7e805c699bc"
+    },
+    {
+      "path": "docs/screenshots/grafana-live-metrics.jpeg",
+      "sha256": "a9dd8b9821daa668cad65a5aef756910475865ea1cf3ea586be92896138b1313"
+    },
+    {
+      "path": "docs/screenshots/mobile.png",
+      "sha256": "7577059d3351c212be175eb3f973514976b6df7ef94af15e859813bca9c5ceac"
+    },
+    {
+      "path": "docs/screenshots/overview.png",
+      "sha256": "0e6bf24df56e2c1e0fae81bce4364d80ef7aaf2fbfb67e8b91d739ed47e347fb"
+    },
+    {
+      "path": "docs/screenshots/postgresql-outage-503.jpeg",
+      "sha256": "eea58b8da74b51d2972938b8c6637b7dba6a7e44497afbc5c81f013db38b40b5"
+    },
+    {
+      "path": "docs/screenshots/postgresql-recovery-200.jpeg",
+      "sha256": "f4c6cba6bc6910b549b66be7bddea285ae6c9fc48095d6c085392d20cec330aa"
+    },
+    {
+      "path": "docs/screenshots/prometheus-alerts-resolved.jpeg",
+      "sha256": "3f63d7de30dc910fd333ba96db0ed29a242f4d9975340c1d6645fd2de8714663"
+    },
+    {
+      "path": "docs/screenshots/prometheus-target-health.jpeg",
+      "sha256": "f5857e4c957f60af8781609f282978853a41c60dd0da64b6cbf54ec60eb55c42"
+    },
+    {
+      "path": "docs/screenshots/prometheus-target-recovered.jpeg",
+      "sha256": "a107f80a652b0a8a1a42bde8c749643595b4021b96cb78d2986fdd8c4f25d3be"
+    },
+    {
+      "path": "docs/screenshots/prometheus-target-unreachable-firing.jpeg",
+      "sha256": "3f108801bff5e2f90ca98baa272073f169607ed27013bce9067f66f0a0e8630b"
+    },
+    {
+      "path": "evidence/PUBLICATION_STATUS.json",
+      "sha256": "25b0594daa9fa3853982fff2539bc899e698553d5fc2fbbb3ae6328f53fabe6e"
+    },
+    {
+      "path": "evidence/backend-junit.xml",
+      "sha256": "7459e05368d9cdfa849d0c093eafc00c7847242d87d33875bbfaacd2f7297d68"
+    },
+    {
+      "path": "evidence/backend-tests.txt",
+      "sha256": "b11787f31a1306215e6f1423470d460719cb4c6ea2aaea41a3e6a322870b19c1"
+    },
+    {
+      "path": "evidence/browser-junit.xml",
+      "sha256": "a219a70c7c38efc2e50c0801ad3f78fdcf0bb19c1a0bdfadf003169d8c3a37e8"
+    },
+    {
+      "path": "evidence/browser-tests.txt",
+      "sha256": "df66666e27dc704e053b9ba4898cac6defab3bbe80dc4f712fb94f54352bbd9e"
+    },
+    {
+      "path": "evidence/evaluation-log.txt",
+      "sha256": "fe54f7ec83348e95094d3d851228c656b90b1853de88a700e11b3b131cec6232"
+    },
+    {
+      "path": "evidence/experiments.json",
+      "sha256": "2e784b8e25fcb0f31b4fcbb403d7faa539cad50b5d00911ad2ba53c76db319a7"
+    },
+    {
+      "path": "evidence/frontend-build.txt",
+      "sha256": "b1f3416800fb461fd553e1ec50b2c02ee8edd81e5ad7a1cb945c1fbfb56ebf2e"
+    },
+    {
+      "path": "evidence/frontend-tests.txt",
+      "sha256": "d92e432328765c2e3c14d768926507851f6f45ecd40faed9175ef24d29c7f2e9"
+    },
+    {
+      "path": "evidence/lint.txt",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "evidence/raw-experiments.json",
+      "sha256": "9990aab52fc26e8e3b172e0a6558410fccbfd682d5026532645c631a3fe8fd26"
+    }
+  ]
+}

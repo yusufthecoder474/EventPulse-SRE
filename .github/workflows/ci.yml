@@ -1,10 +1,19 @@
 name: EventPulse verification
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [main, 'feat/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: eventpulse-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     services:
       postgres:
         image: postgres:16-alpine
@@ -12,33 +21,67 @@ jobs:
           POSTGRES_USER: eventpulse
           POSTGRES_PASSWORD: ci-synthetic-only
           POSTGRES_DB: eventpulse_test
-        ports: [5432:5432]
+        ports: [5433:5432]
         options: >-
           --health-cmd "pg_isready -U eventpulse -d eventpulse_test"
           --health-interval 5s --health-timeout 3s --health-retries 15
     env:
-      PG_TEST_URL: postgresql+psycopg://eventpulse:ci-synthetic-only@localhost:5432/eventpulse_test
+      PG_TEST_URL: postgresql+psycopg://eventpulse:ci-synthetic-only@localhost:5433/eventpulse_test
+      COMPOSE_PROJECT_NAME: eventpulse-v2-ci
+      ENABLE_PROCESS_CRASH_TEST: "true"
+      E2E_EVIDENCE_DIR: ../evidence/v2/browser
+      E2E_JUNIT_PATH: ../evidence/v2/browser-junit.xml
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - uses: actions/setup-node@v4
         with: {node-version: '22', cache: npm, cache-dependency-path: frontend/package-lock.json}
-      - run: python -m pip install -r backend/requirements-dev.txt
-      - run: python -m ruff check backend/app backend/tests scripts
-      - run: cd backend && python -m pytest -q --junitxml=../evidence/ci-backend-junit.xml
+      - run: python -m pip install -r backend/requirements-dev.txt PyYAML shellcheck-py
+      - name: Static and secret checks
+        run: |
+          python -m ruff check backend/app backend/tests scripts
+          python scripts/check_publish.py --all
+          for file in scripts/*.sh; do bash -n "$file"; done
+          shellcheck --version
+          shellcheck -x -P scripts scripts/*.sh
+      - run: cd backend && python -m pytest -q --junitxml=../evidence/v2/backend-junit.xml
       - run: cd frontend && npm ci && npm test && npm run build
-      - name: Start API
-        run: cd backend && python -m uvicorn app.server:app --host 127.0.0.1 --port 8000 > /tmp/api.log 2>&1 &
-      - run: cd frontend && npx playwright install --with-deps chromium && npm run test:e2e
-      - name: Validate Prometheus rules
-        run: docker run --rm --entrypoint promtool -v "$PWD/monitoring:/etc/prometheus:ro" prom/prometheus:v3.2.1 check rules /etc/prometheus/alerts.yml
-      - name: Build Docker images
-        run: docker build -f backend/Dockerfile -t eventpulse-api . && docker build -f frontend/Dockerfile -t eventpulse-web .
+      - name: Configure and build isolated local stack
+        run: |
+          python scripts/bootstrap.py
+          docker compose config --quiet
+          docker compose build api web
+          docker compose up -d --wait --wait-timeout 180
+      - name: Validate monitoring definitions
+        run: |
+          docker compose exec -T prometheus promtool check config /etc/prometheus/prometheus.yml
+          docker compose exec -T prometheus promtool check rules /etc/prometheus/alerts.yml
+          docker run --rm --entrypoint promtool -v "$PWD/monitoring:/work:ro" -w /work prom/prometheus:v3.2.1 test rules rules.test.yml
+          docker compose exec -T alertmanager amtool check-config /etc/alertmanager/alertmanager.yml
+      - name: Live integration and database persistence
+        run: |
+          sleep 12
+          bash scripts/verify-stack.sh
+          docker compose up -d --force-recreate --wait --wait-timeout 120 db
+          docker compose up -d --force-recreate --wait --wait-timeout 120 api
+          SMOKE_EXPECT_EXISTING=true bash scripts/smoke-test.sh
+      - name: Process crash recovery and timestamped outage measurements
+        run: |
+          sleep 11
+          python scripts/reliability.py --scenario api-crash --project "$COMPOSE_PROJECT_NAME" --allow-local-faults --output evidence/v2/ci-api-crash.json
+          python scripts/reliability.py --scenario database-outage --project "$COMPOSE_PROJECT_NAME" --allow-local-faults --hold-seconds 12 --output evidence/v2/ci-db-outage.json
+          python scripts/reliability.py --scenario api-outage --project "$COMPOSE_PROJECT_NAME" --allow-local-faults --hold-seconds 45 --output evidence/v2/ci-api-outage.json
+      - name: Real browser flows against Compose API
+        run: cd frontend && npx playwright install --with-deps chromium && npm run test:e2e
+      - name: Sanitized diagnostics
+        if: always()
+        run: OUT_DIR=evidence/v2/diagnostics bash scripts/collect-diagnostics.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: verification-evidence
-          path: |
-            evidence/
-            docs/screenshots/
+          name: eventpulse-v2-verification
+          path: evidence/v2/
+      - name: Clean isolated CI containers
+        if: always()
+        run: docker compose down

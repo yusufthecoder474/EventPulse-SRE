@@ -1,0 +1,245 @@
+{
+  "status": "PASS",
+  "run_url": "https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/38998784660",
+  "run_id": 38998784660,
+  "tested_commit": "1b98638c7f4cd289434d0cf49b5e3f8e5e1f522a",
+  "job_id": 117297090414,
+  "backend_tests_passed": 50,
+  "frontend_tests_passed": 3,
+  "browser_flows_passed": 2,
+  "artifact": {
+    "id": 12088202136,
+    "name": "eventpulse-v2-verification",
+    "size_in_bytes": 900916,
+    "url": "https://api.github.com/repos/yusufthecoder474/EventPulse-SRE/actions/artifacts/12088202136",
+    "archive_download_url": "https://api.github.com/repos/yusufthecoder474/EventPulse-SRE/actions/artifacts/12088202136/zip",
+    "expired": false,
+    "created_at": "2026-10-17T03:30:14Z",
+    "expires_at": "2027-01-15T03:26:27Z",
+    "updated_at": "2026-10-17T03:30:14Z",
+    "digest": "sha256:ef44dd8d3b5ab54070d8f8a0aadd267a2aff066a341c2782af99507735913a81",
+    "workflow_run": {
+      "id": 38998784660,
+      "repository_id": 1422361980,
+      "head_repository_id": 1422361980,
+      "head_branch": "feat/sre-v2-automation",
+      "head_sha": "1b98638c7f4cd289434d0cf49b5e3f8e5e1f522a"
+    }
+  },
+  "checks": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Initialize containers",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-python@v5",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-node@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run python -m pip install -r backend/requirements-dev.txt PyYAML shellcheck-py",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Static and secret checks",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run cd backend && python -m pytest -q --junitxml=../evidence/v2/backend-junit.xml",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run cd frontend && npm ci && npm test && npm run build",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Configure and build isolated local stack",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Validate monitoring definitions",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Live integration and database persistence",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Process crash recovery and timestamped outage measurements",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Real browser flows against Compose API",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Sanitized diagnostics",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Clean isolated CI containers",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-node@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-python@v5",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Stop containers",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "source": "Workflow metadata, step conclusions and exact observer JSON printed in the completed job log; raw request samples/JUnit/screenshots remain in the artifact",
+  "experiments": [
+    {
+      "scenario": "api-crash",
+      "project": "eventpulse-v2-ci",
+      "recovery_mode": "automatic Docker restart",
+      "sample_interval_seconds": 0.1,
+      "docker_restart_count_before": 0,
+      "first_failed_health_check_at": "2026-10-17T03:28:41.733629+00:00",
+      "first_prometheus_failure_at": "2026-10-17T03:28:42.373136+00:00",
+      "alert_firing_at": null,
+      "recovery_action_at": null,
+      "first_successful_health_check_at": "2026-10-17T03:28:42.644932+00:00",
+      "alert_resolution_at": null,
+      "process_failure_at": "2026-10-17T03:28:41.812468+00:00",
+      "container_restart_observed_at": "2026-10-17T03:28:41.815061+00:00",
+      "fault_action_requested_at": "2026-10-17T03:28:41.612440+00:00",
+      "docker_restart_count_after": 1,
+      "health_detection_seconds": 0.121189,
+      "prometheus_detection_seconds": 0.760696,
+      "alert_detection_seconds": null,
+      "automatic_recovery_seconds": 0.832464,
+      "manual_restoration_seconds": null,
+      "alert_resolution_seconds": null,
+      "request_measurements": {
+        "total_requests": 24,
+        "successful_requests": 12,
+        "failed_requests": 12,
+        "error_percentage": 50,
+        "p50_seconds": 0.01630682800001182,
+        "p95_seconds": 0.02459323700000482
+      },
+      "status": "PASS",
+      "error": null,
+      "notes": "Null means not observed or not applicable; a short crash may recover between Prometheus scrapes and never fire an alert."
+    },
+    {
+      "scenario": "database-outage",
+      "project": "eventpulse-v2-ci",
+      "recovery_mode": "manual start",
+      "sample_interval_seconds": 0.1,
+      "docker_restart_count_before": 0,
+      "first_failed_health_check_at": "2026-10-17T03:28:43.525147+00:00",
+      "first_prometheus_failure_at": "2026-10-17T03:28:47.398429+00:00",
+      "alert_firing_at": null,
+      "recovery_action_at": "2026-10-17T03:28:55.574820+00:00",
+      "first_successful_health_check_at": "2026-10-17T03:28:55.892123+00:00",
+      "alert_resolution_at": null,
+      "process_failure_at": "2026-10-17T03:28:43.572430+00:00",
+      "container_restart_observed_at": null,
+      "fault_action_requested_at": "2026-10-17T03:28:43.406670+00:00",
+      "prometheus_recovered_at": "2026-10-17T03:28:57.387100+00:00",
+      "health_detection_seconds": 0.118477,
+      "prometheus_detection_seconds": 3.991759,
+      "alert_detection_seconds": null,
+      "automatic_recovery_seconds": null,
+      "manual_restoration_seconds": 0.317303,
+      "alert_resolution_seconds": null,
+      "request_measurements": {
+        "total_requests": 179,
+        "successful_requests": 20,
+        "failed_requests": 159,
+        "error_percentage": 88.8268156424581,
+        "p50_seconds": 0.02359446200000548,
+        "p95_seconds": 0.04295454900000095
+      },
+      "status": "PASS",
+      "error": null,
+      "notes": "Null means not observed or not applicable; a short crash may recover between Prometheus scrapes and never fire an alert."
+    },
+    {
+      "scenario": "api-outage",
+      "project": "eventpulse-v2-ci",
+      "recovery_mode": "manual start",
+      "sample_interval_seconds": 0.1,
+      "docker_restart_count_before": 1,
+      "first_failed_health_check_at": "2026-10-17T03:28:58.394693+00:00",
+      "first_prometheus_failure_at": "2026-10-17T03:29:02.390848+00:00",
+      "alert_firing_at": "2026-10-17T03:29:36.905849+00:00",
+      "recovery_action_at": "2026-10-17T03:29:45.342704+00:00",
+      "first_successful_health_check_at": "2026-10-17T03:29:46.639063+00:00",
+      "alert_resolution_at": "2026-10-17T03:29:51.882133+00:00",
+      "process_failure_at": "2026-10-17T03:29:00.338549+00:00",
+      "container_restart_observed_at": null,
+      "fault_action_requested_at": "2026-10-17T03:28:58.133106+00:00",
+      "health_detection_seconds": 0.261587,
+      "prometheus_detection_seconds": 4.257742,
+      "alert_detection_seconds": 38.772743,
+      "automatic_recovery_seconds": null,
+      "manual_restoration_seconds": 1.296359,
+      "alert_resolution_seconds": 5.24307,
+      "request_measurements": {
+        "total_requests": 820,
+        "successful_requests": 88,
+        "failed_requests": 732,
+        "error_percentage": 89.26829268292683,
+        "p50_seconds": 0.012493264999989151,
+        "p95_seconds": 0.0281445720000022
+      },
+      "status": "PASS",
+      "error": null,
+      "notes": "Null means not observed or not applicable; a short crash may recover between Prometheus scrapes and never fire an alert."
+    }
+  ]
+}

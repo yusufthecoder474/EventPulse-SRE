@@ -9,6 +9,7 @@ import time
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+(ROOT / "evidence/v2").mkdir(parents=True, exist_ok=True)
 env = dict(os.environ)
 env.update(
     FAULT_TOKEN=secrets.token_hex(24),
@@ -56,7 +57,7 @@ try:
         else:
             raise RuntimeError(f"Service did not start: {url}")
     with open(
-        ROOT / "evidence/evaluation-log.txt",
+        ROOT / "evidence/v2/evaluation-log.txt",
         "a" if "--browser-only" in sys.argv else "w",
     ) as output:
         result = (
@@ -72,7 +73,7 @@ try:
     print("HTTP evaluation exit code:", result.returncode, flush=True)
     if result.returncode:
         raise SystemExit(result.returncode)
-    with open(ROOT / "evidence/browser-tests.txt", "w") as output:
+    with open(ROOT / "evidence/v2/browser-tests.txt", "w") as output:
         result = subprocess.run(
             ["npm", "run", "test:e2e"],
             cwd=ROOT / "frontend",

@@ -5,6 +5,37 @@ A local-first SRE portfolio project: register synthetic attendees, observe reque
 
 ![Real operations dashboard](docs/screenshots/overview.png)
 
+## v2 engineering upgrade (17 October 2026)
+
+**Verified CI:** [successful run 38998784660](https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/38998784660) at `1b98638c7f4cd289434d0cf49b5e3f8e5e1f522a`: **50 backend + 3 frontend + 2 browser checks passed**, including PostgreSQL, full-stack persistence, monitoring validation and three observed crash/manual-outage scenarios. One crash trial restored readiness in **0.832464s**, with **12 failed requests**. This is measured CI evidence, not a zero-downtime or production claim.
+
+Current audit, statuses and reproduction steps: [docs/AUDIT_V2.md](docs/AUDIT_V2.md), [docs/VERIFICATION_REPORT.md](docs/VERIFICATION_REPORT.md), [CHANGELOG_V2.md](CHANGELOG_V2.md). Original evidence and POSTMORTEM.md are preserved; dated root test/publication reports describe the earlier build, not the current repository status.
+
+New: Linux Bash automation, 15 Grafana panels, sparse-error/no-traffic PromQL fixes, full-stack CI integration and timestamped Docker crash/manual-outage measurement. AWS is prepared only; **no cloud deployment is claimed**. Docker restart policies do not restart merely unhealthy containers. In-place deployment is not a zero-downtime rollout.
+
+Operations: [runbook](docs/SRE_RUNBOOK.md), [SLIs/SLOs](docs/SLO_DEFINITIONS.md), [CI/CD](docs/CI_CD.md), [experiments](docs/FAULT_INJECTION.md), [AWS preparation](docs/AWS_DEPLOYMENT.md), [measurement report](docs/PERFORMANCE_REPORT.md), [architecture](docs/ARCHITECTURE.md). Use [RESUME_EVIDENCE_V2.md](RESUME_EVIDENCE_V2.md) for current evidence-qualified bullets. The existing frontend remains intact.
+
+```powershell
+python scripts/bootstrap.py
+$env:COMPOSE_PROJECT_NAME = 'eventpulse-v2-demo'
+docker compose config --quiet
+docker compose up --build -d --wait --wait-timeout 180
+# Run Bash operations under WSL, or use the existing native Windows setup below.
+wsl bash -lc 'cd /mnt/d/YOUR_PROJECT_PATH && bash scripts/verify-stack.sh'
+```
+
+Use your actual extracted/cloned path under WSL; the path above is a placeholder. For a native Windows real-Docker experiment, from the repository root after dependencies are installed:
+
+```powershell
+python -m pip install -r backend/requirements-dev.txt
+$env:ENABLE_PROCESS_CRASH_TEST = 'true'
+docker compose up -d --force-recreate --wait api
+# Wait >10 seconds before testing process recovery.
+python scripts/reliability.py --scenario api-crash --project eventpulse-v2-demo --allow-local-faults
+```
+
+The project must be disposable and have run for >10 seconds first. Output is new timestamped evidence under evidence/v2. No AWS account details are required to run locally.
+
 ## Start here
 
 Requirements: Docker Desktop with Compose v2 (Windows: WSL2 engine), or Python 3.12+ and Node 22+ for the native lab.
