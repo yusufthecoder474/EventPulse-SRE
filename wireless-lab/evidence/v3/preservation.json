@@ -1,0 +1,250 @@
+[
+  {
+    "path": "evidence/lint.txt",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "path": "evidence/frontend-tests.txt",
+    "sha256": "d92e432328765c2e3c14d768926507851f6f45ecd40faed9175ef24d29c7f2e9"
+  },
+  {
+    "path": "evidence/evaluation-log.txt",
+    "sha256": "fe54f7ec83348e95094d3d851228c656b90b1853de88a700e11b3b131cec6232"
+  },
+  {
+    "path": "evidence/backend-tests.txt",
+    "sha256": "b11787f31a1306215e6f1423470d460719cb4c6ea2aaea41a3e6a322870b19c1"
+  },
+  {
+    "path": "evidence/PUBLICATION_STATUS.json",
+    "sha256": "25b0594daa9fa3853982fff2539bc899e698553d5fc2fbbb3ae6328f53fabe6e"
+  },
+  {
+    "path": "evidence/browser-junit.xml",
+    "sha256": "a219a70c7c38efc2e50c0801ad3f78fdcf0bb19c1a0bdfadf003169d8c3a37e8"
+  },
+  {
+    "path": "evidence/browser-tests.txt",
+    "sha256": "df66666e27dc704e053b9ba4898cac6defab3bbe80dc4f712fb94f54352bbd9e"
+  },
+  {
+    "path": "evidence/raw-experiments.json",
+    "sha256": "9990aab52fc26e8e3b172e0a6558410fccbfd682d5026532645c631a3fe8fd26"
+  },
+  {
+    "path": "evidence/backend-junit.xml",
+    "sha256": "7459e05368d9cdfa849d0c093eafc00c7847242d87d33875bbfaacd2f7297d68"
+  },
+  {
+    "path": "evidence/experiments.json",
+    "sha256": "2e784b8e25fcb0f31b4fcbb403d7faa539cad50b5d00911ad2ba53c76db319a7"
+  },
+  {
+    "path": "evidence/frontend-build.txt",
+    "sha256": "b1f3416800fb461fd553e1ec50b2c02ee8edd81e5ad7a1cb945c1fbfb56ebf2e"
+  },
+  {
+    "path": "evidence/v2/ci-database-outage-summary.json",
+    "sha256": "80d72df6b1df4f4376e57522150dbbc59329b7936bf7e6abf64c3a23673441ba"
+  },
+  {
+    "path": "evidence/v2/lint.txt",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "path": "evidence/v2/frontend-tests.txt",
+    "sha256": "7702205efccf8a9494aa07ab4084ee33ec6d66aaca7dfbad4f22b947ef5a9f53"
+  },
+  {
+    "path": "evidence/v2/shellcheck.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/v2/backend-tests.txt",
+    "sha256": "528f816f76c519895bde916b9974a789082294a6f9a60568daeb9876e26ae3c0"
+  },
+  {
+    "path": "evidence/v2/native-locust-attempt.json",
+    "sha256": "8847720de32af81fc50dd83fe796c2a931618d80d7831c73a85748e836b16ee3"
+  },
+  {
+    "path": "evidence/v2/ci-initial-failure-summary.json",
+    "sha256": "b8616f3a2f0205751bba9c6b5b9bc3a0e62c6817dceb1a5761e5cffa00ae0849"
+  },
+  {
+    "path": "evidence/v2/aws-template-static-check.json",
+    "sha256": "313e87726c4d3ea560bc49b7b7e6080537e0c270b716331117a95b8e79f87849"
+  },
+  {
+    "path": "evidence/v2/backend-junit.xml",
+    "sha256": "731a1fbf80c629f9672d16b02d12ceb9bdf7d61a1378a3e88d268fa882aed2b1"
+  },
+  {
+    "path": "evidence/v2/historical-preservation.json",
+    "sha256": "7aa36fa07f65d9528606d9e9112768223d988cfb93b180ca2c7317ebe73eaa9f"
+  },
+  {
+    "path": "evidence/v2/ci-verified-run-summary.json",
+    "sha256": "8df4bffc392e9bba2f17d31319313c9b46a71dce9301fd79780c3e33be1472de"
+  },
+  {
+    "path": "evidence/v2/ci-api-crash-summary.json",
+    "sha256": "7c675c6f567e75a125ee016a5d4d6c2dd5b466e669a405926d7ad51e255f44e2"
+  },
+  {
+    "path": "evidence/v2/frontend-build.txt",
+    "sha256": "3b54894c8627cb1a85765eef2b93dd89a45f3e78541cdc81ad55166982f737f0"
+  },
+  {
+    "path": "evidence/v2/ci-api-outage-summary.json",
+    "sha256": "da2ab4dfe2628bf280b6878fcffe9d4a6858a158813d54725e34efd1928446ac"
+  },
+  {
+    "path": "wireless-lab/evidence/cpp-junit.xml",
+    "sha256": "72bd1e2d4698f9acfde6d95e2806d10c0651ed9ccb2ae6a23dd1ad01c67cc4e4"
+  },
+  {
+    "path": "wireless-lab/evidence/scenarios-20261019T093300Z.json",
+    "sha256": "f21de2a6549dfb8cca3b8b0179a9bb9596bda145a16502f8274070f9786f94a8"
+  },
+  {
+    "path": "wireless-lab/evidence/npm-audit-final.json",
+    "sha256": "1cd5cbb202545a6dbe9783d12c88fb7eebbe8098cc0ea6f6d13966a73e89c7fc"
+  },
+  {
+    "path": "wireless-lab/evidence/baseline-preservation.json",
+    "sha256": "9cd05cfd5ff78680bf73110d4267f761c77fbfe90d30cb362c6e8e40b3df69fc"
+  },
+  {
+    "path": "wireless-lab/evidence/cpp-output.txt",
+    "sha256": "4c4c048ab64d064aefc7bf5f64000dd9594b28a28ea10d452c2d9e67381499c6"
+  },
+  {
+    "path": "wireless-lab/evidence/browser-junit.xml",
+    "sha256": "4dd47e38ecf0df0f228297694e7572efe467a3ec29b09597f671a4804b244db5"
+  },
+  {
+    "path": "wireless-lab/evidence/python-api-junit.xml",
+    "sha256": "9214869c07da1783263c4248e5ccb0bf140fbbc417883dab54edf28263022565"
+  },
+  {
+    "path": "wireless-lab/evidence/browser-output.txt",
+    "sha256": "be94a4c8c1406aa5008dc4ed4bdcd76c044254bfbf8dc4131a53419db9f387ab"
+  },
+  {
+    "path": "wireless-lab/evidence/npm-audit.json",
+    "sha256": "87bfcd560df4cdb46cf0c6fbe70c761290ef1d15488c4b626aadd64b1d21ce51"
+  },
+  {
+    "path": "wireless-lab/evidence/pip-audit.json",
+    "sha256": "8d8c9001e800876662cdbedad7d5f1ef27ac4d3300046a43664d1c599349c81d"
+  },
+  {
+    "path": "wireless-lab/evidence/npm-production-audit.json",
+    "sha256": "4723436c90dd574b04969fe724133018dedecd86a0185d10ef64b6891b4b6512"
+  },
+  {
+    "path": "wireless-lab/evidence/frontend-output.txt",
+    "sha256": "509be6387dbec4da4337a3c5278aba99d200e0341af6603a97ed8a0f7a8da048"
+  },
+  {
+    "path": "wireless-lab/evidence/performance-20261019.json",
+    "sha256": "497ddf7ba023bc46853a7e58198ab4e01dfd57247c3c885d8c859b693f1ea803"
+  },
+  {
+    "path": "wireless-lab/evidence/python-api-output.txt",
+    "sha256": "ac4eb90ac72f4328c71961a1da9ca38383f1703306f74f11cd6a5e9e5e978eef"
+  },
+  {
+    "path": "wireless-lab/evidence/linux-capabilities.json",
+    "sha256": "6f047871604d49102a7b8f38e80a90a8a6c455bf1995c05124a0f7499997fdef"
+  },
+  {
+    "path": "wireless-lab/evidence/pip-audit-direct.json",
+    "sha256": "6f6960e9932e33829059e8e73bd37dd87807cd1068e8095a4e10e4b7e7127bc2"
+  },
+  {
+    "path": "wireless-lab/evidence/frontend-build.txt",
+    "sha256": "d72a4e8b535b1901fb038cd61d48c2444044d39e218643e910b41d627caf130b"
+  },
+  {
+    "path": "wireless-lab/evidence/ci-verification.json",
+    "sha256": "fef2034277c06303cab17a64c257c11beaa3580bb9f628484634dbcfdc6662d9"
+  },
+  {
+    "path": "wireless-lab/evidence/browser/investigation.png",
+    "sha256": "ef6f59e9110063b8823800b6406c3da05c831765439f41764baa9a7cb23ea75e"
+  },
+  {
+    "path": "wireless-lab/evidence/browser/overview.png",
+    "sha256": "48a3bec2f518e56b01b09d3d48a057b64b86652e40f09e09f5c40a0807d49e6b"
+  },
+  {
+    "path": "wireless-lab/evidence/browser/packets.png",
+    "sha256": "0f6d609e06dd04a5b92d486877e63e10365170719154b68308e9af00ba5ab4c8"
+  },
+  {
+    "path": "wireless-lab/evidence/browser/mobile.png",
+    "sha256": "eca366272884a24ef0a3f6960097b4d1d815cf439c4cadaa9fe372ce7ae35a03"
+  },
+  {
+    "path": "wireless-lab/evidence/original-browser/overview.png",
+    "sha256": "88dc2d7c6f444167e7c191ff610e4980cef7f5a922138dd9a7f4e1c482b75078"
+  },
+  {
+    "path": "wireless-lab/evidence/original-browser/mobile.png",
+    "sha256": "7ac76d9976dee118bfed1046a3bf4daed2a47beb1cb01fcf803b84de7afd72f5"
+  },
+  {
+    "path": "wireless-lab/evidence/original-browser/experiments.png",
+    "sha256": "4cf4054ee4943d877c4a6d76f334bb86a3f6992bff242b257aed92d3694875be"
+  },
+  {
+    "path": "docs/screenshots/prometheus-target-health.jpeg",
+    "sha256": "f5857e4c957f60af8781609f282978853a41c60dd0da64b6cbf54ec60eb55c42"
+  },
+  {
+    "path": "docs/screenshots/prometheus-target-unreachable-firing.jpeg",
+    "sha256": "3f108801bff5e2f90ca98baa272073f169607ed27013bce9067f66f0a0e8630b"
+  },
+  {
+    "path": "docs/screenshots/postgresql-outage-503.jpeg",
+    "sha256": "eea58b8da74b51d2972938b8c6637b7dba6a7e44497afbc5c81f013db38b40b5"
+  },
+  {
+    "path": "docs/screenshots/grafana-dashboard-healthy.jpeg",
+    "sha256": "1ab3c913c6636a3ef37368f858d2492f74718ebcff1fa96f8eace7e805c699bc"
+  },
+  {
+    "path": "docs/screenshots/prometheus-alerts-resolved.jpeg",
+    "sha256": "3f63d7de30dc910fd333ba96db0ed29a242f4d9975340c1d6645fd2de8714663"
+  },
+  {
+    "path": "docs/screenshots/overview.png",
+    "sha256": "0e6bf24df56e2c1e0fae81bce4364d80ef7aaf2fbfb67e8b91d739ed47e347fb"
+  },
+  {
+    "path": "docs/screenshots/mobile.png",
+    "sha256": "7577059d3351c212be175eb3f973514976b6df7ef94af15e859813bca9c5ceac"
+  },
+  {
+    "path": "docs/screenshots/postgresql-recovery-200.jpeg",
+    "sha256": "f4c6cba6bc6910b549b66be7bddea285ae6c9fc48095d6c085392d20cec330aa"
+  },
+  {
+    "path": "docs/screenshots/alertmanager-resolved.jpeg",
+    "sha256": "e4143ede6a4982b8c9b9454b58712efef3e1388e0e5b756755ca8abc0d3e2a67"
+  },
+  {
+    "path": "docs/screenshots/grafana-live-metrics.jpeg",
+    "sha256": "a9dd8b9821daa668cad65a5aef756910475865ea1cf3ea586be92896138b1313"
+  },
+  {
+    "path": "docs/screenshots/prometheus-target-recovered.jpeg",
+    "sha256": "a107f80a652b0a8a1a42bde8c749643595b4021b96cb78d2986fdd8c4f25d3be"
+  },
+  {
+    "path": "docs/screenshots/experiments.png",
+    "sha256": "7dae4258f7e82e952f287081d74d54d81ed5d05b607b66facc314ab180793c2a"
+  }
+]
