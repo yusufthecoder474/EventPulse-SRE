@@ -1,7 +1,7 @@
 name: EventPulse verification
 on:
   push:
-    branches: [main, 'feat/**']
+    branches: [main, 'feat/**', 'feature/**']
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -31,6 +31,8 @@ jobs:
       ENABLE_PROCESS_CRASH_TEST: "true"
       E2E_EVIDENCE_DIR: ../evidence/v2/browser
       E2E_JUNIT_PATH: ../evidence/v2/browser-junit.xml
+      WIRELESS_EVIDENCE_DIR: ../wireless-lab/evidence/v3/legacy-browser
+      V3_SCREENSHOTS: ../wireless-lab/evidence/v3/browser
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,6 +47,13 @@ jobs:
           cmake -S wireless-lab/cpp -B wireless-lab/cpp/build -DCMAKE_BUILD_TYPE=Release
           cmake --build wireless-lab/cpp/build -j2
           ctest --test-dir wireless-lab/cpp/build --output-on-failure --output-junit ../../evidence/ci-cpp-junit.xml
+      - name: C++ address and undefined-behavior sanitizer verification
+        env:
+          ASAN_OPTIONS: detect_leaks=0
+        run: |
+          cmake -S wireless-lab/cpp -B "$RUNNER_TEMP/wireless-sanitizers" -DCMAKE_BUILD_TYPE=Debug -DWIRELESS_SANITIZERS=ON
+          cmake --build "$RUNNER_TEMP/wireless-sanitizers" -j2
+          ctest --test-dir "$RUNNER_TEMP/wireless-sanitizers" --output-on-failure --output-junit "$GITHUB_WORKSPACE/wireless-lab/evidence/v3/ci-sanitizer-junit.xml"
       - name: Static and secret checks
         run: |
           python -m ruff check backend/app backend/tests scripts wireless-lab/python wireless-lab/tests wireless-lab/scripts
@@ -63,6 +72,12 @@ jobs:
       - name: Report existing development dependency advisories
         continue-on-error: true
         run: cd frontend && npm audit --json > ../wireless-lab/evidence/ci-npm-audit.json
+      - name: V3 plans, deterministic replay and held-out synthetic evaluation
+        run: |
+          python wireless-lab/scripts/validate_v3.py --output wireless-lab/evidence/v3/ci-plan-results.json
+          python wireless-lab/scripts/validate_v3.py --output wireless-lab/evidence/v3/ci-replay-results.json --compare wireless-lab/evidence/v3/ci-plan-results.json
+          python wireless-lab/scripts/evaluate_handshakes.py --output wireless-lab/evidence/v3/ci-heldout-results.json
+          python wireless-lab/scripts/benchmark_v3.py --output wireless-lab/evidence/v3/ci-performance.json
       - name: Configure and build isolated local stack
         run: |
           python scripts/bootstrap.py

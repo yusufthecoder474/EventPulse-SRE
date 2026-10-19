@@ -18,6 +18,7 @@ import {
   LockKeyhole,
 } from "lucide-react";
 import "./wireless.css";
+import WirelessV3 from "./WirelessV3";
 type Scenario = {
   id: string;
   title: string;
@@ -472,6 +473,7 @@ export default function WirelessLab() {
                 : "TShark unavailable: JSON-event scenarios work; packet scenarios require TShark."}
             </div>
           )}
+          <WirelessV3 view={tab} selected={run} onResult={(value) => {setRun(value as Run); void refresh();}} />
           {tab === 0 && (
             <>
               <div className="wl-kpis">
@@ -791,7 +793,7 @@ export default function WirelessLab() {
                 title="Trace explorer"
                 sub={
                   run
-                    ? `${run.scenario.fixture} · ${run.scenario.evidence_type} · ${run.events.length} normalized events`
+                    ? `${run.scenario.fixture || run.scenario.title} · ${run.scenario.evidence_type} · ${run.events.length} normalized events`
                     : "No trace loaded"
                 }
               >
@@ -815,7 +817,7 @@ export default function WirelessLab() {
                   <table>
                     <thead>
                       <tr>
-                        <th>Fixture time (UTC)</th>
+                        <th>Capture/event time (UTC)</th>
                         <th>Type / stage</th>
                         <th>Source evidence</th>
                         <th>Client / AP</th>
@@ -943,9 +945,9 @@ export default function WirelessLab() {
                       </span>
                       <div>
                         <span
-                          className={`pill ${run.verdict === "pass" ? "green" : "red"}`}
+                          className={`pill ${run.verdict === "pass" ? "green" : run.verdict === "analysis_only" ? "neutral" : "red"}`}
                         >
-                          Validation {run.verdict}
+                          {run.verdict === "analysis_only" ? "Analysis only" : `Validation ${run.verdict}`}
                         </span>
                         <h3>
                           {labels(client?.classification || "incomplete")}
@@ -1157,7 +1159,7 @@ export default function WirelessLab() {
           <div className="wl-boundary">
             <ShieldCheck size={14} />
             <span>
-              Offline synthetic lab · No live capture, device access or
+              Offline laboratory · No live capture, device access or
               privileged network commands ·{" "}
               {caps?.guest_limits.operations_per_minute || 12} operations/minute
             </span>
