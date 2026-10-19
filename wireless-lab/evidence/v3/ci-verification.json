@@ -1,0 +1,228 @@
+{
+  "source_commit": "70f8145e8e6a1b4f85cd854354e1f0d6d7d05d85",
+  "run_id": 39259731919,
+  "run_url": "https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/39259731919",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 118083943902,
+      "name": "verify",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39259731919,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run python -m pip install -r backend/requirements-dev.txt PyYAML shellcheck-py",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Build offline wireless engine and install file-only extractor",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "C++ address and undefined-behavior sanitizer verification",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Static and secret checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run cd backend && python -m pytest tests ../wireless-lab/tests -q --junitxml=../evidence/v2/backend-junit.xml",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run cd frontend && npm ci && npm test && npm run build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Wireless scenarios and dependency scans",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Report existing development dependency advisories",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "V3 plans, deterministic replay and held-out synthetic evaluation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Configure and build isolated local stack",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        },
+        {
+          "name": "Validate monitoring definitions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Live integration and database persistence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Process crash recovery and timestamped outage measurements",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Real browser flows against Compose API",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        },
+        {
+          "name": "Sanitized diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Clean isolated CI containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Post Run actions/setup-node@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41
+        },
+        {
+          "name": "Post Run actions/setup-python@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12190141628,
+      "name": "eventpulse-v2-verification",
+      "size_in_bytes": 8624174,
+      "url": "https://api.github.com/repos/yusufthecoder474/EventPulse-SRE/actions/artifacts/12190141628",
+      "archive_download_url": "https://api.github.com/repos/yusufthecoder474/EventPulse-SRE/actions/artifacts/12190141628/zip",
+      "expired": false,
+      "created_at": "2026-10-19T13:28:47Z",
+      "expires_at": "2027-01-17T13:23:26Z",
+      "updated_at": "2026-10-19T13:28:47Z",
+      "digest": "sha256:b933189f9cd9fd637a2d48c257a37199dc7860addc3eb4118a272701ac578fe5",
+      "workflow_run": {
+        "id": 39259731919,
+        "repository_id": 1422361980,
+        "head_repository_id": 1422361980,
+        "head_branch": "feature/wirelesslab-v3-cisco-validation",
+        "head_sha": "70f8145e8e6a1b4f85cd854354e1f0d6d7d05d85"
+      }
+    }
+  ],
+  "verified": {
+    "release_ctest": 39,
+    "asan_ubsan_ctest": 39,
+    "leak_sanitizer_enabled": false,
+    "python_api_passed": 133,
+    "python_api_skipped": 0,
+    "frontend_tests": 6,
+    "browser_flows": 6,
+    "unique_plan_scenarios": 24,
+    "primary_and_replay_executions": 48,
+    "primary_and_replay_passed": 48,
+    "validation_failures": 0,
+    "heldout_synthetic_inputs": 120,
+    "heldout_correct": 120,
+    "heldout_mismatches": 0,
+    "compose_build_and_startup": true,
+    "monitoring_definitions": true,
+    "database_persistence": true,
+    "controlled_outage_recovery": true
+  },
+  "limitations": [
+    "Synthetic verification only; no genuine real-network capture supplied",
+    "WPA2 header/replay/role evidence, not cryptography, keys or credential validation",
+    "No Cisco hardware, CAPWAP, WPA3 interoperability, production or cloud deployment",
+    "Seven documented Tailwind development-chain advisories remain"
+  ],
+  "note": "Subsequent evidence-ledger commit changes documentation only; the verified implementation SHA is above."
+}
