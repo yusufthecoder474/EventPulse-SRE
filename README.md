@@ -168,3 +168,5 @@ Use the existing Compose quickstart above (`python scripts/bootstrap.py`, `docke
 [Architecture](docs/WIRELESS_ARCHITECTURE.md) · [802.11 basics](docs/WIFI_80211_BASICS.md) · [PCAP analysis](docs/PCAP_ANALYSIS.md) · [WPA2/WPA3 scope](docs/WPA2_WPA3.md) · [AP/controller API](docs/AP_CONTROLLER_SIMULATION.md) · [Actual results](docs/WIRELESS_TEST_RESULTS.md) · [Security](docs/WIRELESS_SECURITY.md) · [Optional Linux lab](docs/LINUX_LAB_SETUP.md) · [Interview Q&A](docs/WIRELESS_INTERVIEW_QA.md) · [Evidence-based resume](docs/WIRELESS_RESUME_EVIDENCE.md).
 
 ![WirelessLab guest overview](wireless-lab/evidence/browser/overview.png)
+
+WirelessLab implementation verified by [successful full CI run](https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/39233891910): 21 C++ tests, 84 Python/API tests (no skips), 3 frontend tests, 4 browser flows, and 10/10 scenario outcomes, plus the original Compose monitoring and recovery checks. [Evidence ledger](wireless-lab/evidence/ci-verification.json).

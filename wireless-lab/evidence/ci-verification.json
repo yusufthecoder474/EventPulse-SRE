@@ -1,0 +1,206 @@
+{
+  "source_commit": "8dbad8352cb129cda360e091a5e023228e263f15",
+  "run_id": 39233891910,
+  "run_url": "https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/39233891910",
+  "conclusion": "success",
+  "job": {
+    "id": 117998430807,
+    "name": "verify",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 39233891910,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Initialize containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Run python -m pip install -r backend/requirements-dev.txt PyYAML shellcheck-py",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Build offline wireless engine and install file-only extractor",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Static and secret checks",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Run cd backend && python -m pytest tests ../wireless-lab/tests -q --junitxml=../evidence/v2/backend-junit.xml",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Run cd frontend && npm ci && npm test && npm run build",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10
+      },
+      {
+        "name": "Wireless scenarios and dependency scans",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11
+      },
+      {
+        "name": "Report existing development dependency advisories",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Configure and build isolated local stack",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Validate monitoring definitions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Live integration and database persistence",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      },
+      {
+        "name": "Process crash recovery and timestamped outage measurements",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Real browser flows against Compose API",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      },
+      {
+        "name": "Sanitized diagnostics",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      },
+      {
+        "name": "Clean isolated CI containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 37
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 38
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 39
+      },
+      {
+        "name": "Stop containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 40
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 41
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "id": 12179605094,
+      "name": "eventpulse-v2-verification",
+      "size_in_bytes": 2761764,
+      "url": "https://api.github.com/repos/yusufthecoder474/EventPulse-SRE/actions/artifacts/12179605094",
+      "archive_download_url": "https://api.github.com/repos/yusufthecoder474/EventPulse-SRE/actions/artifacts/12179605094/zip",
+      "expired": false,
+      "created_at": "2026-10-19T10:02:26Z",
+      "expires_at": "2027-01-17T09:57:15Z",
+      "updated_at": "2026-10-19T10:02:26Z",
+      "digest": "sha256:ccbad1c8df7af03fe180935de363423355039f969b3a4cddff9916b2461fb045",
+      "workflow_run": {
+        "id": 39233891910,
+        "repository_id": 1422361980,
+        "head_repository_id": 1422361980,
+        "head_branch": "feat/wirelesslab-offline",
+        "head_sha": "8dbad8352cb129cda360e091a5e023228e263f15"
+      }
+    }
+  ],
+  "verified": {
+    "ctest_passed": 21,
+    "python_api_passed": 84,
+    "python_api_skipped": 0,
+    "frontend_unit_passed": 3,
+    "browser_flows_passed": 4,
+    "scenarios_executed": 10,
+    "scenarios_matched": 10,
+    "compose_build_startup": true,
+    "monitoring_config_and_rules": true,
+    "database_persistence": true,
+    "process_and_dependency_outage_recovery": true
+  },
+  "limitations": [
+    "Synthetic fixtures only; no Cisco or radio hardware integration",
+    "No WPA3 cryptographic/hardware verification",
+    "Seven documented Tailwind development dependency advisories; production npm/backend scans clear at execution time"
+  ],
+  "evidence_update": "Documentation-only ledger added after the verified code commit; no implementation changes."
+}
