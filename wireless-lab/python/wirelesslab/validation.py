@@ -90,6 +90,7 @@ def import_capture(data, filename):
     start = time.perf_counter()
     extraction = parse_capture(data, filename, pseudonymize=True, allow_empty=True)
     events = extraction.pop("events")
+    association = analyze_events(events)
     return {
         "scenario": {
             "id": "capture-import",
@@ -98,9 +99,11 @@ def import_capture(data, filename):
             "expected_classifications": [],
         },
         "verdict": "analysis_only",
-        "actual_classifications": [],
+        "actual_classifications": sorted(
+            {c["classification"] for c in association["clients"]}
+        ),
         "events": events,
-        "analysis": analyze_events(events),
+        "analysis": association,
         "handshakes": analyze_handshakes(
             events, observed_until_us=extraction["observed_until_us"]
         ),

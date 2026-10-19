@@ -44,6 +44,7 @@ def test_container_and_import(name, format, packets):
         c["classification"] == "incomplete" for c in result["analysis"]["clients"]
     )
     if "ip-only" not in name:
+        assert result["actual_classifications"] == ["incomplete"]
         assert (
             result["handshakes"]["sessions"][0]["classification"]
             == "HANDSHAKE_COMPLETE"
