@@ -116,6 +116,17 @@ def test_wireless_transmitter_identity():
 def test_safe_file_subprocess_and_timeout(monkeypatch):
     from wirelesslab import packets
 
+    packets.available_fields.cache_clear()
+    monkeypatch.setattr(packets.shutil, "which", lambda _: "/usr/bin/tshark")
+
+    def discovery_timeout(command, **kwargs):
+        assert command == ["/usr/bin/tshark", "-G", "fields"]
+        assert kwargs["timeout"] == 10 and kwargs["shell"] is False
+        raise subprocess.TimeoutExpired(command, 10)
+
+    monkeypatch.setattr(subprocess, "run", discovery_timeout)
+    with pytest.raises(CaptureUnavailable, match="field discovery"):
+        packets.available_fields()
     monkeypatch.setattr(
         packets, "available_fields", lambda: ("/usr/bin/tshark", ["frame.time_epoch"])
     )

@@ -61,14 +61,17 @@ def available_fields():
         raise CaptureUnavailable(
             "TShark is not installed; JSON-event scenarios remain available"
         )
-    result = subprocess.run(
-        [executable, "-G", "fields"],
-        capture_output=True,
-        text=True,
-        timeout=10,
-        check=False,
-        shell=False,
-    )
+    try:
+        result = subprocess.run(
+            [executable, "-G", "fields"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+            shell=False,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise CaptureUnavailable("TShark field discovery failed or timed out") from exc
     if result.returncode:
         raise CaptureUnavailable("Cannot query TShark field support")
     fields = {
