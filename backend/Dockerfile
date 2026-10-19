@@ -1,5 +1,5 @@
 FROM debian:bookworm-slim AS wireless-build
-RUN apt-get update && apt-get install -y --no-install-recommends g++ cmake && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends g++ cmake make && rm -rf /var/lib/apt/lists/*
 COPY wireless-lab/cpp /src
 RUN cmake -S /src -B /build -DCMAKE_BUILD_TYPE=Release && cmake --build /build -j2 && ctest --test-dir /build --output-on-failure
 FROM python:3.12-slim-bookworm
