@@ -1,0 +1,56 @@
+[
+  {
+    "event_id": "ap_join",
+    "timestamp_us": 100000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "assoc_ok",
+    "origin": "ap",
+    "code": 0
+  },
+  {
+    "event_id": "client_view",
+    "timestamp_us": 200000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "client_update",
+    "origin": "client",
+    "reported_state": "connected"
+  },
+  {
+    "event_id": "ap_leave",
+    "timestamp_us": 300000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "deauth",
+    "origin": "ap",
+    "code": 3
+  },
+  {
+    "event_id": "client_leave",
+    "timestamp_us": 350000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "client_update",
+    "origin": "client",
+    "reported_state": "disconnected"
+  },
+  {
+    "event_id": "controller_stale",
+    "timestamp_us": 400000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "controller_update",
+    "origin": "controller",
+    "reported_state": "connected"
+  },
+  {
+    "event_id": "dashboard_stale",
+    "timestamp_us": 500000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "dashboard_update",
+    "origin": "synthetic",
+    "reported_state": "connected"
+  }
+]

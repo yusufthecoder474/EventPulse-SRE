@@ -14,11 +14,13 @@ import subprocess
 import tempfile
 import time
 from .schema import WirelessEvent
+from .capture_format import inspect_container, WARNING
 
 MAX_BYTES = 1_048_576
 MAX_PACKETS = 5000
 FIELDS = [
     "frame.number",
+    "frame.encap_type",
     "frame.time_epoch",
     "wlan.fc.type_subtype",
     "wlan.sa",
@@ -36,6 +38,9 @@ FIELDS = [
     "eth.src",
     "eth.dst",
     "eapol.type",
+    "eapol.keydes.replay_counter",
+    "wlan_rsna_eapol.keydes.key_info",
+    "eapol.keydes.type",
     "wlan_rsna_eapol.keydes.msgnr",
     "dhcp.option.dhcp",
     "dns.flags.response",
@@ -155,8 +160,27 @@ def normalize_rows(rows, pseudonymize=True):
             elif auth_sequence == 2 and code == 0:
                 kind = "auth_ok"
         message = _int(row.get("wlan_rsna_eapol.keydes.msgnr", ""))
+        info = _int(row.get("wlan_rsna_eapol.keydes.key_info", ""))
+        if info >= 0 and info & 8:
+            ack, mic, install, secure = (
+                bool(info & 128),
+                bool(info & 256),
+                bool(info & 64),
+                bool(info & 512),
+            )
+            if ack and not mic:
+                message = 1
+            elif ack and mic and install:
+                message = 3
+            elif not ack and mic:
+                message = 4 if secure else 2
         if message in (1, 2, 3, 4):
             kind = f"eapol_{message}"
+            if not origin_ap:
+                # Ethernet authenticator/supplicant roles, not proof of an 802.11 AP.
+                direction = "ap_to_client" if message in (1, 3) else "client_to_ap"
+                client = destination if message in (1, 3) else source
+                origin_ap = source if message in (1, 3) else destination
         dhcp = _int(row.get("dhcp.option.dhcp", ""))
         if dhcp in (1, 2, 3, 5, 6):
             client = row.get("dhcp.hw.mac_addr") or client
@@ -199,7 +223,11 @@ def normalize_rows(rows, pseudonymize=True):
             timestamp_us=micros,
             capture_timestamp=timestamp,
             client=identity(client, "client"),
-            ap=identity(origin_ap, "ap"),
+            ap=identity(origin_ap, "ap") if subtype >= 0 else "unknown_ap",
+            authenticator=identity(origin_ap, "ap"),
+            replay_counter=row.get("eapol.keydes.replay_counter") or None,
+            key_info=_int(row.get("wlan_rsna_eapol.keydes.key_info", "")),
+            descriptor_type=_int(row.get("eapol.keydes.type", "")),
             kind=kind,
             code=code,
             sequence=_int(row.get("wlan.seq", "")),
@@ -214,7 +242,9 @@ def normalize_rows(rows, pseudonymize=True):
     return events
 
 
-def parse_capture(data: bytes, filename="capture.pcap", pseudonymize=True):
+def parse_capture(
+    data: bytes, filename="capture.pcap", pseudonymize=True, allow_empty=False
+):
     if not re.fullmatch(
         r"[A-Za-z0-9_.-]{1,100}\.(pcap|pcapng)", filename, re.IGNORECASE
     ):
@@ -226,6 +256,7 @@ def parse_capture(data: bytes, filename="capture.pcap", pseudonymize=True):
         or data[:4] not in MAGICS
     ):
         raise ValueError("Malformed, unsupported or oversized capture; maximum 1 MiB")
+    container = inspect_container(data)
     executable, selected = available_fields()
     start = time.perf_counter()
     with tempfile.TemporaryDirectory(prefix="wirelesslab-pcap-") as temporary:
@@ -280,9 +311,30 @@ def parse_capture(data: bytes, filename="capture.pcap", pseudonymize=True):
         if len(rows) > MAX_PACKETS:
             raise ValueError("Capture exceeds 5000-packet limit")
         events = normalize_rows(rows, pseudonymize)
-    if not events:
+    if not events and not allow_empty:
         raise ValueError("No supported wireless/EAPOL/DHCP/DNS evidence in capture")
+    management = any(
+        e["kind"]
+        in {
+            "beacon",
+            "probe_request",
+            "probe_response",
+            "auth_request",
+            "auth_ok",
+            "auth_fail",
+            "assoc_request",
+            "assoc_ok",
+            "assoc_reject",
+            "deauth",
+            "disassoc",
+        }
+        and e["link_layer"] == "ieee80211"
+        for e in events
+    )
     return {
+        **container,
+        "management_evidence_available": management,
+        "warnings": [] if management else [WARNING],
         "events": events,
         "packet_count": len(rows),
         "supported_events": len(events),

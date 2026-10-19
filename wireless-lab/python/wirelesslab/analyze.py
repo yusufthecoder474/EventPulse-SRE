@@ -77,3 +77,66 @@ def analyze_events(values, window_ms=5000):
         raise ValueError("Invalid analyzer data contract")
     result["analysis_duration_ms"] = (time.perf_counter() - start) * 1000
     return result
+
+
+def analyze_handshakes(values, window_ms=5000, observed_until_us=None):
+    if (
+        not isinstance(values, list)
+        or len(values) > MAX_EVENTS
+        or not 500 <= window_ms <= 60000
+    ):
+        raise ValueError("Invalid bounded handshake input/window")
+    if (
+        observed_until_us is not None
+        and not 0 <= observed_until_us <= 9_000_000_000_000_000
+    ):
+        raise ValueError("Invalid observation timestamp")
+    events = [
+        WirelessEvent.model_validate(e) if isinstance(e, dict) else e for e in values
+    ]
+    lines = []
+    for e in events:
+        peer = e.authenticator if e.authenticator != "unknown_ap" else e.ap
+        lines.append(
+            "\t".join(
+                map(
+                    str,
+                    [
+                        e.event_id,
+                        e.timestamp_us,
+                        e.client,
+                        peer,
+                        e.kind,
+                        e.code,
+                        e.sequence,
+                        e.origin,
+                        e.direction,
+                        e.reported_state,
+                        e.replay_counter or "-1",
+                        e.key_info,
+                        e.descriptor_type,
+                    ],
+                )
+            )
+        )
+    command = [str(binary_path()), "--handshakes", "--window-ms", str(window_ms)]
+    if observed_until_us is not None:
+        command += ["--observed-until-us", str(observed_until_us)]
+    start = time.perf_counter()
+    try:
+        result = subprocess.run(
+            command,
+            input="\n".join(lines) + ("\n" if lines else ""),
+            text=True,
+            capture_output=True,
+            shell=False,
+            timeout=8,
+            check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise AnalyzerUnavailable("Bounded handshake analyzer unavailable") from exc
+    if result.returncode or len(result.stdout) > 2000000:
+        raise ValueError("Handshake analyzer rejected input/output bounds")
+    output = json.loads(result.stdout)
+    output["analysis_duration_ms"] = (time.perf_counter() - start) * 1000
+    return output

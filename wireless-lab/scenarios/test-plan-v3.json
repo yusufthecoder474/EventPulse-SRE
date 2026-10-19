@@ -1,0 +1,449 @@
+{
+  "version": 1,
+  "name": "Cisco wireless feature validation",
+  "cases": [
+    {
+      "id": "A",
+      "feature": "Successful association",
+      "fixture": "association-success.pcap",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "expected": [
+        "association_success"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test A",
+      "expected_behavior": [
+        "association_success"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "B",
+      "feature": "AP association rejection",
+      "fixture": "association-rejected.pcap",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "expected": [
+        "association_rejected"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test B",
+      "expected_behavior": [
+        "association_rejected"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "C",
+      "feature": "Authentication rejection",
+      "fixture": "authentication-failed.pcap",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "expected": [
+        "authentication_failed"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C",
+      "expected_behavior": [
+        "authentication_failed"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "D",
+      "feature": "Client disconnected",
+      "fixture": "client-disconnected.pcap",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "expected": [
+        "disconnected"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test D",
+      "expected_behavior": [
+        "disconnected"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "E",
+      "feature": "DHCP allocation failure",
+      "fixture": "dhcp-failed.json",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "expected": [
+        "dhcp_failed"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test E",
+      "expected_behavior": [
+        "dhcp_failed"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "F",
+      "feature": "DNS failure after IP configuration",
+      "fixture": "dns-failed.json",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "expected": [
+        "dns_failed"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test F",
+      "expected_behavior": [
+        "dns_failed"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "G",
+      "feature": "Delayed association",
+      "fixture": "association-delayed.pcap",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "expected": [
+        "association_delayed"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test G",
+      "expected_behavior": [
+        "association_delayed"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "H",
+      "feature": "Duplicate and out-of-order events",
+      "fixture": "reordered-duplicate.json",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "expected": [
+        "association_success"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test H",
+      "expected_behavior": [
+        "association_success"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "I",
+      "feature": "Missing connection evidence",
+      "fixture": "incomplete.json",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "expected": [
+        "incomplete"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test I",
+      "expected_behavior": [
+        "incomplete"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "J",
+      "feature": "Delayed inconsistent controller update",
+      "fixture": "controller-inconsistent.json",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "expected": [
+        "management_inconsistent"
+      ],
+      "kind": "legacy",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test J",
+      "expected_behavior": [
+        "management_inconsistent"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P01",
+      "feature": "WPA2 handshake complete",
+      "fixture": "v3/handshake-complete.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P01",
+      "expected_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P02",
+      "feature": "WPA2 handshake missing_m1",
+      "fixture": "v3/handshake-missing_m1.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P02",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P03",
+      "feature": "WPA2 handshake missing_m2",
+      "fixture": "v3/handshake-missing_m2.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P03",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P04",
+      "feature": "WPA2 handshake missing_m3",
+      "fixture": "v3/handshake-missing_m3.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P04",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P05",
+      "feature": "WPA2 handshake missing_m4",
+      "fixture": "v3/handshake-missing_m4.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P05",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P06",
+      "feature": "WPA2 handshake reordered",
+      "fixture": "v3/handshake-reordered.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P06",
+      "expected_behavior": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P07",
+      "feature": "WPA2 handshake retransmitted",
+      "fixture": "v3/handshake-retransmitted.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P07",
+      "expected_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P08",
+      "feature": "WPA2 handshake timeout",
+      "fixture": "v3/handshake-timeout.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P08",
+      "expected_behavior": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P09",
+      "feature": "WPA2 handshake insufficient",
+      "fixture": "v3/handshake-insufficient.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 1,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P09",
+      "expected_behavior": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "P10",
+      "feature": "WPA2 handshake concurrent",
+      "fixture": "v3/handshake-concurrent.json",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "expected": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "kind": "handshake",
+      "expected_sessions": 2,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P10",
+      "expected_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "C01",
+      "feature": "controller_delay",
+      "fixture": "v3/controller_delay.json",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "expected": [
+        "CONTROLLER_UPDATE_DELAY"
+      ],
+      "kind": "layers",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C01",
+      "expected_behavior": [
+        "CONTROLLER_UPDATE_DELAY"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "C02",
+      "feature": "stale_controller",
+      "fixture": "v3/stale_controller.json",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "expected": [
+        "STALE_OR_INCONSISTENT_CONTROLLER"
+      ],
+      "kind": "layers",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C02",
+      "expected_behavior": [
+        "STALE_OR_INCONSISTENT_CONTROLLER"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "C03",
+      "feature": "missing_management",
+      "fixture": "v3/missing_management.json",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "expected": [
+        "MISSING_MANAGEMENT_EVIDENCE"
+      ],
+      "kind": "layers",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C03",
+      "expected_behavior": [
+        "MISSING_MANAGEMENT_EVIDENCE"
+      ],
+      "evidence_origin": "synthetic"
+    },
+    {
+      "id": "C04",
+      "feature": "client_ap_mismatch",
+      "fixture": "v3/client_ap_mismatch.json",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "expected": [
+        "CLIENT_AP_MISMATCH"
+      ],
+      "kind": "layers",
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C04",
+      "expected_behavior": [
+        "CLIENT_AP_MISMATCH"
+      ],
+      "evidence_origin": "synthetic"
+    }
+  ]
+}

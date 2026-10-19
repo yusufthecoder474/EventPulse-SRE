@@ -1,0 +1,12 @@
+[
+  {
+    "event_id": "clientA_m1_100000",
+    "timestamp_us": 1700000000100000,
+    "client": "clientA",
+    "ap": "apA",
+    "authenticator": "apA",
+    "kind": "eapol_1",
+    "origin": "synthetic",
+    "direction": "ap_to_client"
+  }
+]
