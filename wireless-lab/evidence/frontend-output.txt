@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> eventpulse-console@1.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /workspace/scratch/3335d3e4debd/EventPulse-WirelessLab/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  12:48:04
+   Duration  1.78s (tests 26%, environment 24%, transform 24%, import 23%, setup 3%)
+

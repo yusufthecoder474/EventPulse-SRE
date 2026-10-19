@@ -1,0 +1,12 @@
+{
+  "read_only": true,
+  "checks": {
+    "iw": null,
+    "hostapd": null,
+    "wpa_supplicant": null,
+    "modinfo": null,
+    "kernel_module_files": []
+  },
+  "virtual_radios_created": false,
+  "privileged_operations_executed": false
+}

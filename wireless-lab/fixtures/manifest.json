@@ -1,0 +1,74 @@
+[
+  {
+    "file": "association-delayed.pcap",
+    "bytes": 254,
+    "sha256": "0af17802ec92ba2edaaa763cba6012bf38b9755a3f5c6c30e168d6d5477d8aa0",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "association-rejected.pcap",
+    "bytes": 254,
+    "sha256": "4fd0f22a6a53f9ab0385cbc5fde83afb430982276d96add3864b5ee69a727166",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "association-success.pcap",
+    "bytes": 1096,
+    "sha256": "2f201edbb74f50ad709e0568d1e402e129431f68a59816c74878ee2a28b4a40c",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "authentication-failed.pcap",
+    "bytes": 132,
+    "sha256": "6759d1f88a9648da473b032632189815ef97e96236b76b8159036e745f31b273",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "client-disconnected.pcap",
+    "bytes": 304,
+    "sha256": "6991164f0913c4e5c751181e1ba11acd2078ce2fef831e0504f760cd7b78e6a3",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "controller-inconsistent.json",
+    "bytes": 1522,
+    "sha256": "f45e65c802bda9feea9de0f887b40c227b96e5d15864e6f14af9c32a050a3217",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "dhcp-failed.json",
+    "bytes": 1806,
+    "sha256": "8bf3c09a1b5cd5769f7bef0ea5fe76adf9af8d53a438570727d1e4e9c55ccb74",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "dns-failed.json",
+    "bytes": 2090,
+    "sha256": "166b616ed9d0c5fb8ec3d60c01ee3c2944444f49033d28f8adcad0f77be73a66",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "ethernet-eapol.pcap",
+    "bytes": 540,
+    "sha256": "df2925616f2bedd14aa2835bb16f1edbcfac0c749995d97a22924d136668deb1",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "incomplete.json",
+    "bytes": 309,
+    "sha256": "f6ba6b0a3eaea89ec68ea6052183eee74dbe0e09ff3db7e57d551f32ca7ca23f",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "reordered-duplicate.json",
+    "bytes": 1507,
+    "sha256": "89936594d786ef6d51944892d9d6d70754f81ed2be986ce6fd1d4c43a2fbbf6f",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  },
+  {
+    "file": "wpa3-sae-events.json",
+    "bytes": 1828,
+    "sha256": "ab24c0e9f121b9a60f6978ebfa2f80771044431e4093582a21d6c38f62850c42",
+    "origin": "deterministic synthetic generator; no hardware or real traffic"
+  }
+]

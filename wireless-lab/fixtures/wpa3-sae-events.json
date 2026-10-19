@@ -1,0 +1,74 @@
+[
+  {
+    "event_id": "e_sae_commit_100000",
+    "timestamp_us": 1700000000100000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "sae_commit",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "client_to_ap",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_sae_commit_200000",
+    "timestamp_us": 1700000000200000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "sae_commit",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "ap_to_client",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_sae_confirm_300000",
+    "timestamp_us": 1700000000300000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "sae_confirm",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "client_to_ap",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_sae_confirm_400000",
+    "timestamp_us": 1700000000400000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "sae_confirm",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "ap_to_client",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_assoc_request_500000",
+    "timestamp_us": 1700000000500000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "assoc_request",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_assoc_ok_600000",
+    "timestamp_us": 1700000000600000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "assoc_ok",
+    "code": 0,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  }
+]

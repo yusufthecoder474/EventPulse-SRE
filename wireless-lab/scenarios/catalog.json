@@ -1,0 +1,187 @@
+[
+  {
+    "id": "A",
+    "title": "Successful association",
+    "objective": "Validate successful association without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer",
+      "TShark installed"
+    ],
+    "fixture": "association-success.pcap",
+    "evidence_type": "generated_pcap",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "association_success"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario A"
+  },
+  {
+    "id": "B",
+    "title": "AP association rejection",
+    "objective": "Validate ap association rejection without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer",
+      "TShark installed"
+    ],
+    "fixture": "association-rejected.pcap",
+    "evidence_type": "generated_pcap",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "association_rejected"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario B"
+  },
+  {
+    "id": "C",
+    "title": "Authentication rejection",
+    "objective": "Validate authentication rejection without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer",
+      "TShark installed"
+    ],
+    "fixture": "authentication-failed.pcap",
+    "evidence_type": "generated_pcap",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "authentication_failed"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario C"
+  },
+  {
+    "id": "D",
+    "title": "Client disconnected",
+    "objective": "Validate client disconnected without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer",
+      "TShark installed"
+    ],
+    "fixture": "client-disconnected.pcap",
+    "evidence_type": "generated_pcap",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "disconnected"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario D"
+  },
+  {
+    "id": "E",
+    "title": "DHCP allocation failure",
+    "objective": "Validate dhcp allocation failure without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer"
+    ],
+    "fixture": "dhcp-failed.json",
+    "evidence_type": "synthetic_events",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "dhcp_failed"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario E"
+  },
+  {
+    "id": "F",
+    "title": "DNS failure after IP configuration",
+    "objective": "Validate dns failure after ip configuration without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer"
+    ],
+    "fixture": "dns-failed.json",
+    "evidence_type": "synthetic_events",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "dns_failed"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario F"
+  },
+  {
+    "id": "G",
+    "title": "Delayed association",
+    "objective": "Validate delayed association without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer",
+      "TShark installed"
+    ],
+    "fixture": "association-delayed.pcap",
+    "evidence_type": "generated_pcap",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "association_delayed"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario G"
+  },
+  {
+    "id": "H",
+    "title": "Duplicate and out-of-order events",
+    "objective": "Validate duplicate and out-of-order events without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer"
+    ],
+    "fixture": "reordered-duplicate.json",
+    "evidence_type": "synthetic_events",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "association_success"
+    ],
+    "min_duplicates": 1,
+    "min_out_of_order": 1,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario H"
+  },
+  {
+    "id": "I",
+    "title": "Missing connection evidence",
+    "objective": "Validate missing connection evidence without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer"
+    ],
+    "fixture": "incomplete.json",
+    "evidence_type": "synthetic_events",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "incomplete"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario I"
+  },
+  {
+    "id": "J",
+    "title": "Delayed inconsistent controller update",
+    "objective": "Validate delayed inconsistent controller update without inferring an unobserved cause.",
+    "preconditions": [
+      "Offline local lab",
+      "Compiled C++17 analyzer"
+    ],
+    "fixture": "controller-inconsistent.json",
+    "evidence_type": "synthetic_events",
+    "origin": "Generated synthetic laboratory data; no hardware or real users",
+    "expected_classifications": [
+      "management_inconsistent"
+    ],
+    "min_duplicates": 0,
+    "min_out_of_order": 0,
+    "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario J"
+  }
+]

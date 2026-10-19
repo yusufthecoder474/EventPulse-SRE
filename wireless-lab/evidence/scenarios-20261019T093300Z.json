@@ -1,0 +1,1601 @@
+{
+  "origin": "Synthetic laboratory fixtures, not real Cisco equipment",
+  "scenarios_executed": 10,
+  "passed": 10,
+  "runs": [
+    {
+      "scenario": {
+        "id": "A",
+        "title": "Successful association",
+        "objective": "Validate successful association without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer",
+          "TShark installed"
+        ],
+        "fixture": "association-success.pcap",
+        "evidence_type": "generated_pcap",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "association_success"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario A"
+      },
+      "actual_classifications": [
+        "association_success"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "frame_1",
+          "timestamp_us": 1700000000000000,
+          "capture_timestamp": "1700000000.000000000",
+          "client": "broadcast",
+          "ap": "02:00:00:00:01:01",
+          "kind": "beacon",
+          "code": -1,
+          "sequence": 0,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "4576656e7450756c73652d4c61",
+          "frame_subtype": "0x08",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "AP advertises a network; this does not prove that a client connected."
+        },
+        {
+          "event_id": "frame_2",
+          "timestamp_us": 1700000000010000,
+          "capture_timestamp": "1700000000.010000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "probe_request",
+          "code": -1,
+          "sequence": 10,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "4576656e7450756c73652d4c61",
+          "frame_subtype": "0x04",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Client searches for nearby networks."
+        },
+        {
+          "event_id": "frame_3",
+          "timestamp_us": 1700000000020000,
+          "capture_timestamp": "1700000000.020000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "probe_response",
+          "code": -1,
+          "sequence": 20,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "4576656e7450756c73652d4c61",
+          "frame_subtype": "0x05",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "AP replies to discovery."
+        },
+        {
+          "event_id": "frame_4",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": "1700000000.100000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": 0,
+          "sequence": 100,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "frame_5",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": "1700000000.200000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 200,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "frame_6",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": "1700000000.300000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 300,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "4576656e7450756c73652d4c61",
+          "frame_subtype": "0x00",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "frame_7",
+          "timestamp_us": 1700000000400000,
+          "capture_timestamp": "1700000000.400000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_ok",
+          "code": 0,
+          "sequence": 400,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x01",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "AP accepts association; IP configuration is not implied."
+        },
+        {
+          "event_id": "frame_8",
+          "timestamp_us": 1700000000600000,
+          "capture_timestamp": "1700000000.600000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "eapol_1",
+          "code": -1,
+          "sequence": 1,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x20",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "EAPOL-Key message 1 observation; MIC/key validity is not verified."
+        },
+        {
+          "event_id": "frame_9",
+          "timestamp_us": 1700000000700000,
+          "capture_timestamp": "1700000000.700000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "eapol_4",
+          "code": -1,
+          "sequence": 2,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x20",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "EAPOL-Key message 4 observation; MIC/key validity is not verified."
+        },
+        {
+          "event_id": "frame_10",
+          "timestamp_us": 1700000000800000,
+          "capture_timestamp": "1700000000.800000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "eapol_3",
+          "code": -1,
+          "sequence": 3,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x20",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "EAPOL-Key message 3 observation; MIC/key validity is not verified."
+        },
+        {
+          "event_id": "frame_11",
+          "timestamp_us": 1700000000900000,
+          "capture_timestamp": "1700000000.900000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "eapol_4",
+          "code": -1,
+          "sequence": 4,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x20",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "EAPOL-Key message 4 observation; MIC/key validity is not verified."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 11,
+        "processed_events": 11,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "association_success",
+            "explanation": "Authentication and successful association evidence observed; IP access and cryptographic validity are separate.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [
+              1,
+              3,
+              4
+            ],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": []
+          }
+        ],
+        "analysis_duration_ms": 2.507001000026321
+      },
+      "extraction": {
+        "packet_count": 11,
+        "supported_events": 11,
+        "parsing_duration_ms": 193.08076699996946,
+        "missing_extractor_fields": [],
+        "limitations": [
+          "File-only offline extraction; no live capture or decryption.",
+          "Missing packets/fields are unknown, not evidence of a cause.",
+          "Ethernet EAPOL is not complete IEEE 802.11 association evidence.",
+          "EAPOL and SAE observations do not verify cryptographic correctness."
+        ]
+      },
+      "total_duration_ms": 971.3056669999105,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "B",
+        "title": "AP association rejection",
+        "objective": "Validate ap association rejection without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer",
+          "TShark installed"
+        ],
+        "fixture": "association-rejected.pcap",
+        "evidence_type": "generated_pcap",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "association_rejected"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario B"
+      },
+      "actual_classifications": [
+        "association_rejected"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "frame_1",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": "1700000000.100000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": 0,
+          "sequence": 100,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "frame_2",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": "1700000000.200000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 200,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "frame_3",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": "1700000000.300000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 300,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "4576656e7450756c73652d4c61",
+          "frame_subtype": "0x00",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "frame_4",
+          "timestamp_us": 1700000000400000,
+          "capture_timestamp": "1700000000.400000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_reject",
+          "code": 17,
+          "sequence": 400,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x01",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "AP rejects association with a nonzero status."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 4,
+        "processed_events": 4,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "association_failed",
+            "classification": "association_rejected",
+            "explanation": "Explicit AP association rejection observed.",
+            "association_latency_ms": null,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "AP association response contains an explicit nonzero status."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 3.6951150000277266
+      },
+      "extraction": {
+        "packet_count": 4,
+        "supported_events": 4,
+        "parsing_duration_ms": 154.74127300001328,
+        "missing_extractor_fields": [],
+        "limitations": [
+          "File-only offline extraction; no live capture or decryption.",
+          "Missing packets/fields are unknown, not evidence of a cause.",
+          "Ethernet EAPOL is not complete IEEE 802.11 association evidence.",
+          "EAPOL and SAE observations do not verify cryptographic correctness."
+        ]
+      },
+      "total_duration_ms": 158.70599100003346,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "C",
+        "title": "Authentication rejection",
+        "objective": "Validate authentication rejection without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer",
+          "TShark installed"
+        ],
+        "fixture": "authentication-failed.pcap",
+        "evidence_type": "generated_pcap",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "authentication_failed"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario C"
+      },
+      "actual_classifications": [
+        "authentication_failed"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "frame_1",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": "1700000000.100000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": 0,
+          "sequence": 100,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "frame_2",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": "1700000000.200000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_fail",
+          "code": 13,
+          "sequence": 200,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Nonzero authentication status is observed; no password cause is inferred."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 2,
+        "processed_events": 2,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "authentication_failed",
+            "classification": "authentication_failed",
+            "explanation": "Explicit authentication rejection observed; credentials are not inspected.",
+            "association_latency_ms": null,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Authentication rejection is explicit; password cause is not established."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 2.160366999987673
+      },
+      "extraction": {
+        "packet_count": 2,
+        "supported_events": 2,
+        "parsing_duration_ms": 154.74443599998722,
+        "missing_extractor_fields": [],
+        "limitations": [
+          "File-only offline extraction; no live capture or decryption.",
+          "Missing packets/fields are unknown, not evidence of a cause.",
+          "Ethernet EAPOL is not complete IEEE 802.11 association evidence.",
+          "EAPOL and SAE observations do not verify cryptographic correctness."
+        ]
+      },
+      "total_duration_ms": 157.3847479999131,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "D",
+        "title": "Client disconnected",
+        "objective": "Validate client disconnected without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer",
+          "TShark installed"
+        ],
+        "fixture": "client-disconnected.pcap",
+        "evidence_type": "generated_pcap",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "disconnected"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario D"
+      },
+      "actual_classifications": [
+        "disconnected"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "frame_1",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": "1700000000.100000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": 0,
+          "sequence": 100,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "frame_2",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": "1700000000.200000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 200,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "frame_3",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": "1700000000.300000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 300,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "4576656e7450756c73652d4c61",
+          "frame_subtype": "0x00",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "frame_4",
+          "timestamp_us": 1700000000400000,
+          "capture_timestamp": "1700000000.400000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_ok",
+          "code": 0,
+          "sequence": 400,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x01",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "AP accepts association; IP configuration is not implied."
+        },
+        {
+          "event_id": "frame_5",
+          "timestamp_us": 1700000000900000,
+          "capture_timestamp": "1700000000.900000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "deauth",
+          "code": 3,
+          "sequence": 900,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0c",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Authentication relationship terminated; inspect the reason code."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 5,
+        "processed_events": 5,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "disconnected",
+            "classification": "disconnected",
+            "explanation": "Explicit deauthentication/disassociation evidence observed.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Explicit disconnect/reason evidence observed; root cause beyond the code remains unproven."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 2.4218669999527265
+      },
+      "extraction": {
+        "packet_count": 5,
+        "supported_events": 5,
+        "parsing_duration_ms": 162.2080959999721,
+        "missing_extractor_fields": [],
+        "limitations": [
+          "File-only offline extraction; no live capture or decryption.",
+          "Missing packets/fields are unknown, not evidence of a cause.",
+          "Ethernet EAPOL is not complete IEEE 802.11 association evidence.",
+          "EAPOL and SAE observations do not verify cryptographic correctness."
+        ]
+      },
+      "total_duration_ms": 164.90972000008242,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "E",
+        "title": "DHCP allocation failure",
+        "objective": "Validate dhcp allocation failure without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer"
+        ],
+        "fixture": "dhcp-failed.json",
+        "evidence_type": "synthetic_events",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "dhcp_failed"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario E"
+      },
+      "actual_classifications": [
+        "dhcp_failed"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "e_auth_request_100000",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "e_auth_ok_200000",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "e_assoc_request_300000",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "e_assoc_ok_400000",
+          "timestamp_us": 1700000000400000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "AP accepts association; IP configuration is not implied."
+        },
+        {
+          "event_id": "e_dhcp_discover_500000",
+          "timestamp_us": 1700000000500000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "dhcp_discover",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Protocol-stage evidence only; absent packets do not prove a failure."
+        },
+        {
+          "event_id": "e_dhcp_fail_3500000",
+          "timestamp_us": 1700000003500000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "dhcp_fail",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Explicit NAK or a labeled synthetic DHCP timeout."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 6,
+        "processed_events": 6,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "dhcp_failed",
+            "classification": "dhcp_failed",
+            "explanation": "IP allocation failure is explicit; Wi-Fi joining and DHCP are distinct.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Explicit DHCP NAK or synthetic timeout evidence; association is a separate layer."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 3.6036779999903956
+      },
+      "extraction": {
+        "parsing_duration_ms": null,
+        "limitations": [
+          "Synthetic event fixture, not packet or hardware evidence."
+        ]
+      },
+      "total_duration_ms": 4.232387999991261,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "F",
+        "title": "DNS failure after IP configuration",
+        "objective": "Validate dns failure after ip configuration without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer"
+        ],
+        "fixture": "dns-failed.json",
+        "evidence_type": "synthetic_events",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "dns_failed"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario F"
+      },
+      "actual_classifications": [
+        "dns_failed"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "e_auth_request_100000",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "e_auth_ok_200000",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "e_assoc_request_300000",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "e_assoc_ok_400000",
+          "timestamp_us": 1700000000400000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "AP accepts association; IP configuration is not implied."
+        },
+        {
+          "event_id": "e_dhcp_ack_600000",
+          "timestamp_us": 1700000000600000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "dhcp_ack",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "DHCP ACK evidence indicates IP configuration, not RF quality."
+        },
+        {
+          "event_id": "e_dns_query_700000",
+          "timestamp_us": 1700000000700000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "dns_query",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Protocol-stage evidence only; absent packets do not prove a failure."
+        },
+        {
+          "event_id": "e_dns_fail_800000",
+          "timestamp_us": 1700000000800000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "dns_fail",
+          "code": 3,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "DNS response error or a labeled synthetic DNS failure."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 7,
+        "processed_events": 7,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "dns_failed",
+            "classification": "dns_failed",
+            "explanation": "DNS failure is explicit; it does not establish a wireless association failure.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "DNS error response or explicit synthetic failure observed; this is not an RF failure."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 2.370903000041835
+      },
+      "extraction": {
+        "parsing_duration_ms": null,
+        "limitations": [
+          "Synthetic event fixture, not packet or hardware evidence."
+        ]
+      },
+      "total_duration_ms": 2.703947999975753,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "G",
+        "title": "Delayed association",
+        "objective": "Validate delayed association without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer",
+          "TShark installed"
+        ],
+        "fixture": "association-delayed.pcap",
+        "evidence_type": "generated_pcap",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "association_delayed"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario G"
+      },
+      "actual_classifications": [
+        "association_delayed"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "frame_1",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": "1700000000.100000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": 0,
+          "sequence": 100,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "frame_2",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": "1700000000.200000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 200,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x0b",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "frame_3",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": "1700000000.300000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 300,
+          "origin": "packet",
+          "direction": "client_to_ap",
+          "reported_state": "unknown",
+          "ssid": "4576656e7450756c73652d4c61",
+          "frame_subtype": "0x00",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "frame_4",
+          "timestamp_us": 1700000001800000,
+          "capture_timestamp": "1700000001.800000000",
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_ok",
+          "code": 0,
+          "sequence": 1800,
+          "origin": "packet",
+          "direction": "ap_to_client",
+          "reported_state": "unknown",
+          "ssid": "",
+          "frame_subtype": "0x01",
+          "link_layer": "ieee80211",
+          "missing_fields": [],
+          "explanation": "AP accepts association; IP configuration is not implied."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 4,
+        "processed_events": 4,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "association_delayed",
+            "explanation": "Matched request/response exceeds the local laboratory latency threshold.",
+            "association_latency_ms": 1500,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": []
+          }
+        ],
+        "analysis_duration_ms": 3.340511000033075
+      },
+      "extraction": {
+        "packet_count": 4,
+        "supported_events": 4,
+        "parsing_duration_ms": 154.6433989999514,
+        "missing_extractor_fields": [],
+        "limitations": [
+          "File-only offline extraction; no live capture or decryption.",
+          "Missing packets/fields are unknown, not evidence of a cause.",
+          "Ethernet EAPOL is not complete IEEE 802.11 association evidence.",
+          "EAPOL and SAE observations do not verify cryptographic correctness."
+        ]
+      },
+      "total_duration_ms": 158.3386930000188,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "H",
+        "title": "Duplicate and out-of-order events",
+        "objective": "Validate duplicate and out-of-order events without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer"
+        ],
+        "fixture": "reordered-duplicate.json",
+        "evidence_type": "synthetic_events",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "association_success"
+        ],
+        "min_duplicates": 1,
+        "min_out_of_order": 1,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario H"
+      },
+      "actual_classifications": [
+        "association_success"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "e_assoc_request_300000",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "e_auth_request_100000",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "e_auth_ok_200000",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "e_assoc_request_300000",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "e_assoc_ok_400000",
+          "timestamp_us": 1700000000400000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "AP accepts association; IP configuration is not implied."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 5,
+        "processed_events": 4,
+        "duplicate_events": 1,
+        "out_of_order_pairs": 1,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "association_success",
+            "explanation": "Authentication and successful association evidence observed; IP access and cryptographic validity are separate.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": []
+          }
+        ],
+        "analysis_duration_ms": 2.6149269999677927
+      },
+      "extraction": {
+        "parsing_duration_ms": null,
+        "limitations": [
+          "Synthetic event fixture, not packet or hardware evidence."
+        ]
+      },
+      "total_duration_ms": 3.13572999993994,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "I",
+        "title": "Missing connection evidence",
+        "objective": "Validate missing connection evidence without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer"
+        ],
+        "fixture": "incomplete.json",
+        "evidence_type": "synthetic_events",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "incomplete"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario I"
+      },
+      "actual_classifications": [
+        "incomplete"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "e_assoc_request_300000",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 1,
+        "processed_events": 1,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associating",
+            "classification": "incomplete",
+            "explanation": "Capture/events do not establish the complete connection path; no missing failure cause is invented.",
+            "association_latency_ms": null,
+            "controller_lag_ms": null,
+            "invalid_transition": true,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Association request has no preceding authentication evidence."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 2.041479000013169
+      },
+      "extraction": {
+        "parsing_duration_ms": null,
+        "limitations": [
+          "Synthetic event fixture, not packet or hardware evidence."
+        ]
+      },
+      "total_duration_ms": 2.3436300000412302,
+      "mode": "synthetic laboratory; no hardware integration"
+    },
+    {
+      "scenario": {
+        "id": "J",
+        "title": "Delayed inconsistent controller update",
+        "objective": "Validate delayed inconsistent controller update without inferring an unobserved cause.",
+        "preconditions": [
+          "Offline local lab",
+          "Compiled C++17 analyzer"
+        ],
+        "fixture": "controller-inconsistent.json",
+        "evidence_type": "synthetic_events",
+        "origin": "Generated synthetic laboratory data; no hardware or real users",
+        "expected_classifications": [
+          "management_inconsistent"
+        ],
+        "min_duplicates": 0,
+        "min_out_of_order": 0,
+        "reproduction": "python wireless-lab/scripts/run_scenarios.py --scenario J"
+      },
+      "actual_classifications": [
+        "management_inconsistent"
+      ],
+      "verdict": "pass",
+      "assertions": {
+        "classification_matches": true,
+        "duplicate_handling": true,
+        "out_of_order_handling": true
+      },
+      "events": [
+        {
+          "event_id": "e_auth_request_100000",
+          "timestamp_us": 1700000000100000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "802.11 authentication exchange begins; this is not necessarily password validation."
+        },
+        {
+          "event_id": "e_auth_ok_200000",
+          "timestamp_us": 1700000000200000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "auth_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Successful authentication response observed; association is a separate step."
+        },
+        {
+          "event_id": "e_assoc_request_300000",
+          "timestamp_us": 1700000000300000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_request",
+          "code": -1,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Client requests association with an AP."
+        },
+        {
+          "event_id": "e_assoc_ok_400000",
+          "timestamp_us": 1700000000400000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "assoc_ok",
+          "code": 0,
+          "sequence": 1,
+          "origin": "synthetic",
+          "direction": "unknown",
+          "reported_state": "unknown",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "AP accepts association; IP configuration is not implied."
+        },
+        {
+          "event_id": "e_controller_update_8000000",
+          "timestamp_us": 1700000008000000,
+          "capture_timestamp": null,
+          "client": "02:00:00:00:10:01",
+          "ap": "02:00:00:00:01:01",
+          "kind": "controller_update",
+          "code": -1,
+          "sequence": 1,
+          "origin": "controller",
+          "direction": "unknown",
+          "reported_state": "disconnected",
+          "ssid": null,
+          "frame_subtype": null,
+          "link_layer": "synthetic",
+          "missing_fields": [],
+          "explanation": "Simulated management-plane observation, not a Cisco API."
+        }
+      ],
+      "analysis": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 5,
+        "processed_events": 5,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "management_inconsistent",
+            "explanation": "AP/controller disagreement is demonstrated, not a Cisco controller fault.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": 7600,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Controller observation arrived after the correlation window; timestamps assume a shared clock.",
+              "Controller status disagrees with the latest explicit AP state."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 2.2663800000373158
+      },
+      "extraction": {
+        "parsing_duration_ms": null,
+        "limitations": [
+          "Synthetic event fixture, not packet or hardware evidence."
+        ]
+      },
+      "total_duration_ms": 2.861904000042159,
+      "mode": "synthetic laboratory; no hardware integration"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> eventpulse-console@1.0.0 test:e2e
+> playwright test --workers=4
+
+[WebServer] (node:36) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[WebServer] (node:49) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 4 workers
+
+(node:72) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:71) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:70) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:69) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [chromium] › tests/wireless.spec.ts:27:1 › mobile guest session and all seven views remain usable (3.9s)
+  ✓  4 [chromium] › tests/console.spec.ts:16:1 › mobile navigation remains usable (4.4s)
+  ✓  1 [chromium] › tests/wireless.spec.ts:3:1 › guest enters, executes failure, explores packet evidence and exports (6.7s)
+  ✓  2 [chromium] › tests/console.spec.ts:2:1 › real API dashboard, probes, navigation and screenshot (7.5s)
+
+  4 passed (9.7s)

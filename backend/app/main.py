@@ -182,6 +182,8 @@ def create_app(url=None, fault_enabled=None, window=None):
             telemetry.registrations.labels(outcome).inc()
         telemetry.uptime.set(time.time() - telemetry.started)
         response.headers["X-Request-ID"] = correlation
+        if request.url.path.startswith("/wireless-lab"):
+            response.headers["Cache-Control"] = "no-store"
         logger.info(
             json.dumps(
                 {
@@ -354,4 +356,6 @@ def create_app(url=None, fault_enabled=None, window=None):
         writer.writerows(runs)
         return Response(stream.getvalue(), media_type="text/csv", headers={"Content-Disposition": "attachment; filename=experiments.csv"})
 
+    from .wireless_api import install_wireless
+    install_wireless(app, engine, factory, telemetry.registry)
     return app
