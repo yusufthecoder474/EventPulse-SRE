@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import WirelessLab from "./WirelessLab";
 import {
   Activity,
   LayoutDashboard,
@@ -47,6 +48,7 @@ const pages = [
   "SLO dashboard",
   "Fault injection lab",
   "Experiment results",
+  "WirelessLab",
 ];
 const icons = [
   LayoutDashboard,
@@ -55,6 +57,7 @@ const icons = [
   Target,
   FlaskConical,
   ChartNoAxesCombined,
+  Radio,
 ];
 async function api<T>(path: string, options?: RequestInit): Promise<T> {
   const r = await fetch(`/api${path}`, options);
@@ -109,7 +112,11 @@ function Panel({
   );
 }
 export default function App() {
-  const [page, setPage] = useState(0),
+  const [page, setPage] = useState(() =>
+      new URLSearchParams(window.location.search).get("lab") === "wireless"
+        ? 6
+        : 0,
+    ),
     [summary, setSummary] = useState<Summary | null>(null),
     [incidents, setIncidents] = useState<Incident[]>([]),
     [experiments, setExperiments] = useState<ExperimentResults | null>(null),
@@ -308,6 +315,7 @@ export default function App() {
                     "Measure reliability against explicit, request-based objectives.",
                     "Controlled failures. Observable impact. Verified recovery.",
                     "Reproducible experiments, independently labeled outcomes.",
+                    "Offline wireless feature validation, packet evidence and cross-layer investigation.",
                   ][page]
                 }
               </p>
@@ -337,23 +345,25 @@ export default function App() {
           )}
           {s && (
             <>
-              <div className="status-strip">
-                <span
-                  className={`pill ${error || s.status === "degraded" ? "red" : s.requests ? "green" : "neutral"}`}
-                >
-                  <span className="dot" />
-                  {error ? "STALE TELEMETRY" : s.status.toUpperCase()}
-                </span>
-                <span className="small">event-registration-api</span>
-                <span className="muted small">·</span>
-                <span className="muted small">
-                  Window: last {s.window_seconds}s
-                </span>
-                <span className="live-note">
-                  <span className="dot blue" /> Live request data ·{" "}
-                  {updated?.toLocaleTimeString()}
-                </span>
-              </div>
+              {page !== 6 && (
+                <div className="status-strip">
+                  <span
+                    className={`pill ${error || s.status === "degraded" ? "red" : s.requests ? "green" : "neutral"}`}
+                  >
+                    <span className="dot" />
+                    {error ? "STALE TELEMETRY" : s.status.toUpperCase()}
+                  </span>
+                  <span className="small">event-registration-api</span>
+                  <span className="muted small">·</span>
+                  <span className="muted small">
+                    Window: last {s.window_seconds}s
+                  </span>
+                  <span className="live-note">
+                    <span className="dot blue" /> Live request data ·{" "}
+                    {updated?.toLocaleTimeString()}
+                  </span>
+                </div>
+              )}
               {s.sample_retention_truncated && (
                 <div className="banner error">
                   Sample buffer reached capacity. Window statistics may be
@@ -1123,6 +1133,7 @@ export default function App() {
                   )}
                 </>
               )}
+              {page === 6 && <WirelessLab />}
               {feedback && (
                 <div role="status" className="banner">
                   <Activity size={18} />

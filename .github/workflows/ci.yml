@@ -13,7 +13,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     services:
       postgres:
         image: postgres:16-alpine
@@ -38,15 +38,31 @@ jobs:
       - uses: actions/setup-node@v4
         with: {node-version: '22', cache: npm, cache-dependency-path: frontend/package-lock.json}
       - run: python -m pip install -r backend/requirements-dev.txt PyYAML shellcheck-py
+      - name: Build offline wireless engine and install file-only extractor
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tshark cmake
+          cmake -S wireless-lab/cpp -B wireless-lab/cpp/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build wireless-lab/cpp/build -j2
+          ctest --test-dir wireless-lab/cpp/build --output-on-failure --output-junit ../../evidence/ci-cpp-junit.xml
       - name: Static and secret checks
         run: |
-          python -m ruff check backend/app backend/tests scripts
+          python -m ruff check backend/app backend/tests scripts wireless-lab/python wireless-lab/tests wireless-lab/scripts
           python scripts/check_publish.py --all
           for file in scripts/*.sh; do bash -n "$file"; done
           shellcheck --version
           shellcheck -x -P scripts scripts/*.sh
-      - run: cd backend && python -m pytest -q --junitxml=../evidence/v2/backend-junit.xml
+      - run: cd backend && python -m pytest tests ../wireless-lab/tests -q --junitxml=../evidence/v2/backend-junit.xml
       - run: cd frontend && npm ci && npm test && npm run build
+      - name: Wireless scenarios and dependency scans
+        run: |
+          python wireless-lab/scripts/run_scenarios.py --output wireless-lab/evidence/ci-scenarios.json
+          python -m pip install pip-audit
+          python -m pip_audit -r backend/requirements.txt --format json --output wireless-lab/evidence/ci-pip-audit.json
+          cd frontend && npm audit --omit=dev --audit-level=high --json > ../wireless-lab/evidence/ci-npm-production-audit.json
+      - name: Report existing development dependency advisories
+        continue-on-error: true
+        run: cd frontend && npm audit --json > ../wireless-lab/evidence/ci-npm-audit.json
       - name: Configure and build isolated local stack
         run: |
           python scripts/bootstrap.py
@@ -81,7 +97,9 @@ jobs:
         if: always()
         with:
           name: eventpulse-v2-verification
-          path: evidence/v2/
+          path: |
+            evidence/v2/
+            wireless-lab/evidence/
       - name: Clean isolated CI containers
         if: always()
         run: docker compose down

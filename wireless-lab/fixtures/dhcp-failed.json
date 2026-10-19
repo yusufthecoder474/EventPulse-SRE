@@ -1,0 +1,74 @@
+[
+  {
+    "event_id": "e_auth_request_100000",
+    "timestamp_us": 1700000000100000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "auth_request",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_auth_ok_200000",
+    "timestamp_us": 1700000000200000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "auth_ok",
+    "code": 0,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_assoc_request_300000",
+    "timestamp_us": 1700000000300000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "assoc_request",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_assoc_ok_400000",
+    "timestamp_us": 1700000000400000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "assoc_ok",
+    "code": 0,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_dhcp_discover_500000",
+    "timestamp_us": 1700000000500000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "dhcp_discover",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  },
+  {
+    "event_id": "e_dhcp_fail_3500000",
+    "timestamp_us": 1700000003500000,
+    "client": "02:00:00:00:10:01",
+    "ap": "02:00:00:00:01:01",
+    "kind": "dhcp_fail",
+    "code": -1,
+    "sequence": 1,
+    "origin": "synthetic",
+    "direction": "unknown",
+    "reported_state": "unknown"
+  }
+]

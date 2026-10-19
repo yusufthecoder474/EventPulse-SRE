@@ -157,3 +157,16 @@ Local SLIs are per-process, in-memory and reset on restart; one API worker is re
 `backend/app/` API, database and telemetry; `frontend/src/` console; `monitoring/` Prometheus, Grafana, Alertmanager; `scripts/` bootstrap, load and evaluation; `evidence/` measured results; `.github/workflows/ci.yml` checks.
 
 MIT licensed. Synthetic data only. Intended GitHub URL: https://github.com/yusufthecoder474/EventPulse-SRE (publication status: TEST_RESULTS.md).
+
+
+## WirelessLab — offline IEEE 802.11 validation
+
+WirelessLab adds a C++17 event analyzer, Python/TShark ingestion, ten reproducible scenarios, a guest-isolated FastAPI management model and seven React views. It preserves the EventPulse APIs, original six console views, dashboards and historical evidence. All APs, clients and scenario captures are synthetic. No Cisco hardware, live capture, firmware, driver or cryptographic verification is claimed.
+
+Use the existing Compose quickstart above (`python scripts/bootstrap.py`, `docker compose up --build -d --wait`), then open **http://localhost:8080/?lab=wireless** and select **Continue as Guest**. The API image builds C++ and includes file-only TShark extraction as nonroot. No account, email, OTP, AWS credentials or wireless adapter is required. For local development and independent module tests, see [test plan](docs/WIRELESS_TEST_PLAN.md) and [Windows setup](docs/WINDOWS_SETUP.md).
+
+[Architecture](docs/WIRELESS_ARCHITECTURE.md) · [802.11 basics](docs/WIFI_80211_BASICS.md) · [PCAP analysis](docs/PCAP_ANALYSIS.md) · [WPA2/WPA3 scope](docs/WPA2_WPA3.md) · [AP/controller API](docs/AP_CONTROLLER_SIMULATION.md) · [Actual results](docs/WIRELESS_TEST_RESULTS.md) · [Security](docs/WIRELESS_SECURITY.md) · [Optional Linux lab](docs/LINUX_LAB_SETUP.md) · [Interview Q&A](docs/WIRELESS_INTERVIEW_QA.md) · [Evidence-based resume](docs/WIRELESS_RESUME_EVIDENCE.md).
+
+![WirelessLab guest overview](wireless-lab/evidence/browser/overview.png)
+
+WirelessLab implementation verified by [successful full CI run](https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/39233891910): 21 C++ tests, 84 Python/API tests (no skips), 3 frontend tests, 4 browser flows, and 10/10 scenario outcomes, plus the original Compose monitoring and recovery checks. [Evidence ledger](wireless-lab/evidence/ci-verification.json).

@@ -1,0 +1,47 @@
+Test project /workspace/scratch/3335d3e4debd/EventPulse-WirelessLab/wireless-lab/cpp/build
+      Start  1: wireless_success
+ 1/21 Test  #1: wireless_success .................   Passed    0.00 sec
+      Start  2: wireless_reject
+ 2/21 Test  #2: wireless_reject ..................   Passed    0.00 sec
+      Start  3: wireless_auth_failure
+ 3/21 Test  #3: wireless_auth_failure ............   Passed    0.00 sec
+      Start  4: wireless_disconnect
+ 4/21 Test  #4: wireless_disconnect ..............   Passed    0.00 sec
+      Start  5: wireless_dhcp
+ 5/21 Test  #5: wireless_dhcp ....................   Passed    0.00 sec
+      Start  6: wireless_dns
+ 6/21 Test  #6: wireless_dns .....................   Passed    0.00 sec
+      Start  7: wireless_delayed
+ 7/21 Test  #7: wireless_delayed .................   Passed    0.00 sec
+      Start  8: wireless_window
+ 8/21 Test  #8: wireless_window ..................   Passed    0.00 sec
+      Start  9: wireless_duplicate
+ 9/21 Test  #9: wireless_duplicate ...............   Passed    0.00 sec
+      Start 10: wireless_out_of_order
+10/21 Test #10: wireless_out_of_order ............   Passed    0.00 sec
+      Start 11: wireless_empty
+11/21 Test #11: wireless_empty ...................   Passed    0.00 sec
+      Start 12: wireless_malformed
+12/21 Test #12: wireless_malformed ...............   Passed    0.00 sec
+      Start 13: wireless_numeric
+13/21 Test #13: wireless_numeric .................   Passed    0.00 sec
+      Start 14: wireless_deterministic
+14/21 Test #14: wireless_deterministic ...........   Passed    0.00 sec
+      Start 15: wireless_management
+15/21 Test #15: wireless_management ..............   Passed    0.00 sec
+      Start 16: wireless_ethernet_eapol
+16/21 Test #16: wireless_ethernet_eapol ..........   Passed    0.01 sec
+      Start 17: wireless_invalid_transition
+17/21 Test #17: wireless_invalid_transition ......   Passed    0.00 sec
+      Start 18: wireless_key_exchange
+18/21 Test #18: wireless_key_exchange ............   Passed    0.00 sec
+      Start 19: wireless_sae
+19/21 Test #19: wireless_sae .....................   Passed    0.00 sec
+      Start 20: wireless_multiple_clients
+20/21 Test #20: wireless_multiple_clients ........   Passed    0.00 sec
+      Start 21: wireless_reconnect
+21/21 Test #21: wireless_reconnect ...............   Passed    0.00 sec
+
+100% tests passed out of 21
+
+Total Test time (real) =   0.06 sec
