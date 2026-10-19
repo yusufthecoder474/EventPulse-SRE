@@ -1,19 +1,39 @@
 #include "analyzer.hpp"
+#include "handshake.hpp"
 #include <iostream>
 #include <stdexcept>
 int main(int argc, char **argv) {
   try {
     long window = 5000;
-    if (argc == 3 && std::string(argv[1]) == "--window-ms") {
-      std::size_t used = 0;
-      window = std::stol(argv[2], &used);
-      if (used != std::string(argv[2]).size())
-        throw std::invalid_argument("Invalid window");
-    } else if (argc != 1)
-      throw std::invalid_argument(
-          "Usage: wireless_analyzer [--window-ms 5000]");
-    wireless::Analyzer analyzer(window);
-    std::cout << analyzer.analyze(wireless::Analyzer::parse(std::cin)).json()
+    std::int64_t until = -1;
+    bool handshake = false;
+    for (int i = 1; i < argc; ++i) {
+      std::string option = argv[i];
+      if (option == "--handshakes")
+        handshake = true;
+      else if ((option == "--window-ms" || option == "--observed-until-us") &&
+               i + 1 < argc) {
+        std::string value = argv[++i];
+        std::size_t used = 0;
+        auto n = std::stoll(value, &used);
+        if (used != value.size())
+          throw std::invalid_argument("Invalid number");
+        if (option == "--window-ms") {
+          if (n < 500 || n > 60000)
+            throw std::invalid_argument("Invalid window");
+          window = static_cast<long>(n);
+        } else {
+          if (n < 0 || n > 9000000000000000LL)
+            throw std::invalid_argument("Invalid observation end");
+          until = n;
+        }
+      } else
+        throw std::invalid_argument("Invalid arguments");
+    }
+    auto events = wireless::Analyzer::parse(std::cin);
+    std::cout << (handshake
+                      ? wireless::handshake_json(events, window * 1000, until)
+                      : wireless::Analyzer(window).analyze(events).json())
               << '\n';
     return 0;
   } catch (const std::exception &) {

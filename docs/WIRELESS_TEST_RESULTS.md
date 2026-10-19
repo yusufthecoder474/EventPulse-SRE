@@ -1,5 +1,7 @@
 # WirelessLab measured results
 
+> Initial WirelessLab release guide retained as historical context. For current V3 import/handshake/test-plan capabilities and boundaries, see [V3 architecture](wirelesslab-v3/ARCHITECTURE.md) and [V3 results](wirelesslab-v3/TEST_RESULTS.md). The legacy operator-only `/uploads` remains restricted; V3 adds a separate consent-bound `/imports` endpoint.
+
 Evidence date: 2026-10-19. All wireless inputs are generated synthetic fixtures; results are development measurements, not hardware or production reliability claims.
 
 | Check | Actual local outcome | Evidence |

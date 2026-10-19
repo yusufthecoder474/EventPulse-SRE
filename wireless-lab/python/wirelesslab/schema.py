@@ -29,6 +29,8 @@ Kind = Literal[
     "dns_ok",
     "dns_fail",
     "controller_update",
+    "client_update",
+    "dashboard_update",
 ]
 ID = r"^[A-Za-z0-9_.:-]{1,80}$"
 
@@ -43,6 +45,10 @@ class WirelessEvent(BaseModel):
     client: str = Field(pattern=ID)
     ap: str = Field(pattern=ID)
     kind: Kind
+    authenticator: str = Field(default="unknown_ap", pattern=ID)
+    replay_counter: str | None = Field(default=None, pattern=r"^\d{1,20}$")
+    key_info: int = Field(default=-1, ge=-1, le=65535)
+    descriptor_type: int = Field(default=-1, ge=-1, le=255)
     code: int = Field(default=-1, ge=-1, le=65535)
     sequence: int = Field(default=-1, ge=-1, le=65535)
     origin: Literal["packet", "synthetic", "ap", "client", "controller"] = "synthetic"
@@ -55,6 +61,11 @@ class WirelessEvent(BaseModel):
 
     @model_validator(mode="after")
     def validate_status(self):
+        if (
+            self.replay_counter is not None
+            and int(self.replay_counter) > 18446744073709551615
+        ):
+            raise ValueError("Replay counter exceeds uint64")
         if self.kind in ("auth_ok", "assoc_ok") and self.code > 0:
             raise ValueError("Successful event cannot contain a rejection status")
         if self.kind in ("auth_fail", "assoc_reject") and self.code <= 0:

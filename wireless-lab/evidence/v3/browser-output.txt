@@ -1,0 +1,33 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> eventpulse-console@1.0.0 test:e2e
+> playwright test --workers=6
+
+[WebServer] (node:36) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[WebServer] (node:49) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 6 workers
+
+(node:70) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:67) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:69) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:87) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:93) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:71) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  6 [chromium] › tests/console.spec.ts:16:1 › mobile navigation remains usable (3.6s)
+  ✓  2 [chromium] › tests/wireless.spec.ts:56:1 › mobile guest session and all seven views remain usable (4.1s)
+  ✓  1 [chromium] › tests/console.spec.ts:2:1 › real API dashboard, probes, navigation and screenshot (6.7s)
+  ✓  4 [chromium] › tests/wireless.spec.ts:4:1 › guest enters, executes failure, explores packet evidence and exports (7.2s)
+  ✓  3 [chromium] › tests/wireless-v3.spec.ts:14:1 › registered controller case and full validation plan have separate execution counters (7.5s)
+  ✓  5 [chromium] › tests/wireless-v3.spec.ts:5:1 › private PCAPNG import shows Ethernet evidence limits and WPA2 packet references (9.0s)
+
+  6 passed (11.4s)

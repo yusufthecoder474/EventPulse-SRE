@@ -1,0 +1,83 @@
+Test project /workspace/scratch/3335d3e4debd/EventPulse-WirelessLab-V3/wireless-lab/cpp/build
+      Start  1: wireless_success
+ 1/39 Test  #1: wireless_success .................   Passed    0.00 sec
+      Start  2: wireless_reject
+ 2/39 Test  #2: wireless_reject ..................   Passed    0.00 sec
+      Start  3: wireless_auth_failure
+ 3/39 Test  #3: wireless_auth_failure ............   Passed    0.00 sec
+      Start  4: wireless_disconnect
+ 4/39 Test  #4: wireless_disconnect ..............   Passed    0.00 sec
+      Start  5: wireless_dhcp
+ 5/39 Test  #5: wireless_dhcp ....................   Passed    0.00 sec
+      Start  6: wireless_dns
+ 6/39 Test  #6: wireless_dns .....................   Passed    0.00 sec
+      Start  7: wireless_delayed
+ 7/39 Test  #7: wireless_delayed .................   Passed    0.00 sec
+      Start  8: wireless_window
+ 8/39 Test  #8: wireless_window ..................   Passed    0.00 sec
+      Start  9: wireless_duplicate
+ 9/39 Test  #9: wireless_duplicate ...............   Passed    0.00 sec
+      Start 10: wireless_out_of_order
+10/39 Test #10: wireless_out_of_order ............   Passed    0.00 sec
+      Start 11: wireless_empty
+11/39 Test #11: wireless_empty ...................   Passed    0.00 sec
+      Start 12: wireless_malformed
+12/39 Test #12: wireless_malformed ...............   Passed    0.00 sec
+      Start 13: wireless_numeric
+13/39 Test #13: wireless_numeric .................   Passed    0.00 sec
+      Start 14: wireless_deterministic
+14/39 Test #14: wireless_deterministic ...........   Passed    0.00 sec
+      Start 15: wireless_management
+15/39 Test #15: wireless_management ..............   Passed    0.00 sec
+      Start 16: wireless_ethernet_eapol
+16/39 Test #16: wireless_ethernet_eapol ..........   Passed    0.00 sec
+      Start 17: wireless_invalid_transition
+17/39 Test #17: wireless_invalid_transition ......   Passed    0.00 sec
+      Start 18: wireless_key_exchange
+18/39 Test #18: wireless_key_exchange ............   Passed    0.00 sec
+      Start 19: wireless_sae
+19/39 Test #19: wireless_sae .....................   Passed    0.00 sec
+      Start 20: wireless_multiple_clients
+20/39 Test #20: wireless_multiple_clients ........   Passed    0.00 sec
+      Start 21: wireless_reconnect
+21/39 Test #21: wireless_reconnect ...............   Passed    0.00 sec
+      Start 22: handshake_complete
+22/39 Test #22: handshake_complete ...............   Passed    0.00 sec
+      Start 23: handshake_missing1
+23/39 Test #23: handshake_missing1 ...............   Passed    0.00 sec
+      Start 24: handshake_missing2
+24/39 Test #24: handshake_missing2 ...............   Passed    0.00 sec
+      Start 25: handshake_missing3
+25/39 Test #25: handshake_missing3 ...............   Passed    0.00 sec
+      Start 26: handshake_missing4
+26/39 Test #26: handshake_missing4 ...............   Passed    0.00 sec
+      Start 27: handshake_reordered
+27/39 Test #27: handshake_reordered ..............   Passed    0.00 sec
+      Start 28: handshake_retransmitted
+28/39 Test #28: handshake_retransmitted ..........   Passed    0.00 sec
+      Start 29: handshake_timeout
+29/39 Test #29: handshake_timeout ................   Passed    0.00 sec
+      Start 30: handshake_incomplete
+30/39 Test #30: handshake_incomplete .............   Passed    0.00 sec
+      Start 31: handshake_concurrent
+31/39 Test #31: handshake_concurrent .............   Passed    0.00 sec
+      Start 32: handshake_malformed_metadata
+32/39 Test #32: handshake_malformed_metadata .....   Passed    0.00 sec
+      Start 33: handshake_duplicate
+33/39 Test #33: handshake_duplicate ..............   Passed    0.00 sec
+      Start 34: handshake_ambiguous
+34/39 Test #34: handshake_ambiguous ..............   Passed    0.00 sec
+      Start 35: handshake_boundary
+35/39 Test #35: handshake_boundary ...............   Passed    0.00 sec
+      Start 36: handshake_empty
+36/39 Test #36: handshake_empty ..................   Passed    0.00 sec
+      Start 37: handshake_timestamp
+37/39 Test #37: handshake_timestamp ..............   Passed    0.00 sec
+      Start 38: handshake_bounded_large
+38/39 Test #38: handshake_bounded_large ..........   Passed    0.02 sec
+      Start 39: handshake_replay_mismatch
+39/39 Test #39: handshake_replay_mismatch ........   Passed    0.00 sec
+
+100% tests passed out of 39
+
+Total Test time (real) =   0.10 sec

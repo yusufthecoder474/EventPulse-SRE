@@ -1,0 +1,29 @@
+[
+  {
+    "event_id": "ap_join",
+    "timestamp_us": 100000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "assoc_ok",
+    "origin": "ap",
+    "code": 0
+  },
+  {
+    "event_id": "client_view",
+    "timestamp_us": 200000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "client_update",
+    "origin": "client",
+    "reported_state": "connected"
+  },
+  {
+    "event_id": "controller_view",
+    "timestamp_us": 8000000,
+    "client": "clientA",
+    "ap": "apA",
+    "kind": "controller_update",
+    "origin": "controller",
+    "reported_state": "connected"
+  }
+]

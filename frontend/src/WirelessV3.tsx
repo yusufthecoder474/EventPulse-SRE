@@ -1,0 +1,436 @@
+import { useEffect, useState } from "react";
+
+type Session = {
+  session_id: string;
+  classification: string;
+  explanation: string;
+  client: string;
+  authenticator: string;
+  possible_retransmissions: number;
+  missing_messages: number[];
+  packet_references: {
+    event_id: string;
+    message: number;
+    timestamp_us: number;
+    replay_counter: string;
+    direction: string;
+  }[];
+};
+type Layer = {
+  client: string;
+  ap: string;
+  client_state: string;
+  ap_state: string;
+  controller_state: string;
+  dashboard_state: string;
+  classification: string;
+  hypotheses: string[];
+  controller_lag_ms: number | null;
+  timeline: {
+    event_id: string;
+    timestamp_us: number;
+    layer: string;
+    state: string;
+  }[];
+};
+type Validation = {
+  unique_scenarios: number;
+  executed_runs: number;
+  passed_runs: number;
+  validation_failures: number;
+  results: {
+    test_id: string;
+    feature: string;
+    expected_behavior: string[];
+    observed_behavior: string[];
+    verdict: string;
+    event_references: string[];
+    reproduction: string;
+    execution_duration_ms: number;
+  }[];
+};
+type Run = {
+  id: string;
+  handshakes?: { sessions: Session[] };
+  layers?: { clients: Layer[] };
+  validation?: Validation;
+  extraction?: {
+    format?: string;
+    link_types?: string[];
+    packet_count?: number;
+    capture_duration_ms?: number;
+    origin?: string;
+    warnings?: string[];
+    management_evidence_available?: boolean;
+  };
+};
+type Plan = { id: string; feature: string; kind: string; expected: string[] };
+async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
+  const response = await fetch("/api/wireless-lab" + path, {
+    credentials: "same-origin",
+    ...options,
+    headers: { "X-Wireless-Demo": "1", ...options.headers },
+  });
+  if (!response.ok) {
+    const error = await response
+      .json()
+      .catch(() => ({ detail: "Request failed" }));
+    throw new Error(
+      typeof error.detail === "string"
+        ? error.detail
+        : `Request rejected (${response.status})`,
+    );
+  }
+  return response.json();
+}
+export default function WirelessV3({
+  view,
+  selected,
+  onResult,
+}: {
+  view: number;
+  selected: unknown;
+  onResult: (result: unknown) => void;
+}) {
+  const run = selected as Run | null;
+  const [file, setFile] = useState<File | null>(null),
+    [authorized, setAuthorized] = useState(false),
+    [busy, setBusy] = useState(false),
+    [error, setError] = useState(""),
+    [cases, setCases] = useState<Plan[]>([]),
+    [testId, setTestId] = useState("");
+  useEffect(() => {
+    if (view === 4)
+      void request<{ cases: Plan[] }>("/plans")
+        .then((p) => setCases(p.cases))
+        .catch((e) => setError(e.message));
+  }, [view]);
+  async function importFile() {
+    setError("");
+    if (!file || !authorized) {
+      setError("Choose a file and confirm authorization.");
+      return;
+    }
+    if (file.size > 1048576) {
+      setError("Maximum capture size is 1 MiB.");
+      return;
+    }
+    setBusy(true);
+    try {
+      onResult(
+        await request("/imports", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/octet-stream",
+            "X-Lab-Authorized": "true",
+            "X-File-Name": file.name,
+          },
+          body: file,
+        }),
+      );
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function validate() {
+    setBusy(true);
+    setError("");
+    try {
+      onResult(
+        await request("/validations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ test_id: testId || null }),
+        }),
+      );
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  if (![2, 3, 4, 5, 6].includes(view)) return null;
+  return (
+    <section className="wl-v3" aria-label="WirelessLab V3 evidence">
+      {error && (
+        <div role="alert" className="banner error">
+          {error}
+        </div>
+      )}
+      {view === 3 && (
+        <div className="panel">
+          <div className="panel-head">
+            <div>
+              <h3>Private capture import</h3>
+              <p>
+                PCAP / PCAPNG · maximum 1 MiB and 5,000 packets · file-only
+                analysis
+              </p>
+            </div>
+          </div>
+          <div className="wl-v3-form">
+            <label>
+              Capture file
+              <input
+                aria-label="Capture file"
+                type="file"
+                accept=".pcap,.pcapng"
+                onChange={(e) => setFile(e.target.files?.[0] || null)}
+              />
+            </label>
+            <label className="wl-v3-consent">
+              <input
+                type="checkbox"
+                checked={authorized}
+                onChange={(e) => setAuthorized(e.target.checked)}
+              />
+              I confirm this capture is synthetic or from a network I am
+              authorized to analyze.
+            </label>
+            <p>
+              Processing stays in this local application. MAC/SSID identifiers
+              are pseudonymized, raw files are deleted after parsing, and saved
+              metadata belongs to this guest session. No live capture,
+              decryption or external upload.
+            </p>
+            <button
+              className="wl-primary"
+              disabled={busy || !authorized || !file}
+              onClick={() => void importFile()}
+            >
+              {busy ? "Analyzing capture…" : "Analyze authorized capture"}
+            </button>
+          </div>
+          {run?.extraction?.format && (
+            <div className="wl-v3-result" role="status">
+              <h4>Capture evidence</h4>
+              <p>
+                {run.extraction.format.toUpperCase()} ·{" "}
+                {run.extraction.link_types?.join(", ")} ·{" "}
+                {run.extraction.packet_count} packets ·{" "}
+                {run.extraction.capture_duration_ms?.toFixed(3)} ms capture span
+              </p>
+              <p>
+                Origin: {run.extraction.origin}. Real-world validation is
+                pending; packet origin is not inferred from content.
+              </p>
+              {run.extraction.warnings?.map((w) => (
+                <div className="banner" key={w}>
+                  {w}
+                </div>
+              ))}
+              <p>
+                Open Failure investigation to inspect handshake evidence. The
+                event table below contains supported protocol observations;
+                encrypted payloads are not decoded.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+      {view === 4 && (
+        <div className="panel">
+          <div className="panel-head">
+            <div>
+              <h3>V3 automated feature-validation plan</h3>
+              <p>
+                Reuse A–J, add ten WPA2 cases and four controller cases.
+                Expected negative outcomes can pass validation.
+              </p>
+            </div>
+          </div>
+          <div className="wl-v3-form">
+            <label>
+              Test-plan selector
+              <select
+                aria-label="Test-plan selector"
+                value={testId}
+                onChange={(e) => setTestId(e.target.value)}
+              >
+                <option value="">
+                  Full V3 plan ({cases.length} unique scenarios)
+                </option>
+                {cases.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.id} · {c.feature}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button
+              className="wl-primary"
+              disabled={busy || !cases.length}
+              onClick={() => void validate()}
+            >
+              {busy ? "Executing V3 plan…" : "Run selected validation plan"}
+            </button>
+            <p>
+              Deterministic generated fixtures; no hardware required. This
+              full-plan request consumes one quota operation.
+            </p>
+          </div>
+        </div>
+      )}
+      {[4, 6].includes(view) && run?.validation && (
+        <div className="panel">
+          <div className="panel-head">
+            <h3>Test-plan results</h3>
+          </div>
+          <div className="wl-v3-metrics">
+            <span>
+              Unique scenarios <b>{run.validation.unique_scenarios}</b>
+            </span>
+            <span>
+              Executed runs <b>{run.validation.executed_runs}</b>
+            </span>
+            <span>
+              Passed runs <b>{run.validation.passed_runs}</b>
+            </span>
+            <span>
+              Validation failures <b>{run.validation.validation_failures}</b>
+            </span>
+          </div>
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Test</th>
+                  <th>Expected / observed</th>
+                  <th>Verdict</th>
+                  <th>Reproduce</th>
+                </tr>
+              </thead>
+              <tbody>
+                {run.validation.results.map((r) => (
+                  <tr key={r.test_id}>
+                    <td>
+                      {r.test_id} · {r.feature}
+                    </td>
+                    <td>
+                      {r.expected_behavior.join(", ")}
+                      <small>
+                        {r.observed_behavior.join(", ")} ·{" "}
+                        {r.event_references.length} event refs
+                      </small>
+                    </td>
+                    <td>
+                      {r.verdict} · {r.execution_duration_ms.toFixed(2)} ms
+                    </td>
+                    <td>
+                      <code>{r.reproduction}</code>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="wl-export">
+            <a
+              className="btn"
+              href={`/api/wireless-lab/runs/${run.id}/validation-export?format=json`}
+            >
+              Export test-plan JSON
+            </a>
+            <a
+              className="btn"
+              href={`/api/wireless-lab/runs/${run.id}/validation-export?format=csv`}
+            >
+              Export test-plan CSV
+            </a>
+          </div>
+        </div>
+      )}
+      {view === 5 && run?.handshakes && (
+        <div className="panel">
+          <div className="panel-head">
+            <div>
+              <h3>WPA2 handshake investigation</h3>
+              <p>
+                Header/replay/role sequencing only. No passwords, MIC
+                verification, key recovery or WPA3 support.
+              </p>
+            </div>
+          </div>
+          {!run.handshakes.sessions.length && (
+            <div className="empty">
+              No supported EAPOL session evidence in this result.
+            </div>
+          )}
+          {run.handshakes.sessions.map((s, i) => (
+            <div className="wl-v3-result" key={s.session_id + "_" + i}>
+              <h4>{s.classification}</h4>
+              <p>{s.explanation}</p>
+              <p>
+                Client {s.client} · authenticator {s.authenticator} · missing:{" "}
+                {s.missing_messages.join(", ") || "none"} · possible
+                retransmissions: {s.possible_retransmissions}
+              </p>
+              <ol className="wl-v3-timeline">
+                {s.packet_references.map((p, i) => (
+                  <li key={p.event_id + "_" + i}>
+                    <b>M{p.message}</b> · {p.direction} · replay{" "}
+                    {p.replay_counter} · <code>{p.event_id}</code> ·{" "}
+                    {p.timestamp_us} µs
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
+      )}
+      {[2, 5].includes(view) && run?.layers && (
+        <div className="panel">
+          <div className="panel-head">
+            <div>
+              <h3>Client / AP / controller / dashboard</h3>
+              <p>
+                Simulated controller state and management-plane validation. Not
+                CAPWAP or real WLC integration.
+              </p>
+            </div>
+          </div>
+          {!run.layers.clients.length && (
+            <div className="empty">
+              No cross-layer management observations. Missing state remains
+              unknown.
+            </div>
+          )}
+          {run.layers.clients.map((c, i) => (
+            <div className="wl-v3-result" key={c.client + "_" + i}>
+              <h4>{c.classification}</h4>
+              <div className="wl-v3-metrics">
+                {(["client", "ap", "controller", "dashboard"] as const).map(
+                  (layer) => (
+                    <span key={layer}>
+                      {layer}
+                      <b>{c[`${layer}_state`]}</b>
+                    </span>
+                  ),
+                )}
+              </div>
+              <p>
+                Controller lag:{" "}
+                {c.controller_lag_ms === null
+                  ? "not established"
+                  : `${c.controller_lag_ms.toFixed(2)} ms`}
+              </p>
+              {c.hypotheses.map((h) => (
+                <p key={h}>{h}</p>
+              ))}
+              <ol className="wl-v3-timeline">
+                {c.timeline.map((t) => (
+                  <li key={t.event_id}>
+                    {t.layer} → {t.state} · <code>{t.event_id}</code> ·{" "}
+                    {t.timestamp_us} µs
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}

@@ -1,0 +1,1090 @@
+{
+  "seed": 73129,
+  "dataset_size": 120,
+  "correct": 120,
+  "mismatches": 0,
+  "dataset_sha256": "193990b2ee3858774a6d4f6b2667020aef3452192d55ca27cb66d1da97cf211e",
+  "scope": "Held-out synthetic metadata variants, separate from development fixture files; no real captures, real-world accuracy or cryptographic verification",
+  "results": [
+    {
+      "id": "heldout_complete_0",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_1",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_2",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_3",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_4",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_5",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_6",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_7",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_8",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_9",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_10",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_complete_11",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_0",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_1",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_2",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_3",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_4",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_5",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_6",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_7",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_8",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_9",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_10",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing1_11",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_0",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_1",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_2",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_3",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_4",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_5",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_6",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_7",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_8",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_9",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_10",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing2_11",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_0",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_1",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_2",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_3",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_4",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_5",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_6",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_7",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_8",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_9",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_10",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing3_11",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_0",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_1",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_2",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_3",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_4",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_5",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_6",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_7",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_8",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_9",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_10",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_missing4_11",
+      "expected": "HANDSHAKE_INCOMPLETE",
+      "actual": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_0",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_1",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_2",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_3",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_4",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_5",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_6",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_7",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_8",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_9",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_10",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_reordered_11",
+      "expected": "UNEXPECTED_SEQUENCE",
+      "actual": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_0",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_1",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_2",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_3",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_4",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_5",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_6",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_7",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_8",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_9",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_10",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_retransmitted_11",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_0",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_1",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_2",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_3",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_4",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_5",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_6",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_7",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_8",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_9",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_10",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_timeout_11",
+      "expected": "HANDSHAKE_TIMEOUT",
+      "actual": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "session_count": 1,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_0",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_1",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_2",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_3",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_4",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_5",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_6",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_7",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_8",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_9",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_10",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_insufficient_11",
+      "expected": "INSUFFICIENT_EVIDENCE",
+      "actual": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "session_count": 4,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_0",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_1",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_2",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_3",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_4",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_5",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_6",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_7",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_8",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_9",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_10",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    },
+    {
+      "id": "heldout_concurrent_11",
+      "expected": "HANDSHAKE_COMPLETE",
+      "actual": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "session_count": 2,
+      "passed": true
+    }
+  ]
+}

@@ -27,6 +27,9 @@ sys.path.insert(0, str(LAB_ROOT / "python"))
 from wirelesslab.scenarios import definitions, run_scenario, approved_capture  # noqa: E402
 from wirelesslab.analyze import AnalyzerUnavailable, analyze_events, binary_path  # noqa: E402
 from wirelesslab.packets import CaptureUnavailable, parse_capture, MAX_BYTES  # noqa: E402
+from wirelesslab.validation import plans, execute_plan, import_capture, clean_events  # noqa: E402
+from wirelesslab.analyze import analyze_handshakes  # noqa: E402
+from wirelesslab.layers import correlate_layers  # noqa: E402
 
 logger = logging.getLogger("eventpulse.wireless")
 
@@ -62,6 +65,11 @@ class RunInput(BaseModel):
     scenario_id: str = Field(pattern="^[A-J]$")
 
 
+class PlanInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    test_id: str | None = Field(default=None, max_length=3, pattern=r"^([A-J]|P(0[1-9]|10)|C0[1-4])$")
+
+
 class APInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
     name: str = Field(min_length=1, max_length=40, pattern=r"^[A-Za-z0-9 _-]+$")
@@ -78,6 +86,9 @@ def install_wireless(app, engine, factory, registry):
     counter = Counter("wirelesslab_runs", "Completed safe scenario runs", ["scenario", "verdict"], registry=registry)
     duration = Histogram("wirelesslab_analysis_seconds", "Python-to-C++ analysis request duration", registry=registry)
     event_counter = Counter("wirelesslab_events", "Normalized events processed", registry=registry)
+    validation_counter = Counter("wirelesslab_validation_cases", "Executed registered cases, not unique scenario definitions", ["verdict"], registry=registry)
+    import_counter = Counter("wirelesslab_capture_imports", "Successful private capture imports", ["format"], registry=registry)
+    packet_counter = Counter("wirelesslab_imported_packets", "Container packet count across successful imports", registry=registry)
     configured_origins = {o.strip() for o in os.getenv("WIRELESS_ALLOWED_ORIGINS", "").split(",") if o.strip()}
     local_origins = {f"http://{host}:{port}" for host in ("localhost", "127.0.0.1") for port in (5173, 8080, 8000)}
 
@@ -143,6 +154,8 @@ def install_wireless(app, engine, factory, registry):
             "live_capture": False,
             "wpa3_hardware_verified": False,
             "uploads_enabled": False,
+            "capture_import_enabled": True,
+            "capture_import_limits": {"max_bytes": MAX_BYTES, "max_packets": 5000, "raw_storage": False, "consent_required": True},
             "guest_limits": {"session_seconds": 3600, "runs_retained": 20, "operations_per_minute": 12},
             "notice": "Packet fixtures are generated; event fixtures are simulations. No Cisco hardware or crypto verification.",
         }
@@ -239,6 +252,9 @@ def install_wireless(app, engine, factory, registry):
         start = time.perf_counter()
         try:
             result = run_scenario(body.scenario_id)
+            events = clean_events(result["events"])
+            result["handshakes"] = analyze_handshakes(events)
+            result["layers"] = correlate_layers(events)
         except (AnalyzerUnavailable, CaptureUnavailable) as exc:
             raise HTTPException(503, str(exc)) from exc
         except ValueError as exc:
@@ -352,5 +368,98 @@ def install_wireless(app, engine, factory, registry):
             "mode": "local operator; metadata only; no raw capture retained",
         }
         return save(owner, result)
+
+    @router.get("/plans")
+    def test_plans(owner=Depends(session)):
+        return plans()
+
+    @router.post("/validations", status_code=201, dependencies=[Depends(mutation)])
+    def validation(body: PlanInput, owner=Depends(session)):
+        quota(owner)
+        if not execution_slots.acquire(blocking=False):
+            raise HTTPException(429, "Demo execution capacity reached")
+        start = time.perf_counter()
+        try:
+            report = execute_plan(body.test_id)
+            for row in report["results"]:
+                validation_counter.labels(row["verdict"]).inc()
+            result = {
+                "scenario": {
+                    "id": "validation-plan",
+                    "title": "V3 automated validation",
+                    "expected_classifications": [],
+                    "evidence_type": "synthetic_test_plan",
+                },
+                "validation": report,
+                "events": [],
+                "analysis": analyze_events([]),
+                "handshakes": {
+                    "sessions": [session for row in report["results"] if row["test_id"].startswith("P") for session in row["handshakes"]["sessions"]]
+                },
+                "layers": {"clients": [client for row in report["results"] if row["test_id"].startswith("C") for client in row["layers"]["clients"]]},
+                "actual_classifications": sorted({c for row in report["results"] for c in row["observed_behavior"]}),
+                "extraction": {"parsing_duration_ms": None, "limitations": ["Generated fixtures only; not hardware or cryptographic verification."]},
+                "verdict": "pass" if report["validation_failures"] == 0 else "fail",
+                "total_duration_ms": (time.perf_counter() - start) * 1000,
+            }
+            return save(owner, result)
+        except (AnalyzerUnavailable, CaptureUnavailable) as exc:
+            raise HTTPException(503, str(exc)) from exc
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        finally:
+            execution_slots.release()
+
+    @router.post("/imports", status_code=201, dependencies=[Depends(mutation)])
+    async def capture_import(request: Request, owner=Depends(session)):
+        # Explicitly authorized file import only. Never capture, decrypt or access an interface.
+        if request.headers.get("x-lab-authorized") != "true":
+            raise HTTPException(403, "Confirm this file is synthetic or from a network you are authorized to analyze")
+        quota(owner)
+        if not execution_slots.acquire(blocking=False):
+            raise HTTPException(429, "Demo execution capacity reached")
+        try:
+
+            async def read_bounded():
+                data = bytearray()
+                async for chunk in request.stream():
+                    if len(data) + len(chunk) > MAX_BYTES:
+                        raise HTTPException(413, "Capture exceeds 1 MiB limit")
+                    data.extend(chunk)
+                return bytes(data)
+
+            import asyncio
+
+            data = await asyncio.wait_for(read_bounded(), timeout=10)
+            result = await asyncio.to_thread(import_capture, data, request.headers.get("x-file-name", "capture.pcap"))
+            import_counter.labels(result["extraction"]["format"]).inc()
+            packet_counter.inc(result["extraction"]["packet_count"])
+            return save(owner, result)
+        except TimeoutError as exc:
+            raise HTTPException(408, "Capture upload timed out") from exc
+        except (AnalyzerUnavailable, CaptureUnavailable) as exc:
+            raise HTTPException(503, str(exc)) from exc
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        finally:
+            execution_slots.release()
+
+    @router.get("/runs/{run_id}/validation-export")
+    def export_validation(run_id: str, format: str = "json", owner=Depends(session)):
+        report = owned_run(run_id, owner).get("validation")
+        if report is None:
+            raise HTTPException(404, "No test-plan report in this run")
+        if format == "json":
+            return JSONResponse(report, headers={"Content-Disposition": "attachment; filename=wireless-test-plan.json"})
+        if format != "csv":
+            raise HTTPException(422, "Export format must be json or csv")
+        buffer = io.StringIO()
+        writer = csv.DictWriter(
+            buffer, fieldnames=["test_id", "feature", "verdict", "expected_behavior", "observed_behavior", "execution_duration_ms", "reproduction"]
+        )
+        writer.writeheader()
+        for row in report["results"]:
+            writer.writerow({key: row[key] for key in writer.fieldnames})
+        return Response(buffer.getvalue(), media_type="text/csv", headers={"Content-Disposition": "attachment; filename=wireless-test-plan.csv"})
 
     app.include_router(router)

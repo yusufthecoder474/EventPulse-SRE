@@ -1,0 +1,1 @@
+All files are deterministic generated fixtures, not real network captures. JSON handshakes use header metadata only; key material is never included. PCAP EAPOL payloads use zero placeholders. P01–P10 are development scenarios; held-out evaluation is generated separately with a fixed seed. Ethernet captures contain no radio association evidence.

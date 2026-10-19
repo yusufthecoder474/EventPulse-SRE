@@ -1,5 +1,7 @@
 # WirelessLab architecture
 
+> Initial WirelessLab release guide retained as historical context. For current V3 import/handshake/test-plan capabilities and boundaries, see [V3 architecture](wirelesslab-v3/ARCHITECTURE.md) and [V3 results](wirelesslab-v3/TEST_RESULTS.md). The legacy operator-only `/uploads` remains restricted; V3 adds a separate consent-bound `/imports` endpoint.
+
 WirelessLab extends EventPulse-SRE on `feat/wirelesslab-offline`. The supplied archive and main commit `e2538f446c9b734e8fa2803ed5cc9da059f57cc6` have identical source trees. Existing FastAPI registration, capacity, fault, telemetry and experiment APIs remain in place. React keeps its six original pages, and Prometheus/Grafana retain the original dashboard and alerts. PostgreSQL/SQLite and SQLAlchemy are reused; no broker or extra database is introduced. Historical evidence hashes are in `wireless-lab/evidence/baseline-preservation.json`.
 
 ```mermaid

@@ -8,13 +8,14 @@
 namespace wireless {
 namespace {
 const std::set<std::string> kinds = {
-    "beacon",       "probe_request", "probe_response",   "auth_request",
-    "auth_ok",      "auth_fail",     "assoc_request",    "assoc_ok",
-    "assoc_reject", "deauth",        "disassoc",         "data",
-    "eapol_1",      "eapol_2",       "eapol_3",          "eapol_4",
-    "sae_commit",   "sae_confirm",   "dhcp_discover",    "dhcp_offer",
-    "dhcp_request", "dhcp_ack",      "dhcp_fail",        "dns_query",
-    "dns_ok",       "dns_fail",      "controller_update"};
+    "beacon",          "probe_request", "probe_response",    "auth_request",
+    "auth_ok",         "auth_fail",     "assoc_request",     "assoc_ok",
+    "assoc_reject",    "deauth",        "disassoc",          "data",
+    "eapol_1",         "eapol_2",       "eapol_3",           "eapol_4",
+    "sae_commit",      "sae_confirm",   "dhcp_discover",     "dhcp_offer",
+    "dhcp_request",    "dhcp_ack",      "dhcp_fail",         "dns_query",
+    "dns_ok",          "dns_fail",      "controller_update", "client_update",
+    "dashboard_update"};
 bool identifier(const std::string &value) {
   return !value.empty() && value.size() <= 80 &&
          std::all_of(value.begin(), value.end(), [](unsigned char c) {
@@ -85,7 +86,7 @@ std::vector<Event> Analyzer::parse(std::istream &input) {
     std::string field;
     while (std::getline(row, field, '\t'))
       fields.push_back(field);
-    if (fields.size() != 10)
+    if (fields.size() != 10 && fields.size() != 13)
       throw std::invalid_argument("Expected ten TSV fields");
     if (!identifier(fields[0]) || !identifier(fields[2]) ||
         !identifier(fields[3]) || !kinds.count(fields[4]))
@@ -104,6 +105,22 @@ std::vector<Event> Analyzer::parse(std::istream &input) {
                       number(fields[1], 0, 9000000000000000LL),
                       static_cast<int>(number(fields[5], -1, 65535)),
                       static_cast<int>(number(fields[6], -1, 65535))});
+    if (fields.size() == 13) {
+      if (fields[10] != "-1") {
+        if (fields[10].empty() || fields[10].size() > 20 ||
+            !std::all_of(fields[10].begin(), fields[10].end(),
+                         [](unsigned char c) { return c >= '0' && c <= '9'; }))
+          throw std::invalid_argument("Invalid replay counter");
+        std::size_t used = 0;
+        std::stoull(fields[10], &used);
+        if (used != fields[10].size())
+          throw std::invalid_argument("Invalid replay counter");
+      }
+      events.back().replay_counter = fields[10];
+      events.back().key_info = static_cast<int>(number(fields[11], -1, 65535));
+      events.back().descriptor_type =
+          static_cast<int>(number(fields[12], -1, 255));
+    }
   }
   return events;
 }

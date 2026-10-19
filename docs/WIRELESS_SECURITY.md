@@ -1,5 +1,7 @@
 # WirelessLab security review
 
+> Initial WirelessLab release guide retained as historical context. For current V3 import/handshake/test-plan capabilities and boundaries, see [V3 architecture](wirelesslab-v3/ARCHITECTURE.md) and [V3 results](wirelesslab-v3/TEST_RESULTS.md). The legacy operator-only `/uploads` remains restricted; V3 adds a separate consent-bound `/imports` endpoint.
+
 Only generated fixtures and explicitly authorized local captures are in scope. No traffic collection, password extraction, credential attacks, jamming, real interface configuration or Cisco device control is implemented. Generated EAPOL payloads contain zero placeholders, not secrets.
 
 Guest cookies are server-generated random values, HttpOnly/SameSite Strict, Secure under HTTPS, one hour. Database stores SHA256 hashes. All run/AP/history/exports require ownership. Cross-session run reads return 404. Mutation requests require a custom header plus an allowed browser Origin; no wildcard CORS is added. New API responses are no-store. Expired data is removed on the next admission; physical deletion is not promised at the exact expiry second. Ending a demo immediately deletes its rows.

@@ -170,3 +170,14 @@ Use the existing Compose quickstart above (`python scripts/bootstrap.py`, `docke
 ![WirelessLab guest overview](wireless-lab/evidence/browser/overview.png)
 
 WirelessLab implementation verified by [successful full CI run](https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/39233891910): 21 C++ tests, 84 Python/API tests (no skips), 3 frontend tests, 4 browser flows, and 10/10 scenario outcomes, plus the original Compose monitoring and recovery checks. [Evidence ledger](wireless-lab/evidence/ci-verification.json).
+
+
+## WirelessLab V3 — Cisco feature validation
+
+V3 adds consent-bound private PCAP/PCAPNG import, C++17 replay/role-aware WPA2 header-sequence analysis, explicit simulated client/AP/controller/dashboard evidence, and a registered 24-case validation plan inside the existing seven views. Original reliability functionality, legacy wireless APIs and historical evidence remain. Unknown captures remain origin-unverified; Ethernet imports explicitly warn when 802.11 management evidence is unavailable. No live capture, cloud account, Cisco hardware, credential extraction or WPA3 interoperability is implemented.
+
+[Baseline audit](docs/wirelesslab-v3/BASELINE_AUDIT.md) · [V3 architecture](docs/wirelesslab-v3/ARCHITECTURE.md) · [Test plan](docs/wirelesslab-v3/TEST_PLAN.md) · [Protocol scope](docs/wirelesslab-v3/PROTOCOL_ANALYSIS.md) · [WPA2 analysis](docs/wirelesslab-v3/WPA2_HANDSHAKE.md) · [Windows walkthrough](docs/wirelesslab-v3/REAL_CAPTURE_GUIDE_WINDOWS.md) · [Controller simulation](docs/wirelesslab-v3/CONTROLLER_SIMULATION.md) · [Results](docs/wirelesslab-v3/TEST_RESULTS.md) · [Performance](docs/wirelesslab-v3/PERFORMANCE.md) · [Security](docs/wirelesslab-v3/SECURITY_REVIEW.md) · [Limitations](docs/wirelesslab-v3/LIMITATIONS.md) · [Interview Q&A](docs/wirelesslab-v3/INTERVIEW_QA.md) · [Resume text](RESUME_EVIDENCE_V3.md).
+
+Quick demo: `python scripts/bootstrap.py`, `docker compose up --build -d --wait`, open `http://localhost:8080/?lab=wireless`, Continue as Guest, then run the V3 plan or import the generated `wireless-lab/fixtures/v3/ethernet-eapol.pcapng`. Full Windows commands and authorized-capture boundaries are in the walkthrough.
+
+V3 verified implementation: [successful full CI](https://github.com/yusufthecoder474/EventPulse-SRE/actions/runs/39259731919), 39 Release C++ + 39 ASan/UBSan checks, 133 Python/API tests (no skips), 6 frontend tests, 6 browser flows, 24-case plan/replay and 120/120 held-out synthetic input variants. [V3 evidence ledger](wireless-lab/evidence/v3/ci-verification.json).

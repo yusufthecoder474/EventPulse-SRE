@@ -1,5 +1,7 @@
 # WPA2 / WPA3 observation scope
 
+> Initial WirelessLab release guide retained as historical context. For current V3 import/handshake/test-plan capabilities and boundaries, see [V3 architecture](wirelesslab-v3/ARCHITECTURE.md) and [V3 results](wirelesslab-v3/TEST_RESULTS.md). The legacy operator-only `/uploads` remains restricted; V3 adds a separate consent-bound `/imports` endpoint.
+
 WPA2 personal commonly performs Open System 802.11 authentication and association before the four-way EAPOL-Key exchange. That exchange establishes session keys from existing key material. Counting messages does not authenticate the cryptographic transcript. `association-success.pcap` contains four deliberately generated EAPOL-Key structures with zero placeholder nonce/MIC/key data; no usable credentials or working encrypted connection are demonstrated.
 
 The analyzer reports the observed message numbers and `four_messages_observed_not_cryptographically_verified` only when all four message types occur. This is a set-based completeness observation, not replay-counter, message-order, retransmission or MIC verification. Missing messages are `incomplete_or_not_captured`, not proof of an incorrect password. Ethernet-only EAPOL remains incomplete at the radio association layer.

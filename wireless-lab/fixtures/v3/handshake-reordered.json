@@ -1,0 +1,54 @@
+[
+  {
+    "event_id": "clientA_m1_100000",
+    "timestamp_us": 1700000000100000,
+    "client": "clientA",
+    "ap": "apA",
+    "authenticator": "apA",
+    "kind": "eapol_1",
+    "origin": "synthetic",
+    "direction": "ap_to_client",
+    "replay_counter": "10",
+    "key_info": 138,
+    "descriptor_type": 2
+  },
+  {
+    "event_id": "clientA_m3_200000",
+    "timestamp_us": 1700000000200000,
+    "client": "clientA",
+    "ap": "apA",
+    "authenticator": "apA",
+    "kind": "eapol_3",
+    "origin": "synthetic",
+    "direction": "ap_to_client",
+    "replay_counter": "11",
+    "key_info": 970,
+    "descriptor_type": 2
+  },
+  {
+    "event_id": "clientA_m2_300000",
+    "timestamp_us": 1700000000300000,
+    "client": "clientA",
+    "ap": "apA",
+    "authenticator": "apA",
+    "kind": "eapol_2",
+    "origin": "synthetic",
+    "direction": "client_to_ap",
+    "replay_counter": "10",
+    "key_info": 266,
+    "descriptor_type": 2
+  },
+  {
+    "event_id": "clientA_m4_400000",
+    "timestamp_us": 1700000000400000,
+    "client": "clientA",
+    "ap": "apA",
+    "authenticator": "apA",
+    "kind": "eapol_4",
+    "origin": "synthetic",
+    "direction": "client_to_ap",
+    "replay_counter": "11",
+    "key_info": 778,
+    "descriptor_type": 2
+  }
+]

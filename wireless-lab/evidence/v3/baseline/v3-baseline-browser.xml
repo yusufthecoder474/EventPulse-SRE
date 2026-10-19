@@ -1,0 +1,14 @@
+<testsuites id="" name="" tests="4" failures="0" skipped="0" errors="0" time="8.049484999999999">
+<testsuite name="console.spec.ts" timestamp="2026-10-19T12:59:02.713Z" hostname="chromium" tests="2" failures="0" skipped="0" time="9.466" errors="0">
+<testcase name="real API dashboard, probes, navigation and screenshot" classname="console.spec.ts" time="5.675">
+</testcase>
+<testcase name="mobile navigation remains usable" classname="console.spec.ts" time="3.791">
+</testcase>
+</testsuite>
+<testsuite name="wireless.spec.ts" timestamp="2026-10-19T12:59:02.713Z" hostname="chromium" tests="2" failures="0" skipped="0" time="10.051" errors="0">
+<testcase name="guest enters, executes failure, explores packet evidence and exports" classname="wireless.spec.ts" time="6.286">
+</testcase>
+<testcase name="mobile guest session and all seven views remain usable" classname="wireless.spec.ts" time="3.765">
+</testcase>
+</testsuite>
+</testsuites>

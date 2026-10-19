@@ -11,6 +11,8 @@ struct Event {
   std::string id, client, ap, kind, origin, direction, reported_state;
   std::int64_t timestamp_us = 0;
   int code = -1, sequence = -1;
+  std::string replay_counter = "-1";
+  int key_info = -1, descriptor_type = -1;
 };
 struct ClientResult {
   std::string client, ap, state = "discovered", classification = "incomplete",
