@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="39"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="1e816d0bac42"
+	time="0"
+	timestamp="2026-10-19T16:08:51"
+	>
+	<testcase name="wireless_success" classname="wireless_success" time="0.00554815" status="run">
+		<properties/>
+		<system-out>PASS success
+</system-out>
+	</testcase>
+	<testcase name="wireless_reject" classname="wireless_reject" time="0.00442989" status="run">
+		<properties/>
+		<system-out>PASS reject
+</system-out>
+	</testcase>
+	<testcase name="wireless_auth_failure" classname="wireless_auth_failure" time="0.00404849" status="run">
+		<properties/>
+		<system-out>PASS auth_failure
+</system-out>
+	</testcase>
+	<testcase name="wireless_disconnect" classname="wireless_disconnect" time="0.00541589" status="run">
+		<properties/>
+		<system-out>PASS disconnect
+</system-out>
+	</testcase>
+	<testcase name="wireless_dhcp" classname="wireless_dhcp" time="0.00527004" status="run">
+		<properties/>
+		<system-out>PASS dhcp
+</system-out>
+	</testcase>
+	<testcase name="wireless_dns" classname="wireless_dns" time="0.00531726" status="run">
+		<properties/>
+		<system-out>PASS dns
+</system-out>
+	</testcase>
+	<testcase name="wireless_delayed" classname="wireless_delayed" time="0.00395276" status="run">
+		<properties/>
+		<system-out>PASS delayed
+</system-out>
+	</testcase>
+	<testcase name="wireless_window" classname="wireless_window" time="0.0039539" status="run">
+		<properties/>
+		<system-out>PASS window
+</system-out>
+	</testcase>
+	<testcase name="wireless_duplicate" classname="wireless_duplicate" time="0.00458093" status="run">
+		<properties/>
+		<system-out>PASS duplicate
+</system-out>
+	</testcase>
+	<testcase name="wireless_out_of_order" classname="wireless_out_of_order" time="0.0041611" status="run">
+		<properties/>
+		<system-out>PASS out_of_order
+</system-out>
+	</testcase>
+	<testcase name="wireless_empty" classname="wireless_empty" time="0.00436751" status="run">
+		<properties/>
+		<system-out>PASS empty
+</system-out>
+	</testcase>
+	<testcase name="wireless_malformed" classname="wireless_malformed" time="0.00371429" status="run">
+		<properties/>
+		<system-out>PASS malformed
+</system-out>
+	</testcase>
+	<testcase name="wireless_numeric" classname="wireless_numeric" time="0.00424335" status="run">
+		<properties/>
+		<system-out>PASS numeric
+</system-out>
+	</testcase>
+	<testcase name="wireless_deterministic" classname="wireless_deterministic" time="0.00453089" status="run">
+		<properties/>
+		<system-out>PASS deterministic
+</system-out>
+	</testcase>
+	<testcase name="wireless_management" classname="wireless_management" time="0.0050618" status="run">
+		<properties/>
+		<system-out>PASS management
+</system-out>
+	</testcase>
+	<testcase name="wireless_ethernet_eapol" classname="wireless_ethernet_eapol" time="0.00602769" status="run">
+		<properties/>
+		<system-out>PASS ethernet_eapol
+</system-out>
+	</testcase>
+	<testcase name="wireless_invalid_transition" classname="wireless_invalid_transition" time="0.00485969" status="run">
+		<properties/>
+		<system-out>PASS invalid_transition
+</system-out>
+	</testcase>
+	<testcase name="wireless_key_exchange" classname="wireless_key_exchange" time="0.00466317" status="run">
+		<properties/>
+		<system-out>PASS key_exchange
+</system-out>
+	</testcase>
+	<testcase name="wireless_sae" classname="wireless_sae" time="0.00408734" status="run">
+		<properties/>
+		<system-out>PASS sae
+</system-out>
+	</testcase>
+	<testcase name="wireless_multiple_clients" classname="wireless_multiple_clients" time="0.00414846" status="run">
+		<properties/>
+		<system-out>PASS multiple_clients
+</system-out>
+	</testcase>
+	<testcase name="wireless_reconnect" classname="wireless_reconnect" time="0.00536102" status="run">
+		<properties/>
+		<system-out>PASS reconnect
+</system-out>
+	</testcase>
+	<testcase name="handshake_complete" classname="handshake_complete" time="0.00471579" status="run">
+		<properties/>
+		<system-out>PASS complete
+</system-out>
+	</testcase>
+	<testcase name="handshake_missing1" classname="handshake_missing1" time="0.00458601" status="run">
+		<properties/>
+		<system-out>PASS missing1
+</system-out>
+	</testcase>
+	<testcase name="handshake_missing2" classname="handshake_missing2" time="0.00444469" status="run">
+		<properties/>
+		<system-out>PASS missing2
+</system-out>
+	</testcase>
+	<testcase name="handshake_missing3" classname="handshake_missing3" time="0.00474373" status="run">
+		<properties/>
+		<system-out>PASS missing3
+</system-out>
+	</testcase>
+	<testcase name="handshake_missing4" classname="handshake_missing4" time="0.00444043" status="run">
+		<properties/>
+		<system-out>PASS missing4
+</system-out>
+	</testcase>
+	<testcase name="handshake_reordered" classname="handshake_reordered" time="0.00475179" status="run">
+		<properties/>
+		<system-out>PASS reordered
+</system-out>
+	</testcase>
+	<testcase name="handshake_retransmitted" classname="handshake_retransmitted" time="0.00447311" status="run">
+		<properties/>
+		<system-out>PASS retransmitted
+</system-out>
+	</testcase>
+	<testcase name="handshake_timeout" classname="handshake_timeout" time="0.00466153" status="run">
+		<properties/>
+		<system-out>PASS timeout
+</system-out>
+	</testcase>
+	<testcase name="handshake_incomplete" classname="handshake_incomplete" time="0.0109528" status="run">
+		<properties/>
+		<system-out>PASS incomplete
+</system-out>
+	</testcase>
+	<testcase name="handshake_concurrent" classname="handshake_concurrent" time="0.00621084" status="run">
+		<properties/>
+		<system-out>PASS concurrent
+</system-out>
+	</testcase>
+	<testcase name="handshake_malformed_metadata" classname="handshake_malformed_metadata" time="0.00469162" status="run">
+		<properties/>
+		<system-out>PASS malformed_metadata
+</system-out>
+	</testcase>
+	<testcase name="handshake_duplicate" classname="handshake_duplicate" time="0.0057563" status="run">
+		<properties/>
+		<system-out>PASS duplicate
+</system-out>
+	</testcase>
+	<testcase name="handshake_ambiguous" classname="handshake_ambiguous" time="0.00637074" status="run">
+		<properties/>
+		<system-out>PASS ambiguous
+</system-out>
+	</testcase>
+	<testcase name="handshake_boundary" classname="handshake_boundary" time="0.00442352" status="run">
+		<properties/>
+		<system-out>PASS boundary
+</system-out>
+	</testcase>
+	<testcase name="handshake_empty" classname="handshake_empty" time="0.00394624" status="run">
+		<properties/>
+		<system-out>PASS empty
+</system-out>
+	</testcase>
+	<testcase name="handshake_timestamp" classname="handshake_timestamp" time="0.00671943" status="run">
+		<properties/>
+		<system-out>PASS timestamp
+</system-out>
+	</testcase>
+	<testcase name="handshake_bounded_large" classname="handshake_bounded_large" time="0.151077" status="run">
+		<properties/>
+		<system-out>PASS bounded_large
+</system-out>
+	</testcase>
+	<testcase name="handshake_replay_mismatch" classname="handshake_replay_mismatch" time="0.0054816" status="run">
+		<properties/>
+		<system-out>PASS replay_mismatch
+</system-out>
+	</testcase>
+</testsuite>

@@ -473,7 +473,14 @@ export default function WirelessLab() {
                 : "TShark unavailable: JSON-event scenarios work; packet scenarios require TShark."}
             </div>
           )}
-          <WirelessV3 view={tab} selected={run} onResult={(value) => {setRun(value as Run); void refresh();}} />
+          <WirelessV3
+            view={tab}
+            selected={run}
+            onResult={(value) => {
+              setRun(value as Run);
+              void refresh();
+            }}
+          />
           {tab === 0 && (
             <>
               <div className="wl-kpis">
@@ -947,7 +954,9 @@ export default function WirelessLab() {
                         <span
                           className={`pill ${run.verdict === "pass" ? "green" : run.verdict === "analysis_only" ? "neutral" : "red"}`}
                         >
-                          {run.verdict === "analysis_only" ? "Analysis only" : `Validation ${run.verdict}`}
+                          {run.verdict === "analysis_only"
+                            ? "Analysis only"
+                            : `Validation ${run.verdict}`}
                         </span>
                         <h3>
                           {labels(client?.classification || "incomplete")}
@@ -1159,8 +1168,8 @@ export default function WirelessLab() {
           <div className="wl-boundary">
             <ShieldCheck size={14} />
             <span>
-              Offline laboratory · No live capture, device access or
-              privileged network commands ·{" "}
+              Offline laboratory · No live capture, device access or privileged
+              network commands ·{" "}
               {caps?.guest_limits.operations_per_minute || 12} operations/minute
             </span>
           </div>

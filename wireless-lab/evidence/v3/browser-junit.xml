@@ -1,0 +1,20 @@
+<testsuites id="" name="" tests="6" failures="0" skipped="0" errors="0" time="11.396136">
+<testsuite name="console.spec.ts" timestamp="2026-10-19T13:13:46.502Z" hostname="chromium" tests="2" failures="0" skipped="0" time="10.286" errors="0">
+<testcase name="real API dashboard, probes, navigation and screenshot" classname="console.spec.ts" time="6.704">
+</testcase>
+<testcase name="mobile navigation remains usable" classname="console.spec.ts" time="3.582">
+</testcase>
+</testsuite>
+<testsuite name="wireless-v3.spec.ts" timestamp="2026-10-19T13:13:46.502Z" hostname="chromium" tests="2" failures="0" skipped="0" time="16.566" errors="0">
+<testcase name="private PCAPNG import shows Ethernet evidence limits and WPA2 packet references" classname="wireless-v3.spec.ts" time="9.032">
+</testcase>
+<testcase name="registered controller case and full validation plan have separate execution counters" classname="wireless-v3.spec.ts" time="7.534">
+</testcase>
+</testsuite>
+<testsuite name="wireless.spec.ts" timestamp="2026-10-19T13:13:46.502Z" hostname="chromium" tests="2" failures="0" skipped="0" time="11.262" errors="0">
+<testcase name="guest enters, executes failure, explores packet evidence and exports" classname="wireless.spec.ts" time="7.158">
+</testcase>
+<testcase name="mobile guest session and all seven views remain usable" classname="wireless.spec.ts" time="4.104">
+</testcase>
+</testsuite>
+</testsuites>

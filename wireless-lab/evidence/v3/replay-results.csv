@@ -1,0 +1,25 @@
+test_id,feature,verdict,expected_behavior,observed_behavior,execution_duration_ms,reproduction
+A,Successful association,pass,['association_success'],['association_success'],754.0896489999795,python wireless-lab/scripts/validate_v3.py --test A
+B,AP association rejection,pass,['association_rejected'],['association_rejected'],140.8346379998875,python wireless-lab/scripts/validate_v3.py --test B
+C,Authentication rejection,pass,['authentication_failed'],['authentication_failed'],119.9605369999972,python wireless-lab/scripts/validate_v3.py --test C
+D,Client disconnected,pass,['disconnected'],['disconnected'],132.87778100016112,python wireless-lab/scripts/validate_v3.py --test D
+E,DHCP allocation failure,pass,['dhcp_failed'],['dhcp_failed'],3.11229099997945,python wireless-lab/scripts/validate_v3.py --test E
+F,DNS failure after IP configuration,pass,['dns_failed'],['dns_failed'],1.8753929998638341,python wireless-lab/scripts/validate_v3.py --test F
+G,Delayed association,pass,['association_delayed'],['association_delayed'],157.86353299995426,python wireless-lab/scripts/validate_v3.py --test G
+H,Duplicate and out-of-order events,pass,['association_success'],['association_success'],2.5145030001567648,python wireless-lab/scripts/validate_v3.py --test H
+I,Missing connection evidence,pass,['incomplete'],['incomplete'],2.3061169999891717,python wireless-lab/scripts/validate_v3.py --test I
+J,Delayed inconsistent controller update,pass,['management_inconsistent'],['management_inconsistent'],1.748812999949223,python wireless-lab/scripts/validate_v3.py --test J
+P01,WPA2 handshake complete,pass,['HANDSHAKE_COMPLETE'],['HANDSHAKE_COMPLETE'],1.971856999944066,python wireless-lab/scripts/validate_v3.py --test P01
+P02,WPA2 handshake missing_m1,pass,['HANDSHAKE_INCOMPLETE'],['HANDSHAKE_INCOMPLETE'],2.4887689999104623,python wireless-lab/scripts/validate_v3.py --test P02
+P03,WPA2 handshake missing_m2,pass,['HANDSHAKE_INCOMPLETE'],['HANDSHAKE_INCOMPLETE'],2.269537000074706,python wireless-lab/scripts/validate_v3.py --test P03
+P04,WPA2 handshake missing_m3,pass,['HANDSHAKE_INCOMPLETE'],['HANDSHAKE_INCOMPLETE'],2.2977189998982794,python wireless-lab/scripts/validate_v3.py --test P04
+P05,WPA2 handshake missing_m4,pass,['HANDSHAKE_INCOMPLETE'],['HANDSHAKE_INCOMPLETE'],1.5637269998478587,python wireless-lab/scripts/validate_v3.py --test P05
+P06,WPA2 handshake reordered,pass,['UNEXPECTED_SEQUENCE'],['UNEXPECTED_SEQUENCE'],2.043623999952615,python wireless-lab/scripts/validate_v3.py --test P06
+P07,WPA2 handshake retransmitted,pass,['HANDSHAKE_COMPLETE'],['HANDSHAKE_COMPLETE'],1.5742330001558003,python wireless-lab/scripts/validate_v3.py --test P07
+P08,WPA2 handshake timeout,pass,['HANDSHAKE_TIMEOUT'],['HANDSHAKE_TIMEOUT'],2.3347589999502816,python wireless-lab/scripts/validate_v3.py --test P08
+P09,WPA2 handshake insufficient,pass,['INSUFFICIENT_EVIDENCE'],['INSUFFICIENT_EVIDENCE'],1.4430470000661444,python wireless-lab/scripts/validate_v3.py --test P09
+P10,WPA2 handshake concurrent,pass,['HANDSHAKE_COMPLETE'],['HANDSHAKE_COMPLETE'],2.054385999826991,python wireless-lab/scripts/validate_v3.py --test P10
+C01,controller_delay,pass,['CONTROLLER_UPDATE_DELAY'],['CONTROLLER_UPDATE_DELAY'],0.10931400015579129,python wireless-lab/scripts/validate_v3.py --test C01
+C02,stale_controller,pass,['STALE_OR_INCONSISTENT_CONTROLLER'],['STALE_OR_INCONSISTENT_CONTROLLER'],0.09745600004862354,python wireless-lab/scripts/validate_v3.py --test C02
+C03,missing_management,pass,['MISSING_MANAGEMENT_EVIDENCE'],['MISSING_MANAGEMENT_EVIDENCE'],0.07576300004075165,python wireless-lab/scripts/validate_v3.py --test C03
+C04,client_ap_mismatch,pass,['CLIENT_AP_MISMATCH'],['CLIENT_AP_MISMATCH'],0.08973399985734432,python wireless-lab/scripts/validate_v3.py --test C04

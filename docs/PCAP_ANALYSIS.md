@@ -1,5 +1,7 @@
 # Offline packet analysis
 
+> Initial WirelessLab release guide retained as historical context. For current V3 import/handshake/test-plan capabilities and boundaries, see [V3 architecture](wirelesslab-v3/ARCHITECTURE.md) and [V3 results](wirelesslab-v3/TEST_RESULTS.md). The legacy operator-only `/uploads` remains restricted; V3 adds a separate consent-bound `/imports` endpoint.
+
 Install TShark from your platform's official Wireshark distribution and ensure `tshark --version` works. Build C++ and install backend dependencies first (README). Run `python wireless-lab/scripts/run_scenarios.py --scenario A`. It reads an approved file, calls real TShark, normalizes events, invokes C++ and writes timestamped JSON without overwriting past reports.
 
 ## Supported fields and limits

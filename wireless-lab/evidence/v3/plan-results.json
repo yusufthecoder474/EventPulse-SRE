@@ -1,0 +1,3022 @@
+{
+  "unique_scenarios": 24,
+  "executed_runs": 24,
+  "passed_runs": 24,
+  "validation_failures": 0,
+  "results": [
+    {
+      "test_id": "A",
+      "feature": "Successful association",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "input_evidence": "association-success.pcap",
+      "expected_behavior": [
+        "association_success"
+      ],
+      "observed_behavior": [
+        "association_success"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "association_success"
+      ],
+      "event_references": [
+        "frame_1",
+        "frame_2",
+        "frame_3",
+        "frame_4",
+        "frame_5",
+        "frame_6",
+        "frame_7",
+        "frame_8",
+        "frame_9",
+        "frame_10",
+        "frame_11"
+      ],
+      "execution_duration_ms": 660.9526170000208,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test A",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 11,
+        "processed_events": 11,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "association_success",
+            "explanation": "Authentication and successful association evidence observed; IP access and cryptographic validity are separate.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "key_exchange": "four_messages_observed_not_cryptographically_verified",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": []
+          }
+        ],
+        "analysis_duration_ms": 2.0357260000309907
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "02:00:00:00:10:01",
+            "authenticator": "02:00:00:00:01:01",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "frame_8",
+                "timestamp_us": 1700000000600000,
+                "message": 1,
+                "replay_counter": "1",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "frame_9",
+                "timestamp_us": 1700000000700000,
+                "message": 2,
+                "replay_counter": "1",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "frame_10",
+                "timestamp_us": 1700000000800000,
+                "message": 3,
+                "replay_counter": "2",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "frame_11",
+                "timestamp_us": 1700000000900000,
+                "message": 4,
+                "replay_counter": "2",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.5321199998652446
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "connected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "frame_7"
+            ],
+            "timeline": [
+              {
+                "event_id": "frame_7",
+                "timestamp_us": 1700000000400000,
+                "layer": "ap",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "B",
+      "feature": "AP association rejection",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "input_evidence": "association-rejected.pcap",
+      "expected_behavior": [
+        "association_rejected"
+      ],
+      "observed_behavior": [
+        "association_rejected"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "association_rejected"
+      ],
+      "event_references": [
+        "frame_1",
+        "frame_2",
+        "frame_3",
+        "frame_4"
+      ],
+      "execution_duration_ms": 126.21313299996473,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test B",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 4,
+        "processed_events": 4,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "association_failed",
+            "classification": "association_rejected",
+            "explanation": "Explicit AP association rejection observed.",
+            "association_latency_ms": null,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "AP association response contains an explicit nonzero status."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 2.0252369999980147
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 2.037144000041735
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "disconnected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "frame_4"
+            ],
+            "timeline": [
+              {
+                "event_id": "frame_4",
+                "timestamp_us": 1700000000400000,
+                "layer": "ap",
+                "state": "disconnected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "C",
+      "feature": "Authentication rejection",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "input_evidence": "authentication-failed.pcap",
+      "expected_behavior": [
+        "authentication_failed"
+      ],
+      "observed_behavior": [
+        "authentication_failed"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "authentication_failed"
+      ],
+      "event_references": [
+        "frame_1",
+        "frame_2"
+      ],
+      "execution_duration_ms": 126.669966999998,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 2,
+        "processed_events": 2,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "authentication_failed",
+            "classification": "authentication_failed",
+            "explanation": "Explicit authentication rejection observed; credentials are not inspected.",
+            "association_latency_ms": null,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Authentication rejection is explicit; password cause is not established."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 1.9894380000096135
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 2.542360000006738
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "disconnected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "frame_2"
+            ],
+            "timeline": [
+              {
+                "event_id": "frame_2",
+                "timestamp_us": 1700000000200000,
+                "layer": "ap",
+                "state": "disconnected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "D",
+      "feature": "Client disconnected",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "input_evidence": "client-disconnected.pcap",
+      "expected_behavior": [
+        "disconnected"
+      ],
+      "observed_behavior": [
+        "disconnected"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "disconnected"
+      ],
+      "event_references": [
+        "frame_1",
+        "frame_2",
+        "frame_3",
+        "frame_4",
+        "frame_5"
+      ],
+      "execution_duration_ms": 137.59749099995133,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test D",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 5,
+        "processed_events": 5,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "disconnected",
+            "classification": "disconnected",
+            "explanation": "Explicit deauthentication/disassociation evidence observed.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Explicit disconnect/reason evidence observed; root cause beyond the code remains unproven."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 2.326919999859456
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 2.354581999952643
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "disconnected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "frame_4",
+              "frame_5"
+            ],
+            "timeline": [
+              {
+                "event_id": "frame_4",
+                "timestamp_us": 1700000000400000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "frame_5",
+                "timestamp_us": 1700000000900000,
+                "layer": "ap",
+                "state": "disconnected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "E",
+      "feature": "DHCP allocation failure",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "input_evidence": "dhcp-failed.json",
+      "expected_behavior": [
+        "dhcp_failed"
+      ],
+      "observed_behavior": [
+        "dhcp_failed"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "dhcp_failed"
+      ],
+      "event_references": [
+        "e_auth_request_100000",
+        "e_auth_ok_200000",
+        "e_assoc_request_300000",
+        "e_assoc_ok_400000",
+        "e_dhcp_discover_500000",
+        "e_dhcp_fail_3500000"
+      ],
+      "execution_duration_ms": 1.8432819999816275,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test E",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 6,
+        "processed_events": 6,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "dhcp_failed",
+            "classification": "dhcp_failed",
+            "explanation": "IP allocation failure is explicit; Wi-Fi joining and DHCP are distinct.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Explicit DHCP NAK or synthetic timeout evidence; association is a separate layer."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 1.4389440000286413
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 2.2804010000072594
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "connected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "e_assoc_ok_400000"
+            ],
+            "timeline": [
+              {
+                "event_id": "e_assoc_ok_400000",
+                "timestamp_us": 1700000000400000,
+                "layer": "ap",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "F",
+      "feature": "DNS failure after IP configuration",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "input_evidence": "dns-failed.json",
+      "expected_behavior": [
+        "dns_failed"
+      ],
+      "observed_behavior": [
+        "dns_failed"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "dns_failed"
+      ],
+      "event_references": [
+        "e_auth_request_100000",
+        "e_auth_ok_200000",
+        "e_assoc_request_300000",
+        "e_assoc_ok_400000",
+        "e_dhcp_ack_600000",
+        "e_dns_query_700000",
+        "e_dns_fail_800000"
+      ],
+      "execution_duration_ms": 1.8045539998183813,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test F",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 7,
+        "processed_events": 7,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "dns_failed",
+            "classification": "dns_failed",
+            "explanation": "DNS failure is explicit; it does not establish a wireless association failure.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "DNS error response or explicit synthetic failure observed; this is not an RF failure."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 1.4042129998870223
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.4197460000104911
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "connected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "e_assoc_ok_400000"
+            ],
+            "timeline": [
+              {
+                "event_id": "e_assoc_ok_400000",
+                "timestamp_us": 1700000000400000,
+                "layer": "ap",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "G",
+      "feature": "Delayed association",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer",
+        "TShark installed"
+      ],
+      "input_evidence": "association-delayed.pcap",
+      "expected_behavior": [
+        "association_delayed"
+      ],
+      "observed_behavior": [
+        "association_delayed"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "association_delayed"
+      ],
+      "event_references": [
+        "frame_1",
+        "frame_2",
+        "frame_3",
+        "frame_4"
+      ],
+      "execution_duration_ms": 127.5646079998296,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test G",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 4,
+        "processed_events": 4,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "association_delayed",
+            "explanation": "Matched request/response exceeds the local laboratory latency threshold.",
+            "association_latency_ms": 1500,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": []
+          }
+        ],
+        "analysis_duration_ms": 2.7720299999600684
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 2.129724000042188
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "connected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "frame_4"
+            ],
+            "timeline": [
+              {
+                "event_id": "frame_4",
+                "timestamp_us": 1700000001800000,
+                "layer": "ap",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "H",
+      "feature": "Duplicate and out-of-order events",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "input_evidence": "reordered-duplicate.json",
+      "expected_behavior": [
+        "association_success"
+      ],
+      "observed_behavior": [
+        "association_success"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "association_success"
+      ],
+      "event_references": [
+        "e_assoc_request_300000",
+        "e_auth_request_100000",
+        "e_auth_ok_200000",
+        "e_assoc_request_300000",
+        "e_assoc_ok_400000"
+      ],
+      "execution_duration_ms": 2.4586980000549374,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test H",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 5,
+        "processed_events": 4,
+        "duplicate_events": 1,
+        "out_of_order_pairs": 1,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "association_success",
+            "explanation": "Authentication and successful association evidence observed; IP access and cryptographic validity are separate.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": null,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": []
+          }
+        ],
+        "analysis_duration_ms": 2.0072390000223095
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.7727970000578352
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "connected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "e_assoc_ok_400000"
+            ],
+            "timeline": [
+              {
+                "event_id": "e_assoc_ok_400000",
+                "timestamp_us": 1700000000400000,
+                "layer": "ap",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "I",
+      "feature": "Missing connection evidence",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "input_evidence": "incomplete.json",
+      "expected_behavior": [
+        "incomplete"
+      ],
+      "observed_behavior": [
+        "incomplete"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "incomplete"
+      ],
+      "event_references": [
+        "e_assoc_request_300000"
+      ],
+      "execution_duration_ms": 1.861009000094782,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test I",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 1,
+        "processed_events": 1,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associating",
+            "classification": "incomplete",
+            "explanation": "Capture/events do not establish the complete connection path; no missing failure cause is invented.",
+            "association_latency_ms": null,
+            "controller_lag_ms": null,
+            "invalid_transition": true,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Association request has no preceding authentication evidence."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 1.5625700000327924
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.6700470000614587
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "J",
+      "feature": "Delayed inconsistent controller update",
+      "preconditions": [
+        "Offline local lab",
+        "Compiled C++17 analyzer"
+      ],
+      "input_evidence": "controller-inconsistent.json",
+      "expected_behavior": [
+        "management_inconsistent"
+      ],
+      "observed_behavior": [
+        "management_inconsistent"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "management_inconsistent"
+      ],
+      "event_references": [
+        "e_auth_request_100000",
+        "e_auth_ok_200000",
+        "e_assoc_request_300000",
+        "e_assoc_ok_400000",
+        "e_controller_update_8000000"
+      ],
+      "execution_duration_ms": 1.7409590000170283,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test J",
+      "details": {
+        "schema_version": 1,
+        "engine": "C++17",
+        "input_events": 5,
+        "processed_events": 5,
+        "duplicate_events": 0,
+        "out_of_order_pairs": 0,
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "state": "associated",
+            "classification": "management_inconsistent",
+            "explanation": "AP/controller disagreement is demonstrated, not a Cisco controller fault.",
+            "association_latency_ms": 100,
+            "controller_lag_ms": 7600,
+            "invalid_transition": false,
+            "eapol_messages_observed": [],
+            "key_exchange": "incomplete_or_not_captured",
+            "sae_exchange": "incomplete_or_not_captured",
+            "findings": [
+              "Controller observation arrived after the correlation window; timestamps assume a shared clock.",
+              "Controller status disagrees with the latest explicit AP state."
+            ]
+          }
+        ],
+        "analysis_duration_ms": 1.355820000071617
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.5967409999575466
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "02:00:00:00:10:01",
+            "ap": "02:00:00:00:01:01",
+            "client_state": "unknown",
+            "ap_state": "connected",
+            "controller_state": "disconnected",
+            "dashboard_state": "unknown",
+            "classification": "STALE_OR_INCONSISTENT_CONTROLLER",
+            "hypotheses": [
+              "Observed views disagree; delayed/stale synchronization is a hypothesis, not a proven vendor fault."
+            ],
+            "event_references": [
+              "e_assoc_ok_400000",
+              "e_controller_update_8000000"
+            ],
+            "timeline": [
+              {
+                "event_id": "e_assoc_ok_400000",
+                "timestamp_us": 1700000000400000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "e_controller_update_8000000",
+                "timestamp_us": 1700000008000000,
+                "layer": "controller",
+                "state": "disconnected"
+              }
+            ],
+            "controller_lag_ms": 7600.0,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P01",
+      "feature": "WPA2 handshake complete",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-complete.json",
+      "expected_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m2_200000",
+        "clientA_m3_300000",
+        "clientA_m4_400000"
+      ],
+      "execution_duration_ms": 1.6655449999234406,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P01",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.4714629999161843
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.4714629999161843
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P02",
+      "feature": "WPA2 handshake missing_m1",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-missing_m1.json",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "event_references": [
+        "clientA_m2_200000",
+        "clientA_m3_300000",
+        "clientA_m4_400000"
+      ],
+      "execution_duration_ms": 1.6309740001361206,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P02",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              1
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.4720740000484511
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              1
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.4720740000484511
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P03",
+      "feature": "WPA2 handshake missing_m2",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-missing_m2.json",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m3_300000",
+        "clientA_m4_400000"
+      ],
+      "execution_duration_ms": 1.596590999952241,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P03",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              2
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.4072769999984303
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              2
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.4072769999984303
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P04",
+      "feature": "WPA2 handshake missing_m3",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-missing_m3.json",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m2_200000",
+        "clientA_m4_400000"
+      ],
+      "execution_duration_ms": 1.632094999877154,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P04",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              3
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.460938000036549
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              3
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.460938000036549
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P05",
+      "feature": "WPA2 handshake missing_m4",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-missing_m4.json",
+      "expected_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_INCOMPLETE"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m2_200000",
+        "clientA_m3_300000"
+      ],
+      "execution_duration_ms": 1.4411280001240812,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P05",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              4
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.2966610001967638
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_INCOMPLETE",
+            "explanation": "Missing messages indicate incomplete observed evidence, not a proven authentication failure.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              4
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.2966610001967638
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P06",
+      "feature": "WPA2 handshake reordered",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-reordered.json",
+      "expected_behavior": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "observed_behavior": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "UNEXPECTED_SEQUENCE"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m3_200000",
+        "clientA_m2_300000",
+        "clientA_m4_400000"
+      ],
+      "execution_duration_ms": 1.613015999964773,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P06",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "UNEXPECTED_SEQUENCE",
+            "explanation": "A previously unseen earlier stage follows a later stage in timestamp order.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m3_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.3209569999617088
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "UNEXPECTED_SEQUENCE",
+            "explanation": "A previously unseen earlier stage follows a later stage in timestamp order.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m3_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.3209569999617088
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P07",
+      "feature": "WPA2 handshake retransmitted",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-retransmitted.json",
+      "expected_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m1_150000",
+        "clientA_m2_200000",
+        "clientA_m3_300000",
+        "clientA_m4_400000"
+      ],
+      "execution_duration_ms": 2.5711370001317846,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P07",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 1,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m1_150000",
+                "timestamp_us": 1700000000150000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 2.220439999973678
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 1,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m1_150000",
+                "timestamp_us": 1700000000150000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 2.220439999973678
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P08",
+      "feature": "WPA2 handshake timeout",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-timeout.json",
+      "expected_behavior": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_TIMEOUT"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m2_200000",
+        "tail"
+      ],
+      "execution_duration_ms": 1.8278989998634643,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P08",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_TIMEOUT",
+            "explanation": "Observed capture interval extends past the configured completion window; this is not proof of the device's internal timeout.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              3,
+              4
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.6808880000098725
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_TIMEOUT",
+            "explanation": "Observed capture interval extends past the configured completion window; this is not proof of the device's internal timeout.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              3,
+              4
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.6808880000098725
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P09",
+      "feature": "WPA2 handshake insufficient",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-insufficient.json",
+      "expected_behavior": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "observed_behavior": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "INSUFFICIENT_EVIDENCE"
+      ],
+      "event_references": [
+        "clientA_m1_100000"
+      ],
+      "execution_duration_ms": 1.4924749998499465,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P09",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "INSUFFICIENT_EVIDENCE",
+            "explanation": "Missing, unsupported or ambiguous roles, key flags, descriptor or replay-counter correlation.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              2,
+              3,
+              4
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "-1",
+                "direction": "ap_to_client"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.3843019999058015
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "INSUFFICIENT_EVIDENCE",
+            "explanation": "Missing, unsupported or ambiguous roles, key flags, descriptor or replay-counter correlation.",
+            "possible_retransmissions": 0,
+            "missing_messages": [
+              2,
+              3,
+              4
+            ],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "-1",
+                "direction": "ap_to_client"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.3843019999058015
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "P10",
+      "feature": "WPA2 handshake concurrent",
+      "preconditions": [
+        "C++17 engine",
+        "Synthetic metadata; no crypto proof"
+      ],
+      "input_evidence": "v3/handshake-concurrent.json",
+      "expected_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "observed_behavior": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "HANDSHAKE_COMPLETE"
+      ],
+      "event_references": [
+        "clientA_m1_100000",
+        "clientA_m2_200000",
+        "clientA_m3_300000",
+        "clientA_m4_400000",
+        "clientB_m1_150000",
+        "clientB_m2_250000",
+        "clientB_m3_350000",
+        "clientB_m4_450000"
+      ],
+      "execution_duration_ms": 1.7655660001310025,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test P10",
+      "details": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          },
+          {
+            "session_id": "hs_2",
+            "client": "clientB",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientB_m1_150000",
+                "timestamp_us": 1700000000150000,
+                "message": 1,
+                "replay_counter": "20",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientB_m2_250000",
+                "timestamp_us": 1700000000250000,
+                "message": 2,
+                "replay_counter": "20",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientB_m3_350000",
+                "timestamp_us": 1700000000350000,
+                "message": 3,
+                "replay_counter": "25",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientB_m4_450000",
+                "timestamp_us": 1700000000450000,
+                "message": 4,
+                "replay_counter": "25",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.5593759999319445
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [
+          {
+            "session_id": "hs_1",
+            "client": "clientA",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientA_m1_100000",
+                "timestamp_us": 1700000000100000,
+                "message": 1,
+                "replay_counter": "10",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m2_200000",
+                "timestamp_us": 1700000000200000,
+                "message": 2,
+                "replay_counter": "10",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientA_m3_300000",
+                "timestamp_us": 1700000000300000,
+                "message": 3,
+                "replay_counter": "11",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientA_m4_400000",
+                "timestamp_us": 1700000000400000,
+                "message": 4,
+                "replay_counter": "11",
+                "direction": "client_to_ap"
+              }
+            ]
+          },
+          {
+            "session_id": "hs_2",
+            "client": "clientB",
+            "authenticator": "apA",
+            "classification": "HANDSHAKE_COMPLETE",
+            "explanation": "Four ordered, role/flag/replay-consistent message observations; no MIC, key installation or password verification.",
+            "possible_retransmissions": 0,
+            "missing_messages": [],
+            "packet_references": [
+              {
+                "event_id": "clientB_m1_150000",
+                "timestamp_us": 1700000000150000,
+                "message": 1,
+                "replay_counter": "20",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientB_m2_250000",
+                "timestamp_us": 1700000000250000,
+                "message": 2,
+                "replay_counter": "20",
+                "direction": "client_to_ap"
+              },
+              {
+                "event_id": "clientB_m3_350000",
+                "timestamp_us": 1700000000350000,
+                "message": 3,
+                "replay_counter": "25",
+                "direction": "ap_to_client"
+              },
+              {
+                "event_id": "clientB_m4_450000",
+                "timestamp_us": 1700000000450000,
+                "message": 4,
+                "replay_counter": "25",
+                "direction": "client_to_ap"
+              }
+            ]
+          }
+        ],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.5593759999319445
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "C01",
+      "feature": "controller_delay",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "input_evidence": "v3/controller_delay.json",
+      "expected_behavior": [
+        "CONTROLLER_UPDATE_DELAY"
+      ],
+      "observed_behavior": [
+        "CONTROLLER_UPDATE_DELAY"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "CONTROLLER_UPDATE_DELAY"
+      ],
+      "event_references": [
+        "ap_join",
+        "client_view",
+        "controller_view"
+      ],
+      "execution_duration_ms": 0.1663099999404949,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C01",
+      "details": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "connected",
+            "ap_state": "connected",
+            "controller_state": "connected",
+            "dashboard_state": "unknown",
+            "classification": "CONTROLLER_UPDATE_DELAY",
+            "hypotheses": [
+              "Update lag exceeds the configured simulation window; shared-clock assumption applies."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view",
+              "controller_view"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "connected"
+              },
+              {
+                "event_id": "controller_view",
+                "timestamp_us": 8000000,
+                "layer": "controller",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": 7900.0,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.722812000025442
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "connected",
+            "ap_state": "connected",
+            "controller_state": "connected",
+            "dashboard_state": "unknown",
+            "classification": "CONTROLLER_UPDATE_DELAY",
+            "hypotheses": [
+              "Update lag exceeds the configured simulation window; shared-clock assumption applies."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view",
+              "controller_view"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "connected"
+              },
+              {
+                "event_id": "controller_view",
+                "timestamp_us": 8000000,
+                "layer": "controller",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": 7900.0,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "C02",
+      "feature": "stale_controller",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "input_evidence": "v3/stale_controller.json",
+      "expected_behavior": [
+        "STALE_OR_INCONSISTENT_CONTROLLER"
+      ],
+      "observed_behavior": [
+        "STALE_OR_INCONSISTENT_CONTROLLER"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "STALE_OR_INCONSISTENT_CONTROLLER"
+      ],
+      "event_references": [
+        "ap_join",
+        "client_view",
+        "ap_leave",
+        "client_leave",
+        "controller_stale",
+        "dashboard_stale"
+      ],
+      "execution_duration_ms": 0.6634780002059415,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C02",
+      "details": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "disconnected",
+            "ap_state": "disconnected",
+            "controller_state": "connected",
+            "dashboard_state": "connected",
+            "classification": "STALE_OR_INCONSISTENT_CONTROLLER",
+            "hypotheses": [
+              "Observed views disagree; delayed/stale synchronization is a hypothesis, not a proven vendor fault."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view",
+              "ap_leave",
+              "client_leave",
+              "controller_stale",
+              "dashboard_stale"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "connected"
+              },
+              {
+                "event_id": "ap_leave",
+                "timestamp_us": 300000,
+                "layer": "ap",
+                "state": "disconnected"
+              },
+              {
+                "event_id": "client_leave",
+                "timestamp_us": 350000,
+                "layer": "client",
+                "state": "disconnected"
+              },
+              {
+                "event_id": "controller_stale",
+                "timestamp_us": 400000,
+                "layer": "controller",
+                "state": "connected"
+              },
+              {
+                "event_id": "dashboard_stale",
+                "timestamp_us": 500000,
+                "layer": "dashboard",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": 100.0,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.546006000125999
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "disconnected",
+            "ap_state": "disconnected",
+            "controller_state": "connected",
+            "dashboard_state": "connected",
+            "classification": "STALE_OR_INCONSISTENT_CONTROLLER",
+            "hypotheses": [
+              "Observed views disagree; delayed/stale synchronization is a hypothesis, not a proven vendor fault."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view",
+              "ap_leave",
+              "client_leave",
+              "controller_stale",
+              "dashboard_stale"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "connected"
+              },
+              {
+                "event_id": "ap_leave",
+                "timestamp_us": 300000,
+                "layer": "ap",
+                "state": "disconnected"
+              },
+              {
+                "event_id": "client_leave",
+                "timestamp_us": 350000,
+                "layer": "client",
+                "state": "disconnected"
+              },
+              {
+                "event_id": "controller_stale",
+                "timestamp_us": 400000,
+                "layer": "controller",
+                "state": "connected"
+              },
+              {
+                "event_id": "dashboard_stale",
+                "timestamp_us": 500000,
+                "layer": "dashboard",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": 100.0,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "C03",
+      "feature": "missing_management",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "input_evidence": "v3/missing_management.json",
+      "expected_behavior": [
+        "MISSING_MANAGEMENT_EVIDENCE"
+      ],
+      "observed_behavior": [
+        "MISSING_MANAGEMENT_EVIDENCE"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "MISSING_MANAGEMENT_EVIDENCE"
+      ],
+      "event_references": [
+        "ap_join",
+        "client_view"
+      ],
+      "execution_duration_ms": 0.06974500001888373,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C03",
+      "details": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "connected",
+            "ap_state": "connected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.424953000196183
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "connected",
+            "ap_state": "connected",
+            "controller_state": "unknown",
+            "dashboard_state": "unknown",
+            "classification": "MISSING_MANAGEMENT_EVIDENCE",
+            "hypotheses": [
+              "No controller observation is present; transport loss or capture omission is unproven."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": null,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    },
+    {
+      "test_id": "C04",
+      "feature": "client_ap_mismatch",
+      "preconditions": [
+        "Simulated common-clock event views"
+      ],
+      "input_evidence": "v3/client_ap_mismatch.json",
+      "expected_behavior": [
+        "CLIENT_AP_MISMATCH"
+      ],
+      "observed_behavior": [
+        "CLIENT_AP_MISMATCH"
+      ],
+      "verdict": "pass",
+      "root_cause_classification": [
+        "CLIENT_AP_MISMATCH"
+      ],
+      "event_references": [
+        "ap_join",
+        "client_view",
+        "controller_ok"
+      ],
+      "execution_duration_ms": 0.09594400012247206,
+      "reproduction": "python wireless-lab/scripts/validate_v3.py --test C04",
+      "details": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "disconnected",
+            "ap_state": "connected",
+            "controller_state": "connected",
+            "dashboard_state": "unknown",
+            "classification": "CLIENT_AP_MISMATCH",
+            "hypotheses": [
+              "Client and AP observations disagree; additional logs and synchronized clocks are required."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view",
+              "controller_ok"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "disconnected"
+              },
+              {
+                "event_id": "controller_ok",
+                "timestamp_us": 400000,
+                "layer": "controller",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": 300.0,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      },
+      "evidence_origin": "synthetic",
+      "handshakes": {
+        "engine": "C++17",
+        "schema_version": 1,
+        "cryptographically_verified": false,
+        "sessions": [],
+        "limitations": [
+          "WPA2-Personal-style descriptor-2, pairwise CCMP key-version-2 observations only; security policy is not proven without RSN context.",
+          "Retransmissions are metadata-consistent candidates, not byte-for-byte payload verification.",
+          "Concurrent attempts with insufficient identifiers are ambiguous; no WPA3 or cryptographic validation."
+        ],
+        "analysis_duration_ms": 1.351072000034037
+      },
+      "layers": {
+        "model": "Simulated controller state and management-plane validation.",
+        "clients": [
+          {
+            "client": "clientA",
+            "ap": "apA",
+            "client_state": "disconnected",
+            "ap_state": "connected",
+            "controller_state": "connected",
+            "dashboard_state": "unknown",
+            "classification": "CLIENT_AP_MISMATCH",
+            "hypotheses": [
+              "Client and AP observations disagree; additional logs and synchronized clocks are required."
+            ],
+            "event_references": [
+              "ap_join",
+              "client_view",
+              "controller_ok"
+            ],
+            "timeline": [
+              {
+                "event_id": "ap_join",
+                "timestamp_us": 100000,
+                "layer": "ap",
+                "state": "connected"
+              },
+              {
+                "event_id": "client_view",
+                "timestamp_us": 200000,
+                "layer": "client",
+                "state": "disconnected"
+              },
+              {
+                "event_id": "controller_ok",
+                "timestamp_us": 400000,
+                "layer": "controller",
+                "state": "connected"
+              }
+            ],
+            "controller_lag_ms": 300.0,
+            "simulated": true
+          }
+        ],
+        "limitations": [
+          "Common-clock event model; not CAPWAP, a real wireless LAN controller, cloud-managed network or an RF diagnosis.",
+          "Missing management events do not establish a device or transport failure."
+        ]
+      }
+    }
+  ],
+  "evidence_origin": "synthetic",
+  "plan_version": 1
+}
